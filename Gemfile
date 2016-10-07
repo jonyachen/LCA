@@ -47,3 +47,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# debugger is useful in development mode too
+group :development, :test do
+  gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+end
+# setup Cucumber, RSpec, autotest support
+group :test do
+  gem 'rspec-rails', '2.14'
+  gem 'simplecov', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # basic imperative step defs
+  gem 'database_cleaner' # required by Cucumber
+  gem 'autotest-rails'
+  gem 'factory_girl_rails' # if using FactoryGirl
+  gem 'metric_fu'        # collect code metrics
+end

@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The README.md at the top level of the repo includes all of the following:
+CodeClimate badge showing project's current GPA
+Travis CI badge showing build status for master branch (should be "passing")
+Link to deployed app on Heroku
+Link to Pivotal Tracker project
+A brief explanation of the customer's business need that the app addresses, including a link to the customer's website
