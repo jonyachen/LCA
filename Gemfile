@@ -50,7 +50,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # debugger is useful in development mode too
 group :development, :test do
   gem 'sqlite3'
-  gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
