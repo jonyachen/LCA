@@ -6,9 +6,13 @@
 
 [![Build Status](https://travis-ci.org/rqueensen/faludi-lca-app.svg?branch=master)](https://travis-ci.org/rqueensen/faludi-lca-app)
 
-The README.md at the top level of the repo includes all of the following:
-CodeClimate badge showing project's current GPA
-Travis CI badge showing build status for master branch (should be "passing")
-Link to deployed app on Heroku
-Link to Pivotal Tracker project
-A brief explanation of the customer's business need that the app addresses, including a link to the customer's website
+[Current app deployment](https://faludi-lca.herokuapp.com/)
+
+[Pivitol Tracker Project](https://www.pivotaltracker.com/n/projects/1886787)
+
+
+This website is meant to facilitate engineers in measuring the environmental impact of their products.
+A simple, easy to use UI will allow the users to easily add information about their products (parts, materials, shipping methods)
+which will then be analyzed and displayed with numerous graphs. 
+
+[Faludi Design's website](http://www.faludidesign.com/)
