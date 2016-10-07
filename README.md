@@ -4,6 +4,7 @@
 
 <a href="https://codeclimate.com/github/rails/rails/coverage"><img src="https://codeclimate.com/github/rails/rails/badges/coverage.svg" /></a>
 
+[![Build Status](https://travis-ci.org/rqueensen/faludi-lca-app.svg?branch=master)](https://travis-ci.org/rqueensen/faludi-lca-app)
 
 The README.md at the top level of the repo includes all of the following:
 CodeClimate badge showing project's current GPA
