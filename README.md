@@ -1,5 +1,8 @@
 # README
 
+<a href="https://codeclimate.com/github/rails/rails"><img src="https://codeclimate.com/github/rails/rails/badges/gpa.svg" /></a>
+
+
 The README.md at the top level of the repo includes all of the following:
 CodeClimate badge showing project's current GPA
 Travis CI badge showing build status for master branch (should be "passing")
