@@ -1,6 +1,4 @@
-Entry Video:
-**Add here**
-https://youtu.be/DjryAE85ohY
+[Entry Video] (https://youtu.be/DjryAE85ohY)
 
 Screencasts:
 **Add here**
