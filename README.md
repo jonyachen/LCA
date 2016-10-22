@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/rqueensen/faludi-lca-app.svg?branch=master)](https://travis-ci.org/rqueensen/faludi-lca-app)
 
-[Current app deployment](https://faludi-lca.herokuapp.com/)
+[Current app deployment](https://cs169-faludi-proj.herokuapp.com/)
 
 [Pivitol Tracker Project](https://www.pivotaltracker.com/n/projects/1886787)
 
