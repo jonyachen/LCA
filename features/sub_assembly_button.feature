@@ -9,6 +9,16 @@ Background: I am on the LCA app homepage
     Given I am on the LCA app homepage
   
 Scenario: Open the sub-assemblies panel
-    When I click 
+    When I press '+Sub-Assembly' 
     Then I should see 'Name'
     And I should see 'Description'
+    And I should see 'Cancel'
+    When I press '+Material'
+    Then I should not see 'Name'
+    And I should not see 'Description'
+    And I should see 'Select your material'
+    When I press 'Cancel'
+    Then I should not see 'Select your material'
+    When I press '+Sub-Assembly'
+    Then I press 'Cancel'
+    Then I should not see 'Name'
