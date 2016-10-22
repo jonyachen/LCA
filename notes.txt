@@ -1,0 +1,7 @@
+As a product designer
+ - compare *several* different models
+ - search database to include my materials
+ - log in and store my models
+ - create and include subassembly
+ - possibly recommend materials/processes
+ 
