@@ -56,6 +56,7 @@ group :development, :test do
 end
 # setup Cucumber, RSpec, autotest support
 group :test do
+  gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
