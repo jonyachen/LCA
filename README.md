@@ -1,8 +1,7 @@
 # README
+<a href="https://codeclimate.com/github/rqueensen/faludi-lca-app"><img src="https://codeclimate.com/github/rqueensen/faludi-lca-app/badges/gpa.svg" /></a>
 
-<a href="https://codeclimate.com/github/rails/rails"><img src="https://codeclimate.com/github/rails/rails/badges/gpa.svg" /></a>
-
-<a href="https://codeclimate.com/github/rails/rails/coverage"><img src="https://codeclimate.com/github/rails/rails/badges/coverage.svg" /></a>
+<a href="https://codeclimate.com/github/rqueensen/faludi-lca-app/coverage"><img src="https://codeclimate.com/github/rqueensen/faludi-lca-app/badges/coverage.svg" /></a>
 
 [![Build Status](https://travis-ci.org/rqueensen/faludi-lca-app.svg?branch=master)](https://travis-ci.org/rqueensen/faludi-lca-app)
 
