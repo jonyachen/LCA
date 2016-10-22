@@ -1,0 +1,40 @@
+$sidebar-width: 350px;
+$padding: 40px;
+
+body>div {
+	padding: $padding;
+}
+
+#assembly-head {
+	padding: 40px;
+	button {
+		color: white;
+		background-color: #696;
+	}
+}
+
+#assembly {
+	width: calc(100% - #{$sidebar-width});
+	.collection {
+		width: 100%;
+	}
+}
+
+#select-panel {
+	background-color: #f5f5f5;
+	visibility: hidden;
+    position: fixed;
+    float: right;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $sidebar-width;
+
+    border-left: solid black 1px;
+
+    .actions {
+    	padding: $padding;
+    	position: absolute;
+    	bottom: 0;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+<head>
+
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
+	<%= stylesheet_link_tag "model", media: "all" %>
+    <%= javascript_include_tag "model" %>
+
+	<!-- Materialize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="test.css">
+</head>
+
+<body>
+	<div id="assembly-head"> 
+	<button class="btn-flat" onclick="show_select_panel()">+Material</button>
+	<button class="btn-flat">+Sub-Assembly</button>
+	</div>
+
+	<div id="assembly">
+		<span style="text-decoration: underline;"> New Assembly </span>
+
+		<ul id="assembly" class="collection">
+		<li class="collection-item"> Something </li>
+		<li class="collection-item"> Something else </li>
+		</ul>
+	</div>
+
+	<div id="select-panel">
+	<div class="input-field col s12">
+		<select>
+			<option value="" disabled selected>Select your material</option>
+			<option value="1">Option 1</option>
+			<option value="2">Option 2</option>
+			<option value="3">Option 3</option>
+		</select>
+		<label>Material</label>
+	</div>
+	<div id="amount-selector">
+	</div>
+
+	<div class="actions">
+		<button class="btn-flat" style="background-color: #b33;" onclick="hide_select_panel()">
+		Cancel
+		</button>
+		<button class="btn-flat">Add</button>
+	</div>
+	</div>
+</body>
+</html>
