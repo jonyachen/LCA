@@ -1,6 +1,6 @@
 class ModelController < ApplicationController
   def index
-  	# @materials = Material.categories
+  	@categories = Material.categories
     
     render 'index'
   end

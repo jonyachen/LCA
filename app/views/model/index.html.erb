@@ -35,9 +35,7 @@
 	<div class="input-field col s12">
 		<select>
 			<option value="" disabled selected>Select your material</option>
-			<option value="1">Option 1</option>
-			<option value="2">Option 2</option>
-			<option value="3">Option 3</option>
+			<%= options_for_select(@categories) %>
 		</select>
 		<label>Material</label>
 	</div>
