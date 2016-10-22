@@ -10,10 +10,11 @@ RSpec.describe Procedure, type: :model do
         Procedure.new(:title => 'Big Part3').should be_valid
     end
     
-  end
   
   it 'Creating and finding a procedure' do
         part = Procedure.create(:title => 'Big pro2')
         Procedure.find_procedure('Big Pro2').should == part
   end
+    
+end
 end
