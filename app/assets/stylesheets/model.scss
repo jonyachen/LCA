@@ -38,3 +38,26 @@ body>div {
     	bottom: 0;
     }
 }
+
+#assembly-panel {
+	background-color: #f5f5f5;
+	visibility: hidden;
+    position: fixed;
+    float: right;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $sidebar-width;
+
+    border-left: solid black 1px;
+
+    .actions {
+    	padding: $padding;
+    	position: absolute;
+    	bottom: 0;
+    }
+}
+
+#assembly-name {
+	width: calc($sidebar-width - 20);
+}

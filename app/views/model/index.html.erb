@@ -18,8 +18,8 @@
 
 <body>
 	<div id="assembly-head"> 
-	<button class="btn-flat" onclick="show_select_panel()">+Material</button>
-	<button class="btn-flat">+Sub-Assembly</button>
+	<button class="btn-flat" onclick="hide_assembly_panel(); show_select_panel()">+Material</button>
+	<button class="btn-flat" onclick="hide_select_panel(); show_assembly_panel()">+Sub-Assembly</button>
 	</div>
 
 	<div id="assembly">
@@ -50,6 +50,19 @@
 		</button>
 		<button class="btn-flat">Add</button>
 	</div>
+	</div>
+	
+	<div id="assembly-panel">
+	<div>
+		<label for="assembly-name">Name</label>
+		<input type="text" id="assembly-name"></input>
+	</div>
+	
+	<div class="actions">
+		<button class="btn-flat" style="background-color: #b33;" onclick="hide_assembly_panel()">
+		Cancel
+		</button>
+		<button class="btn-flat">Add</button>
 	</div>
 </body>
 </html>
