@@ -32,3 +32,27 @@ Scenario: Cancel an add
   And I press "Cancel"
   Then I should not see "Steel"
   
+  
+Scenario: Add Material Sub-Options
+  Given "Manufacturing" process contains "Hot_Rolled" 
+  And "Transport" process contains "Air"
+  And "Disposal" process contains "Landfill"
+  
+  When I press "+Material"
+  And I enter "Steel" with 32 kg
+  Then I should see "Edit Material Properties"
+  And I should see "Optional Material Processess"
+  And I should see "Transport"
+  And I should see "Disposal"
+  
+  Then I select "Hot-Rolled" from manufacturing
+  And I select "Air" from transport
+  And I select "Landfill" from disposal
+  And I press "Add"
+  
+  Then I should see "Steel"
+  And I should see "32kg"
+  And I should see "Transport Air"
+  
+  
+  
