@@ -33,10 +33,10 @@ Scenario: Cancel an add
   Then I should not see "Steel"
   
   
-Scenario: Add Material Sub-Options
-  Given "Manufacturing" process contains "Hot_Rolled" 
-  And "Transport" process contains "Air"
-  And "Disposal" process contains "Landfill"
+Scenario: Add Material with Sub-Options
+  Given "Manufacturing" menu contains "Hot_Rolled" 
+  And "Transport" menu contains "Air"
+  And "Disposal" menu contains "Landfill"
   
   When I press "+Material"
   And I enter "Steel" with 32 kg
@@ -45,9 +45,9 @@ Scenario: Add Material Sub-Options
   And I should see "Transport"
   And I should see "Disposal"
   
-  Then I select "Hot-Rolled" from manufacturing
-  And I select "Air" from transport
-  And I select "Landfill" from disposal
+  Then I select "Hot-Rolled" from menu "Manufacturing"
+  And I select "Air" from menu "Transports"
+  And I select "Landfill" from menu "Disposal"
   And I press "Add"
   
   Then I should see "Steel"

@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-10-26T03:32:01+00:00">2016-10-26T03:32:01+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-10-26T04:12:14+00:00">2016-10-26T04:12:14+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">53.43%</span></span>
+    (<span class="covered_percent"><span class="red">55.14%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.73
+         0.84
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>24</b> files in total.
-    <b>204</b> relevant lines. 
-    <span class="green"><b>109</b> lines covered</span> and
-    <span class="red"><b>95</b> lines missed </span>
+    <b>25</b> files in total.
+    <b>214</b> relevant lines. 
+    <span class="green"><b>118</b> lines covered</span> and
+    <span class="red"><b>96</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -67,7 +67,7 @@
         <td>4</td>
         <td>4</td>
         <td>0</td>
-        <td>2.5</td>
+        <td>4.5</td>
       </tr>
       
       <tr>
@@ -107,7 +107,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>1.3</td>
+        <td>1.9</td>
       </tr>
       
       <tr>
@@ -261,6 +261,16 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#0391857cbba3dd956d5dd48ab27025901dc0c931" class="src_link" title="features/step_definitions/lca_steps.rb">features/step_definitions/lca_steps.rb</a></td>
+        <td class="yellow strong">90.0 %</td>
+        <td>15</td>
+        <td>10</td>
+        <td>9</td>
+        <td>1</td>
+        <td>1.1</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#725d0a374a54af27a256c22ac869a45a6817e6dd" class="src_link" title="features/step_definitions/web_steps.rb">features/step_definitions/web_steps.rb</a></td>
         <td class="red strong">31.15 %</td>
         <td>254</td>
@@ -277,7 +287,7 @@
         <td>11</td>
         <td>5</td>
         <td>6</td>
-        <td>1.0</td>
+        <td>1.7</td>
       </tr>
       
       <tr>
@@ -368,8 +378,8 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="3">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="3">
+          <span class="hits">8</span>
           
           <code class="ruby">  	@categories = Material.categories</code>
         </li>
@@ -380,8 +390,8 @@
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="5">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="5">
+          <span class="hits">8</span>
           
           <code class="ruby">    render &#39;index&#39;</code>
         </li>
@@ -578,8 +588,8 @@
           <code class="ruby">    def self.categories</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="12">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="12">
+          <span class="hits">8</span>
           
           <code class="ruby">        return Material.all.select(:category).map(&amp;:category).uniq</code>
         </li>
@@ -1950,6 +1960,114 @@
   </pre>
 </div>
       
+        <div class="source_table" id="0391857cbba3dd956d5dd48ab27025901dc0c931">
+  <div class="header">
+    <h3>features/step_definitions/lca_steps.rb</h3>
+    <h4><span class="yellow">90.0 %</span> covered</h4>
+    <div>
+      <b>10</b> relevant lines. 
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;uri&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;cgi&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require File.expand_path(File.join(File.dirname(__FILE__), &quot;..&quot;, &quot;support&quot;, &quot;paths&quot;))</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require File.expand_path(File.join(File.dirname(__FILE__), &quot;..&quot;, &quot;support&quot;, &quot;selectors&quot;))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">module WithinHelpers</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def with_scope(locator)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    locator ? within(*selector_for(locator)) { yield } : yield</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">World(WithinHelpers)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">When /^I enter &quot;(.*)&quot; with (\d+) kg$/ do |material, amount|</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="14">
+          <span class="hits">3</span>
+          
+          <code class="ruby">	pending</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
         <div class="source_table" id="725d0a374a54af27a256c22ac869a45a6817e6dd">
   <div class="header">
     <h3>features/step_definitions/web_steps.rb</h3>
@@ -2228,8 +2346,8 @@
           <code class="ruby">Given /^(?:|I )am on (.+)$/ do |page_name|</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="45">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="45">
+          <span class="hits">8</span>
           
           <code class="ruby">  visit path_to(page_name)</code>
         </li>
@@ -2276,8 +2394,8 @@
           <code class="ruby">When /^(?:|I )press &quot;([^&quot;]*)&quot;$/ do |button|</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="53">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="7" data-linenumber="53">
+          <span class="hits">7</span>
           
           <code class="ruby">  click_button(button)</code>
         </li>
@@ -3584,8 +3702,8 @@
           <code class="ruby">  def path_to(page_name)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="14">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="14">
+          <span class="hits">8</span>
           
           <code class="ruby">    case page_name</code>
         </li>
@@ -3602,8 +3720,8 @@
           <code class="ruby">    when /^the home\s?page$/</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="17">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="17">
+          <span class="hits">8</span>
           
           <code class="ruby">      &#39;/&#39;</code>
         </li>
