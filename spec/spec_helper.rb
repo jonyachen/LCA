@@ -8,7 +8,7 @@ require 'rspec/autorun'
 require 'simplecov'
 
 SimpleCov.start do 
-  add_filter "coverage/assets/0.10.0/"
+  add_filter "app/assets/javascripts/application.js"
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
