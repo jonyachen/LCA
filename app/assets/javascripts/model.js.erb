@@ -1,0 +1,10 @@
+/* global $, materials */
+
+/*
+Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
+*/
+$(window).load(function() {
+	$('#material-search').autocomplete({
+		data: materials
+	});
+});

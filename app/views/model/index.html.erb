@@ -12,6 +12,11 @@
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- vars -->
+    <script type="text/javascript">
+        var materials = <%= @material_data.to_json.html_safe %>
+    </script>
+
     <% javascript_include_tag "model" %>
     <% stylesheet_link_tag "model", media: "all" %>
 </head>
@@ -22,6 +27,7 @@
     <li>
       <div style="background-color: #b33" class="collapsible-header"><i class="material-icons">expand_less</i>Materials</div>
       <div class="collapsible-body">
+        <input type="text" id="material-search" class="autocomplete">
         <ul>
             <% @material_options.each do |category, materials| -%>
                 <ul id="materials" class="collapsible" data-collapsible="expandable">
