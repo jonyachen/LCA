@@ -1,72 +1,66 @@
 <!DOCTYPE HTML>
-
 <html lang="en">
+
 <head>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-	<!-- JQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
-	<%= stylesheet_link_tag "model", media: "all" %>
-    <%= javascript_include_tag "model" %>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-	<!-- Materialize -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="test.css">
+    <% javascript_include_tag "model" %>
+    <% stylesheet_link_tag "model", media: "all" %>
 </head>
 
 <body>
-	<div id="assembly-head"> 
-	<button class="btn-flat" onclick="hide_assembly_panel(); show_select_panel()">+Material</button>
-	<button class="btn-flat" onclick="hide_select_panel(); show_assembly_panel()">+Sub-Assembly</button>
-	</div>
 
-	<div id="assembly">
-		<span style="text-decoration: underline;"> New Assembly </span>
+  <ul id="library" class="collapsible" data-collapsible="expandable">
+    <li>
+      <div style="background-color: #b33" class="collapsible-header"><i class="material-icons">expand_less</i>Materials</div>
+      <div class="collapsible-body">
+        <ul>
+            <% @material_options.each do |category, materials| -%>
+                <ul id="materials" class="collapsible" data-collapsible="expandable">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
+                    <div class="collapsible-body">
+                        <ul class="collection">
+                            <% materials.each do |material| %>
+                                <li class="collection-item draggable"><%= material %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+            <% end %>
+        </ul>
+      </div>
+    </li>
 
-		<ul id="assembly" class="collection">
-		<li class="collection-item"> Something </li>
-		<li class="collection-item"> Something else </li>
-		</ul>
-	</div>
+    <li>
+      <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_less</i>Manufacturing</div>
+      <div class="collapsible-body"><p>Add Manufacturing Processes here.</p></div>
+    </li>
 
-	<div id="select-panel">
-	<div class="input-field col s12">
-		<select>
-			<option value="" disabled selected>Select your material</option>
-			<%= options_for_select(@categories) %>
-		</select>
-		<label>Material</label>
-	</div>
-	<div id="amount-selector">
-	</div>
+    <li>
+      <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_less</i>Transport</div>
+      <div class="collapsible-body"><p>Add Transport Processes Here</p></div>
+    </li>
 
-	<div class="actions">
-		<button class="btn-flat" style="background-color: #b33;" onclick="hide_select_panel()" id = "material-cancel">
-		Cancel
-		</button>
-		<button class="btn-flat" id = "material-add">Add</button>
-	</div>
-	</div>
-	
-	<div id="assembly-panel">
-	<div id="assembly-name-input">
-		<label for="assembly-name">Name</label>
-		<input type="text" id="assembly-name"></input>
-	</div>
-	
-	<div id="assembly-desc-input">
-		<label for="assembly-desc">Description</label>
-		<input type="text" id="assembly-desc"></input>
-	</div>
-	
-	
-	<div class="actions">
-		<button class="btn-flat" style="background-color: #b33;" onclick="hide_assembly_panel()" id = "assembly-cancel">
-		Cancel
-		</button>
-		<button class="btn-flat" id="assembly-add">Add</button>
-	</div>
+    <li>
+      <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_less</i>Use</div>
+      <div class="collapsible-body"><p>Add Use Processes Here</p></div>
+    </li>
+
+    <li>
+      <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_less</i>End of Life</div>
+      <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
+    </li>
+
+  </ul>
+
 </body>
-</html>

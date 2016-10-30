@@ -1,63 +1,24 @@
-$sidebar-width: 350px;
-$padding: 40px;
+#library {
+    width: 350px;
+    background-color: #ddd;
+    margin: 0;
 
-body>div {
-	padding: $padding;
-}
+    li.active > .collapsible-header i {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
 
-#assembly-head {
-	padding: 40px;
-	button {
-		color: white;
-		background-color: #696;
-	}
-}
-
-#assembly {
-	width: calc(100% - #{$sidebar-width});
-	.collection {
-		width: 100%;
-	}
-}
-
-#select-panel {
-	background-color: #f5f5f5;
-	visibility: hidden;
-    position: fixed;
-    float: right;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: $sidebar-width;
-
-    border-left: solid black 1px;
-
-    .actions {
-    	padding: $padding;
-    	position: absolute;
-    	bottom: 0;
+        transition: 0.2s;
     }
-}
 
-#assembly-panel {
-	background-color: #f5f5f5;
-	visibility: hidden;
-    position: fixed;
-    float: right;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: $sidebar-width;
-
-    border-left: solid black 1px;
-
-    .actions {
-    	padding: $padding;
-    	position: absolute;
-    	bottom: 0;
+    li .collapsible {
+        margin: 0px;
+        .collection {
+            margin-left: 10px;
+            .draggable:hover {
+                cursor: move;
+                background-color: #ddd;
+            }
+        }
     }
-}
-
-#assembly-name {
-	width: calc($sidebar-width - 20);
 }
