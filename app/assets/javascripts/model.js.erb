@@ -8,3 +8,27 @@ $(window).load(function() {
 		data: materials
 	});
 });
+
+function dragthing(event) {
+	return $('<div class="drag-thing"> Hello, world! </div>')
+}
+
+$(document).ready(function() {
+	$('.draggable').draggable({
+		helper: function (event) {
+			return $('<div></div>', {
+				"class": "drag-thing",
+				"text": event.currentTarget.innerText
+			})
+		},
+
+		stop: function(event, ui) {
+			console.log(ui["offset"])
+		},
+
+		cursorAt: {
+			top: 25,
+			left: 50,
+		}
+	});
+});
