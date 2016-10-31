@@ -28,6 +28,10 @@ html, body {
 }
 
 #library {
+    display: block;
+}
+
+#menu {
     width: 350px;
     background-color: #ddd;
     margin: 0;
@@ -40,11 +44,45 @@ html, body {
         transition: 0.2s;
     }
 
+    > li.active > .collapsible-body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-button,
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-track-piece,
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-corner,
+        &::-webkit-resizer {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width:  7px;
+            height: 7px;
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-track-piece {
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: #4f4f4f;
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-button {
+            width:0;
+            height:0;
+        }
+    }
+
     li .collapsible {
         margin: 0px;
         .collection {
             margin-left: 10px;
-            overflow: visible; // Allows you to drag things outside.
             .draggable:hover {
                 cursor: move;
                 background-color: #ddd;
