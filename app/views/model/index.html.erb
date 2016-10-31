@@ -26,50 +26,63 @@
 
 <body>
 
-  <ul id="library" class="collapsible" data-collapsible="expandable">
-    <li>
-      <div style="background-color: #b33" class="collapsible-header"><i class="material-icons">expand_less</i>Materials</div>
-      <div class="collapsible-body">
-        <input type="text" id="material-search" class="autocomplete">
-        <ul>
-            <% @material_options.each do |category, materials| -%>
-                <ul id="materials" class="collapsible" data-collapsible="expandable">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
-                    <div class="collapsible-body">
-                        <ul class="collection">
-                            <% materials.each do |material| %>
-                                <li class="collection-item draggable"><%= material %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                </li>
-                </ul>
-            <% end %>
-        </ul>
-      </div>
-    </li>
+<table id="workspace">
+    <tr id="header">
+        <td><h4 class="section-title">Library</h4></td>
+        <td><h4 class="section-title">Assembly</h4></td>
+    </tr>
 
-    <li>
-      <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_less</i>Manufacturing</div>
-      <div class="collapsible-body"><p>Add Manufacturing Processes here.</p></div>
-    </li>
+    <tr>
+    <td>
+    <!-- Library menu -->
+    <ul id="library" class="collapsible" data-collapsible="expandable">
+        <li>
+          <div style="background-color: #b33" class="collapsible-header"><i class="material-icons">expand_less</i>Materials</div>
+          <div class="collapsible-body">
+            <input type="text" id="material-search" class="autocomplete">
+            <ul>
+                <% @material_options.each do |category, materials| -%>
+                    <ul id="materials" class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
+                        <div class="collapsible-body">
+                            <ul class="collection">
+                                <% materials.each do |material| %>
+                                    <li class="collection-item draggable"><%= material %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </li>
+                    </ul>
+                <% end %>
+            </ul>
+          </div>
+        </li>
 
-    <li>
-      <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_less</i>Transport</div>
-      <div class="collapsible-body"><p>Add Transport Processes Here</p></div>
-    </li>
+        <li>
+          <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_less</i>Manufacturing</div>
+          <div class="collapsible-body"><p>Add Manufacturing Processes here.</p></div>
+        </li>
 
-    <li>
-      <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_less</i>Use</div>
-      <div class="collapsible-body"><p>Add Use Processes Here</p></div>
-    </li>
+        <li>
+          <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_less</i>Transport</div>
+          <div class="collapsible-body"><p>Add Transport Processes Here</p></div>
+        </li>
 
-    <li>
-      <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_less</i>End of Life</div>
-      <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
-    </li>
+        <li>
+          <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_less</i>Use</div>
+          <div class="collapsible-body"><p>Add Use Processes Here</p></div>
+        </li>
 
-  </ul>
+        <li>
+          <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_less</i>End of Life</div>
+          <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
+        </li>
+    </ul>
+    </td>
 
+    <td> Drop your materials here! </td>
+
+    </tr>
+</table>
 </body>

@@ -1,3 +1,32 @@
+html, body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#workspace {
+    height: 100%;
+    width: 100%;
+
+    tr:first-child {
+        height: 40px;
+    }
+    tr > :first-child {
+        width: 350px;
+    }
+
+    td {
+        padding: 0px;
+        background-color: #ddd;
+        text-align: center;
+        border: solid black 1px;
+    }
+
+    .section-title {
+        // margin: 0px;
+    }
+}
+
 #library {
     width: 350px;
     background-color: #ddd;
