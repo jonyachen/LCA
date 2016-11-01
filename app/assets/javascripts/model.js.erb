@@ -7,6 +7,8 @@ $(window).load(function() {
 	$('#material-search').autocomplete({
 		data: materials
 	});
+
+	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
 });
 
 function dragthing(event) {
@@ -25,13 +27,19 @@ $(document).ready(function() {
 			})
 		},
 
-		stop: function(event, ui) {
-			console.log(ui["offset"])
-		},
-
 		cursorAt: {
 			top: 25,
 			left: 50,
+		}
+	});
+
+	$('#assembly').droppable({
+		drop: function (event, ui) {
+			console.log(ui)
+			$('<li></li>', {
+				"class": 'collection-item',
+				"text": ui.draggable[0].innerText
+			}).appendTo($('#build'));
 		}
 	});
 });

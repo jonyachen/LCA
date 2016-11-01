@@ -2,6 +2,7 @@ html, body {
     margin: 0px;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #workspace {
@@ -27,8 +28,8 @@ html, body {
     }
 }
 
-#library {
-    display: block;
+#library, #assembly {
+    vertical-align: top;
 }
 
 #menu {
@@ -45,6 +46,7 @@ html, body {
     }
 
     > li.active > .collapsible-body {
+        max-height: 350px;
         overflow-y: scroll;
         overflow-x: hidden;
 
@@ -113,4 +115,15 @@ html, body {
     background-color: #99f;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+#build {
+    margin: 0px;
+    li {
+        border-radius: 0px 0px 10px 10px;
+        border-bottom: solid black 1px;
+        border-left: solid black 1px;
+        border-right: solid black 1px;
+        margin-top: -10px;
+    }
 }
