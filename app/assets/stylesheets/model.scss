@@ -1,3 +1,5 @@
+@import 'model_mixins';
+
 html, body {
     margin: 0px;
     height: 100%;
@@ -103,7 +105,12 @@ html, body {
 }
 
 .drag-thing {
+    position: absolute;
+    z-index: 999;
+
     display: flex;
+    background-color: #99f;
+
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
@@ -112,18 +119,50 @@ html, body {
     align-items: center;
     justify-content: center;
 
-    background-color: #99f;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
 #build {
     margin: 0px;
-    li {
-        border-radius: 0px 0px 10px 10px;
-        border-bottom: solid black 1px;
-        border-left: solid black 1px;
-        border-right: solid black 1px;
-        margin-top: -10px;
+
+    .material-section {
+        margin-bottom: 15px;
+    }
+
+    .material {
+        height: 56px;
+        background-color: white;
+
+        padding: 10px;
+        border-radius: 10px;
+        border: solid black 1px;
+        
+        line-height: 36px;
+
+        text-align: left;
+
+    }
+
+    .processes {
+        margin: 0px;
+        @include descending-z-index(100);
+
+        .collection-item {
+            height: 66px;
+            padding-top: 20px;
+            margin-top: -10px;
+
+            border-radius: 0px 0px 10px 10px;
+            border: solid black 1px;
+
+            line-height: 36px;
+        }
+    }
+
+    .delete-button {
+        float: right;
+        background-color: #b33;
+        margin-left: 5px;
     }
 }

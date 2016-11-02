@@ -1,5 +1,58 @@
 /* global $, materials */
 
+function make_new_material_section(event, ui) {
+	var name = ui.draggable[0].innerText;
+
+	var $li = $('<li></li>', {
+		"class": 'material-section'
+	});
+
+	var $head = $('<div></div>', {
+		"class": 'material',
+		"text": name
+	});
+
+	var $body = $('<ul></ul>', {
+		"class": 'collection processes'
+	});
+
+	var $procdrop = $('<li></li>', {
+		"class": 'collection-item',
+		"text": "Drop your " + name + " processes here."
+	});
+
+	$procdrop.appendTo($body);
+	$head.appendTo($li);
+	$body.appendTo($li);
+	$li.appendTo($('#build'));
+
+	$procdrop.droppable({
+		greedy: true,
+
+		drop: function(event, ui) {
+			var $proc = $('<li></li>', {
+				"class": 'collection-item process',
+				"text": 'PROCESS'
+			});
+
+			$procdrop.before($proc);
+		}
+	});
+
+	var $delButton = make_delete_button($li);
+	$delButton.appendTo($head);
+
+	return $li;
+}
+
+function make_delete_button(element) {
+	var $delButton = $('<button></button>', {
+		"class": 'delete-button btn-flat',
+		"text": 'Remove'
+	}).click(function() {element.remove();});
+	return $delButton;
+}
+
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
 */
@@ -10,10 +63,6 @@ $(window).load(function() {
 
 	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
 });
-
-function dragthing(event) {
-	return $('<div class="drag-thing"> Hello, world! </div>')
-}
 
 $(document).ready(function() {
 	$('.draggable').draggable({
@@ -35,11 +84,14 @@ $(document).ready(function() {
 
 	$('#assembly').droppable({
 		drop: function (event, ui) {
-			console.log(ui)
-			$('<li></li>', {
-				"class": 'collection-item',
-				"text": ui.draggable[0].innerText
-			}).appendTo($('#build'));
+			if ($(ui.draggable[0]).data('type') == 'material') {
+				var $li = make_new_material_section(event, ui);
+			}
 		}
 	});
+
+	$('#build').sortable({
+		containment: "window",
+		appendTo: 'body'
+	})
 });
