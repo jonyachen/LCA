@@ -24,6 +24,8 @@ function newElement(event) {
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
+  var baseElement = document.querySelector("div.my-materials");
+  var close = baseElement.getElementsByClassName("close");
   span.className = "close";
   span.appendChild(txt);
   li.appendChild(span);

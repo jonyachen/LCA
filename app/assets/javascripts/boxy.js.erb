@@ -3,7 +3,7 @@ $(document).ready(function() {
    // Create a "close" button and append it to each list item
    var baseElement = document.querySelector("div.my-materials");
    var myNodelist = baseElement.querySelectorAll('li');
-   console.log(myNodelist)
+   // console.log(myNodelist)
    var i;
    for (i = 0; i < myNodelist.length; i++) {
      var span = document.createElement("SPAN");
@@ -14,10 +14,13 @@ $(document).ready(function() {
    }
 
    // Click on a close button to hide the current list item
-   var close = document.getElementsByClassName("close");
+   var baseElement = document.querySelector("div.my-materials");
+   var close = baseElement.getElementsByClassName("close");
+
    var i;
    for (i = 0; i < close.length; i++) {
      close[i].onclick = function() {
+       console.log("Clicked Close");
        var div = this.parentElement;
        div.style.display = "none";
      }
