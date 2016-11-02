@@ -36,6 +36,7 @@
     <td id="library">
     <!-- Library menu -->
     <ul id="menu" class="collapsible" data-collapsible="expandable">
+        <!-- Materials -->
         <li>
           <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_less</i>Materials</div>
           <div class="collapsible-body">
@@ -47,7 +48,7 @@
                         <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
                         <div class="collapsible-body">
                             <ul class="collection">
-                                <% materials.each do |material| %>
+                                <% materials.each do |material, id| %>
                                     <li class="collection-item draggable" data-type="material"><%= material %></li>
                                 <% end %>
                             </ul>
@@ -58,15 +59,49 @@
             </ul>
           </div>
         </li>
-
+        <!-- Manufacturing -->
         <li>
           <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_less</i>Manufacturing</div>
-          <div class="collapsible-body"><p>Add Manufacturing Processes here.</p></div>
+          <div class="collapsible-body">
+              <ul>
+                <% @procedures['Manufacturing'].each do |material, procedures| -%>
+                    <ul id="procedures" class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= material %></div>
+                        <div class="collapsible-body">
+                            <ul class="collection">
+                                <% procedures.each do |procedure| %>
+                                    <li class="collection-item draggable" data-type="procedure"><%= procedure %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </li>
+                    </ul>
+                <% end %>
+              </ul>
+          </div>
         </li>
 
+        <!-- Transport -->
         <li>
           <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_less</i>Transport</div>
-          <div class="collapsible-body"><p>Add Transport Processes Here</p></div>
+          <div class="collapsible-body">
+              <ul>
+                <% @procedures['Transportation'].each do |material, procedures| -%>
+                    <ul id="procedures" class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= material %></div>
+                        <div class="collapsible-body">
+                            <ul class="collection">
+                                <% procedures.each do |procedure| %>
+                                    <li class="collection-item draggable" data-type="procedure"><%= procedure %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </li>
+                    </ul>
+                <% end %>
+              </ul>          </div>
         </li>
 
         <li>

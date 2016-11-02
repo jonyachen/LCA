@@ -30,12 +30,17 @@ function make_new_material_section(event, ui) {
 		greedy: true,
 
 		drop: function(event, ui) {
-			var $proc = $('<li></li>', {
-				"class": 'collection-item process',
-				"text": 'PROCESS'
-			});
+			var from = ui.draggable[0]
+			if ($(from).data('type') == 'procedure') {
+				var $proc = $('<li></li>', {
+					"class": 'collection-item process',
+					"text": from.innerText
+				});
+				var $delButton = make_delete_button($proc);
+				$delButton.appendTo($proc);
+				$procdrop.before($proc);
+			};
 
-			$procdrop.before($proc);
 		}
 	});
 
