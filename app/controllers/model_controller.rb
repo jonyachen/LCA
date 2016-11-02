@@ -7,7 +7,11 @@ class ModelController < ApplicationController
   	@material_options = Material.categories.collect do |category|
   		[category, Material.find_by_category(category).collect {|material| material.title}]
   	end
-    
-    render 'index'
+
+   if @material_options.empty?
+      @material_options = {'Steel': ["Heavy Steel"]}
+   end
+
+   render 'index'
   end
 end

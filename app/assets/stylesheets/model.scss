@@ -63,16 +63,16 @@ html, body {
             height: 7px;
             border-radius: 4px;
         }
-        
+
         &::-webkit-scrollbar-track-piece {
             border-radius: 5px;
         }
-        
+
         &::-webkit-scrollbar-thumb {
             background: #4f4f4f;
             border-radius: 5px;
         }
-        
+
         &::-webkit-scrollbar-button {
             width:0;
             height:0;
@@ -90,6 +90,7 @@ html, body {
         }
     }
 }
+
 
 #material-search {
     background-color: white;

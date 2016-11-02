@@ -10,10 +10,13 @@ $(window).load(function() {
 });
 
 function dragthing(event) {
-	return $('<div class="drag-thing"> Hello, world! </div>')
+	console.log('Drag Thing Called')
+	$('#dragged-elements').text('');
+	$('#dragged-elements').append(' <td><div class="w3-blue w3-hover-shadow w3-center">Steel</div> </td>')
 }
 
 $(document).ready(function() {
+
 	$('.draggable').draggable({
 		containment: 'window',
 		appendTo: 'body',
@@ -26,7 +29,9 @@ $(document).ready(function() {
 		},
 
 		stop: function(event, ui) {
+			console.log('DRAGGING and Dropped')
 			console.log(ui["offset"])
+			dragthing()
 		},
 
 		cursorAt: {

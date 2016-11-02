@@ -41,7 +41,7 @@
           <div class="collapsible-body">
             <input type="text" id="material-search" class="autocomplete">
             <ul>
-                <% @material_options.each do |category, materials| -%>
+                <% @material_options.each do |category, materials| %>
                     <ul id="materials" class="collapsible" data-collapsible="expandable">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
@@ -80,8 +80,9 @@
         </li>
     </ul>
     </td>
-
-    <td> Drop your materials here! </td>
+    <td id="dragged-elements">
+      <%= render 'box/boxy' %>
+    </td>
 
     </tr>
 </table>
