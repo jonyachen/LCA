@@ -1,0 +1,37 @@
+/* global $, materials */
+
+/*
+Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
+*/
+$(window).load(function() {
+	$('#material-search').autocomplete({
+		data: materials
+	});
+});
+
+function dragthing(event) {
+	return $('<div class="drag-thing"> Hello, world! </div>')
+}
+
+$(document).ready(function() {
+	$('.draggable').draggable({
+		containment: 'window',
+		appendTo: 'body',
+
+		helper: function (event) {
+			return $('<div></div>', {
+				"class": "drag-thing",
+				"text": event.currentTarget.innerText
+			})
+		},
+
+		stop: function(event, ui) {
+			console.log(ui["offset"])
+		},
+
+		cursorAt: {
+			top: 25,
+			left: 50,
+		}
+	});
+});

@@ -1,63 +1,116 @@
-$sidebar-width: 350px;
-$padding: 40px;
-
-body>div {
-	padding: $padding;
+html, body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
 }
 
-#assembly-head {
-	padding: 40px;
-	button {
-		color: white;
-		background-color: #696;
-	}
-}
+#workspace {
+    height: 100%;
+    width: 100%;
 
-#assembly {
-	width: calc(100% - #{$sidebar-width});
-	.collection {
-		width: 100%;
-	}
-}
+    tr:first-child {
+        height: 40px;
+    }
+    tr > :first-child {
+        width: 350px;
+    }
 
-#select-panel {
-	background-color: #f5f5f5;
-	visibility: hidden;
-    position: fixed;
-    float: right;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: $sidebar-width;
+    td {
+        padding: 0px;
+        background-color: #ddd;
+        text-align: center;
+        border: solid black 1px;
+    }
 
-    border-left: solid black 1px;
-
-    .actions {
-    	padding: $padding;
-    	position: absolute;
-    	bottom: 0;
+    .section-title {
+        // margin: 0px;
     }
 }
 
-#assembly-panel {
-	background-color: #f5f5f5;
-	visibility: hidden;
-    position: fixed;
-    float: right;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: $sidebar-width;
+#library {
+    display: block;
+}
 
-    border-left: solid black 1px;
+#menu {
+    width: 350px;
+    background-color: #ddd;
+    margin: 0;
 
-    .actions {
-    	padding: $padding;
-    	position: absolute;
-    	bottom: 0;
+    li.active > .collapsible-header i {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+
+        transition: 0.2s;
+    }
+
+    > li.active > .collapsible-body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-button,
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-track-piece,
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-corner,
+        &::-webkit-resizer {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width:  7px;
+            height: 7px;
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-track-piece {
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: #4f4f4f;
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-button {
+            width:0;
+            height:0;
+        }
+    }
+
+    li .collapsible {
+        margin: 0px;
+        .collection {
+            margin-left: 10px;
+            .draggable:hover {
+                cursor: move;
+                background-color: #ddd;
+            }
+        }
     }
 }
 
-#assembly-name {
-	width: calc($sidebar-width - 20);
+#material-search {
+    background-color: white;
+}
+
+.dropdown-content {
+    position: absolute;
+    width: 100%;
+}
+
+.drag-thing {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom:10px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #99f;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
