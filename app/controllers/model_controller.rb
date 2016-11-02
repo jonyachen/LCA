@@ -9,7 +9,7 @@ class ModelController < ApplicationController
   	end
 
    if @material_options.empty?
-      @material_options = {'Steel': ["Heavy Steel"]}
+      @material_options = {'Metals': ["Steel", "Copper"]}
    end
 
    render 'index'

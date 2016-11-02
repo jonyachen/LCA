@@ -9,10 +9,36 @@ $(window).load(function() {
 	});
 });
 
+function newElement(event) {
+  var li = document.createElement("li");
+  console.log(event);
+  var inputValue = document.getElementById('dragger').innerText;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+	 alert("You must write something!");
+  } else {
+	 document.getElementById("myUL").appendChild(li);
+  }
+  // document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+	 close[i].onclick = function() {
+		var div = this.parentElement;
+		div.style.display = "none";
+	 }
+  }
+}
+
 function dragthing(event) {
-	console.log('Drag Thing Called')
-	$('#dragged-elements').text('');
-	$('#dragged-elements').append(' <td><div class="w3-blue w3-hover-shadow w3-center">Steel</div> </td>')
+	console.log('Drag Thing Called');
+	newElement(event);
 }
 
 $(document).ready(function() {
@@ -20,18 +46,18 @@ $(document).ready(function() {
 	$('.draggable').draggable({
 		containment: 'window',
 		appendTo: 'body',
-
 		helper: function (event) {
 			return $('<div></div>', {
 				"class": "drag-thing",
+				"id": "dragger",
 				"text": event.currentTarget.innerText
 			})
 		},
 
 		stop: function(event, ui) {
 			console.log('DRAGGING and Dropped')
-			console.log(ui["offset"])
-			dragthing()
+			// console.log(ui["offset"]
+			dragthing(event)
 		},
 
 		cursorAt: {
