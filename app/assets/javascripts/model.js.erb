@@ -1,15 +1,18 @@
-/* global $, materials */
+/* global $, materials, SAVE_URL */
 
 function make_new_material_section(event, ui) {
-	var name = ui.draggable[0].innerText;
+	var item = ui.draggable[0]
+	var name = item.innerText;
+	var id = $(item).data("id")
 
 	var $li = $('<li></li>', {
-		"class": 'material-section'
+		"class": 'material-section',
 	});
 
 	var $head = $('<div></div>', {
 		"class": 'material',
-		"text": name
+		"text": name,
+		"data-id": id
 	});
 
 	var $body = $('<ul></ul>', {
@@ -24,17 +27,18 @@ function make_new_material_section(event, ui) {
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
 	$body.appendTo($li);
-	$li.appendTo($('#build'));
 
 	$li.droppable({
 		greedy: true,
 
 		drop: function(event, ui) {
-			var from = ui.draggable[0]
+			var from = ui.draggable[0];
+			var id = $(from).data("id");
 			if ($(from).data('type') == 'procedure') {
 				var $proc = $('<li></li>', {
 					"class": 'collection-item process',
-					"text": from.innerText
+					"text": from.innerText,
+					"data-id": id
 				});
 				var $delButton = make_delete_button($proc);
 				$delButton.appendTo($proc);
@@ -47,6 +51,7 @@ function make_new_material_section(event, ui) {
 	var $delButton = make_delete_button($li);
 	$delButton.appendTo($head);
 
+	$li.appendTo($('#build'));
 	return $li;
 }
 
@@ -56,6 +61,23 @@ function make_delete_button(element) {
 		"text": 'Remove'
 	}).click(function() {element.remove();});
 	return $delButton;
+}
+
+function build_data() {
+	var result = [];
+	$('#build > .material-section').each(function( index ) {
+		var thing = {}
+		thing["id"] = $(this).find(".material").data("id");
+
+		var procedures = [];
+		$(this).find(".process").each(function (index) {
+			procedures.push($(this).data("id"));
+		});
+		thing["procedures"] = procedures;
+
+		result.push(thing);
+	})
+	return result;
 }
 
 /*
@@ -98,5 +120,24 @@ $(document).ready(function() {
 	$('#build').sortable({
 		containment: "window",
 		appendTo: 'body'
+	})
+
+	$('#save').click(function() {
+		$.ajax({
+			type: "POST",
+			url: SAVE_URL,
+			data: build_data(),
+			success: function(response, status, xhr) {
+				return;
+			},
+
+			error: function(xhr, status, errorThrown) {
+				return;
+			},
+
+			complete: function (xhr, status) {
+				return;
+			}
+		});
 	})
 });

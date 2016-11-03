@@ -8,7 +8,7 @@ class ModelController < ApplicationController
 
   	@procedures = Hash[Procedure.categories.collect do |category|
   		[category, Material.all.collect do |material|
-  			[material.title, Procedure.where(material: material.title, category: category).collect {|procedure| procedure.title}]
+  			[material.title, Procedure.where(material: material.title, category: category).collect {|procedure| [procedure.title, procedure.id]}]
   		end
 	  	]
   	end

@@ -18,6 +18,7 @@
     <!-- vars -->
     <script type="text/javascript">
         var materials = <%= @material_data.to_json.html_safe %>
+        var SAVE_URL = <% "nonsense" %>
     </script>
 
     <% javascript_include_tag "model" %>
@@ -49,7 +50,7 @@
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% materials.each do |material, id| %>
-                                    <li class="collection-item draggable" data-type="material"><%= material %></li>
+                                    <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id} %>
                                 <% end %>
                             </ul>
                         </div>
@@ -70,8 +71,8 @@
                         <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
                         <div class="collapsible-body">
                             <ul class="collection">
-                                <% procedures.each do |procedure| %>
-                                    <li class="collection-item draggable" data-type="procedure"><%= procedure %></li>
+                                <% procedures.each do |procedure, id| %>
+                                    <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id} %>
                                 <% end %>
                             </ul>
                         </div>
@@ -104,11 +105,13 @@
               </ul>          </div>
         </li>
 
+        <!-- Use -->
         <li>
           <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_more</i>Use</div>
           <div class="collapsible-body"><p>Add Use Processes Here</p></div>
         </li>
 
+        <!-- End of Life -->
         <li>
           <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
           <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
@@ -120,6 +123,7 @@
     <td id="assembly">
     <ul id="build" class="collection"></ul>
     Drop your materials here!
+    <button id="save" class="btn-flat"> Save </button>
     </td>
 
     </tr>
