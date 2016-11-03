@@ -35,17 +35,17 @@
     <tr>
     <td id="library">
     <!-- Library menu -->
-    <ul id="menu" class="collapsible" data-collapsible="expandable">
+    <ul id="menu" class="collapsible" data-collapsible="accordion">
         <!-- Materials -->
         <li>
-          <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_less</i>Materials</div>
+          <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
           <div class="collapsible-body">
             <input type="text" id="material-search" class="autocomplete">
             <ul>
                 <% @material_options.each do |category, materials| -%>
                     <ul id="materials" class="collapsible" data-collapsible="expandable">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= category %></div>
+                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= category %></div>
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% materials.each do |material, id| %>
@@ -61,13 +61,13 @@
         </li>
         <!-- Manufacturing -->
         <li>
-          <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_less</i>Manufacturing</div>
+          <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
           <div class="collapsible-body">
               <ul>
                 <% @procedures['Manufacturing'].each do |material, procedures| -%>
                     <ul id="procedures" class="collapsible" data-collapsible="expandable">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= material %></div>
+                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% procedures.each do |procedure| %>
@@ -84,13 +84,13 @@
 
         <!-- Transport -->
         <li>
-          <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_less</i>Transport</div>
+          <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_more</i>Transport</div>
           <div class="collapsible-body">
               <ul>
                 <% @procedures['Transportation'].each do |material, procedures| -%>
                     <ul id="procedures" class="collapsible" data-collapsible="expandable">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_less</i><%= material %></div>
+                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% procedures.each do |procedure| %>
@@ -105,12 +105,12 @@
         </li>
 
         <li>
-          <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_less</i>Use</div>
+          <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_more</i>Use</div>
           <div class="collapsible-body"><p>Add Use Processes Here</p></div>
         </li>
 
         <li>
-          <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_less</i>End of Life</div>
+          <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
           <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
         </li>
     </ul>

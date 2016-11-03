@@ -39,10 +39,10 @@ html, body {
     background-color: #ddd;
     margin: 0;
 
-    li.active > .collapsible-header i {
+    li:not(.active) > .collapsible-header i {
         -ms-transform: rotate(180deg);
         -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
+        transform: rotate(-90deg);
 
         transition: 0.2s;
     }

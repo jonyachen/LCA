@@ -26,7 +26,7 @@ function make_new_material_section(event, ui) {
 	$body.appendTo($li);
 	$li.appendTo($('#build'));
 
-	$procdrop.droppable({
+	$li.droppable({
 		greedy: true,
 
 		drop: function(event, ui) {
