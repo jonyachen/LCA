@@ -1,5 +1,13 @@
 class ModelController < ApplicationController
   def index
+    if session[:user_id] == nil
+      @user = User.new
+      session[:user_id] = @user.id
+    else
+      @user = User.find(session[:user_id])
+    end
+    
+      
   	@material_data = Hash[Material.all.collect {|material| [material.title, nil]}] # Change nil to material.id?
 
   	@material_options = Material.categories.collect do |category|
@@ -16,4 +24,20 @@ class ModelController < ApplicationController
     
     render 'index'
   end
+  
+  def store
+    hash = params[:data] #Find real key later
+    return false if hash == nil
+    
+    if session[:assembly_id] == nil
+      @assembly = Assembly.new(:user_id => session[:user_id])
+      session[:assembly_id] = @assembly.id
+    else
+      @assembly = Assembly.find(session[:assembly_id])
+    end
+    
+    @assembly.components = hash
+    return @assembly.save
+  end
+  
 end

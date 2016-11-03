@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :projects
-    
+    has_many :assemblys
     validates_uniqueness_of :username, :on => :create
     validates_uniqueness_of :email, :on => :create
     validates_presence_of :username
