@@ -1,4 +1,6 @@
 class ModelController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
   def index
     if session[:user_id] == nil
       @user = User.new
@@ -13,7 +15,8 @@ class ModelController < ApplicationController
       @curr_assembly = Assembly.find(session[:assembly_id]).components
     end
       
-  	@material_data = Hash[Material.all.collect {|material| [material.title, nil]}] # Change nil to material.id?
+  	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
+  	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]
 
   	@material_options = Material.categories.collect do |category|
   		[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
@@ -21,7 +24,7 @@ class ModelController < ApplicationController
 
   	@procedures = Hash[Procedure.categories.collect do |category|
   		[category, Material.all.collect do |material|
-  			[material.title, Procedure.where(material: material.title, category: category).collect {|procedure| procedure.title}]
+  			[material.title, Procedure.where(material: material.title, category: category).collect {|procedure| [procedure.title, procedure.id]}]
   		end
 	  	]
   	end
@@ -29,7 +32,7 @@ class ModelController < ApplicationController
     
     render 'index'
   end
-  
+
   def create
     hash = params[:build]
     return false if hash == nil
@@ -44,5 +47,4 @@ class ModelController < ApplicationController
     @assembly.components = hash
     return @assembly.save
   end
-  
 end

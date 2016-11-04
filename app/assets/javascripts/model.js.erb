@@ -1,15 +1,16 @@
-/* global $, materials */
+/* global $, materials, SAVE_URL */
 
-function make_new_material_section(event, ui) {
-	var name = ui.draggable[0].innerText;
+function make_new_material_section(name, id) {
 
 	var $li = $('<li></li>', {
-		"class": 'material-section'
+		"class": 'material-section',
 	});
 
 	var $head = $('<div></div>', {
 		"class": 'material',
-		"text": name
+		"text": name,
+		"data-id": id,
+		"data-name": name
 	});
 
 	var $body = $('<ul></ul>', {
@@ -24,21 +25,24 @@ function make_new_material_section(event, ui) {
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
 	$body.appendTo($li);
-	$li.appendTo($('#build'));
 
-	$procdrop.droppable({
+	$li.droppable({
 		greedy: true,
 
 		drop: function(event, ui) {
-			var from = ui.draggable[0]
+			var from = ui.draggable[0];
+			var id = $(from).data("id");
+			var name = $(from).data("name");
 			if ($(from).data('type') == 'procedure') {
-				var $proc = $('<li></li>', {
-					"class": 'collection-item process',
-					"text": from.innerText
-				});
-				var $delButton = make_delete_button($proc);
-				$delButton.appendTo($proc);
-				$procdrop.before($proc);
+				add_proc_to($li, name, id);
+				// var $proc = $('<li></li>', {
+				// 	"class": 'collection-item process',
+				// 	"text": name,
+				// 	"data-id": id
+				// });
+				// var $delButton = make_delete_button($proc);
+				// $delButton.appendTo($proc);
+				// $procdrop.before($proc);
 			};
 
 		}
@@ -47,16 +51,67 @@ function make_new_material_section(event, ui) {
 	var $delButton = make_delete_button($li);
 	$delButton.appendTo($head);
 
+	$li.appendTo($('#build'));
 	return $li;
+}
+
+function add_proc_to($mat, name, id) {
+	var $proc = $('<li></li>', {
+		"class": 'collection-item process',
+		"text": name,
+		"data-id": id,
+		"data-name": name
+	});
+	var $delButton = make_delete_button($proc);
+	$delButton.appendTo($proc);
+	$mat.find('.processes :last-child').before($proc);
 }
 
 function make_delete_button(element) {
 	var $delButton = $('<button></button>', {
-		"class": 'delete-button btn-flat',
-		"text": 'Remove'
+		"class": 'boxclose'
 	}).click(function() {element.remove();});
 	return $delButton;
 }
+
+function build_data() {
+	var result = [];
+	$('#build > .material-section').each(function( index ) {
+		var material = {};
+		material["name"] = $(this).find(".material").data("name");
+		material["id"] = $(this).find(".material").data("id");
+
+		var procedures = [];
+		$(this).find(".process").each(function (index) {
+			procedures.push({"name": $(this).data("name"), "id": $(this).data("id")});
+		});
+		material["procedures"] = procedures;
+
+		result.push(material);
+	})
+	return result;
+}
+
+function fill_build( data ) {
+	for (var key in data){
+		var material = data[key];
+		var $mat = make_new_material_section(material["name"], material["id"]);
+		for (var key in material["procedures"]) {
+			var proc = material["procedures"][key];
+			add_proc_to($mat, proc["name"], proc["id"]);
+		}
+	}
+}
+
+function clear_build() {
+	$('#build *').remove();
+}
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
@@ -89,8 +144,13 @@ $(document).ready(function() {
 
 	$('#assembly').droppable({
 		drop: function (event, ui) {
-			if ($(ui.draggable[0]).data('type') == 'material') {
-				var $li = make_new_material_section(event, ui);
+			var item = ui.draggable[0]
+			var name = item.innerText;
+			var id = $(item).data("id")
+
+			if ($(item).data('type') == 'material') {
+
+				var $li = make_new_material_section(name, id);
 			}
 		}
 	});
@@ -99,4 +159,28 @@ $(document).ready(function() {
 		containment: "window",
 		appendTo: 'body'
 	})
+
+	$('#save').click(function() {
+		$.ajax({
+			dataType: "json",
+			type: "POST",
+			url: SAVE_URL,
+			data: { build: build_data() },
+			success: function(response, status, xhr) {
+				// console.log(response);
+			},
+
+			error: function(xhr, status, errorThrown) {
+				// console.log(status);
+			},
+
+			complete: function (xhr, status) {
+				// console.log('done!');
+			}
+		});
+	})
+
+	if (curr_assembly != null) {
+		fill_build(curr_assembly);
+	}
 });

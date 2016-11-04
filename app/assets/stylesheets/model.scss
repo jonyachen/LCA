@@ -39,10 +39,10 @@ html, body {
     background-color: #ddd;
     margin: 0;
 
-    li.active > .collapsible-header i {
+    li:not(.active) > .collapsible-header i {
         -ms-transform: rotate(180deg);
         -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
+        transform: rotate(-90deg);
 
         transition: 0.2s;
     }
@@ -67,16 +67,16 @@ html, body {
             height: 7px;
             border-radius: 4px;
         }
-        
+
         &::-webkit-scrollbar-track-piece {
             border-radius: 5px;
         }
-        
+
         &::-webkit-scrollbar-thumb {
             background: #4f4f4f;
             border-radius: 5px;
         }
-        
+
         &::-webkit-scrollbar-button {
             width:0;
             height:0;
@@ -130,6 +130,13 @@ html, body {
         margin-bottom: 15px;
     }
 
+    .text {
+        background-color: #f44336;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+    }
+
     .material {
         height: 56px;
         background-color: white;
@@ -137,11 +144,15 @@ html, body {
         padding: 10px;
         border-radius: 10px;
         border: solid black 1px;
-        
+
         line-height: 36px;
 
         text-align: left;
 
+    }
+    
+    .material:hover {
+      background: #A5FEFF;
     }
 
     .processes {
@@ -158,11 +169,48 @@ html, body {
 
             line-height: 36px;
         }
+        .collection-item:hover {
+           background: #A5FEFF;
+        }
+    }
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px
     }
 
-    .delete-button {
+   .boxclose{
+       float:right;
+       cursor:pointer;
+       color: #fff;
+       border: 1px solid #AEAEAE;
+       border-radius: 30px;
+       background: #605F61;
+       font-size: 31px;
+       font-weight: bold;
+       display: inline-block;
+       line-height: 0px;
+       padding: 11px 3px;
+   }
+
+   .boxclose:hover {
+      background-color: #f44336;
+   }
+
+   .boxclose:before {
+       content: "×";
+   }
+
+   .delete-button {
         float: right;
         background-color: #b33;
         margin-left: 5px;
-    }
+   }
+}
+
+#save {
+    float: right;
+    margin-right: 5px;
+    background-color: #3b3;
 }
