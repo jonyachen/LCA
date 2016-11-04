@@ -7,6 +7,8 @@ $(window).load(function() {
 	$('#material-search').autocomplete({
 		data: materials
 	});
+
+	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
 });
 
 function newElement(event) {
@@ -19,6 +21,12 @@ function newElement(event) {
   } else {
 	 document.getElementById("myUL").appendChild(li);
   }
+
+  var $procdrop = $('<li></li>', {
+	  "class": 'collection-item',
+	  "text": "Drop your " + name + " processes here."
+  });
+
   // document.getElementById("myInput").value = "";
 
   var span = document.createElement("SPAN");
@@ -35,11 +43,9 @@ function newElement(event) {
 		div.style.display = "none";
 	 }
   }
-
-
 }
 
-function dragthing(event) {
+function dragthing(event, ui) {
 	console.log('Drag Thing Called');
 	newElement(event);
 }
@@ -57,15 +63,25 @@ $(document).ready(function() {
 			})
 		},
 
-		stop: function(event, ui) {
-			console.log('DRAGGING and Dropped')
-			// console.log(ui["offset"]
-			dragthing(event)
-		},
+		// stop: function(event, ui) {
+		// 	console.log('DRAGGING and Dropped')
+		// 	// console.log(ui["offset"]
+		// 	// dragthing(event)
+		// },
 
 		cursorAt: {
 			top: 25,
 			left: 50,
 		}
 	});
+
+	$('#dragged-elements').droppable({
+		drop: function (event, ui) {
+			if ($(ui.draggable[0]).data('type') == 'material') {
+				console.log('Drag Works');
+				var $li = dragthing(event, ui);
+			}
+		}
+	});
+
 });
