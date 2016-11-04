@@ -3,6 +3,17 @@
     box-sizing: border-box;
 }
 
+.my-materials input {
+  display: block;
+  margin: 0;
+  width: 5%;
+  font-family: sans-serif;
+  font-size: 10px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+
 /* Remove margins and padding from the list */
 .my-materials .ul {
     margin: 0;
@@ -32,7 +43,7 @@
 
 /* Darker background-color on hover */
 .my-materials ul li:hover {
-    background: #ddd;
+    background: #A5FEFF;
 }
 
 /* When clicked on, add a background color and strike out text */

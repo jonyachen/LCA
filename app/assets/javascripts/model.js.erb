@@ -13,8 +13,7 @@ function newElement(event) {
   var li = document.createElement("li");
   console.log(event);
   var inputValue = document.getElementById('dragger').innerText;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
+  li.appendChild(document.createTextNode(inputValue));
   if (inputValue === '') {
 	 alert("You must write something!");
   } else {
@@ -36,6 +35,8 @@ function newElement(event) {
 		div.style.display = "none";
 	 }
   }
+
+
 }
 
 function dragthing(event) {
