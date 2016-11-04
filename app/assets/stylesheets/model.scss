@@ -1,7 +1,10 @@
+@import 'model_mixins';
+
 html, body {
     margin: 0px;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #workspace {
@@ -27,8 +30,8 @@ html, body {
     }
 }
 
-#library {
-    display: block;
+#library, #assembly {
+    vertical-align: top;
 }
 
 #menu {
@@ -36,15 +39,16 @@ html, body {
     background-color: #ddd;
     margin: 0;
 
-    li.active > .collapsible-header i {
+    li:not(.active) > .collapsible-header i {
         -ms-transform: rotate(180deg);
         -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
+        transform: rotate(-90deg);
 
         transition: 0.2s;
     }
 
     > li.active > .collapsible-body {
+        max-height: 350px;
         overflow-y: scroll;
         overflow-x: hidden;
 
@@ -91,10 +95,6 @@ html, body {
     }
 }
 
-#dragged-elements {
-   vertical-align: top;
-}
-
 #material-search {
     background-color: white;
 }
@@ -105,15 +105,112 @@ html, body {
 }
 
 .drag-thing {
+    position: absolute;
+    z-index: 999;
+
     display: flex;
+    background-color: #99f;
+
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom:10px;
+
     align-items: center;
     justify-content: center;
 
-    background-color: #99f;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+#build {
+    margin: 0px;
+
+    .material-section {
+        margin-bottom: 15px;
+    }
+
+    .text {
+        background-color: #f44336;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .material {
+        height: 56px;
+        background-color: white;
+
+        padding: 10px;
+        border-radius: 10px;
+        border: solid black 1px;
+
+        line-height: 36px;
+
+        text-align: left;
+
+    }
+    
+    .material:hover {
+      background: #A5FEFF;
+    }
+
+    .processes {
+        margin: 0px;
+        @include descending-z-index(100);
+
+        .collection-item {
+            height: 66px;
+            padding-top: 20px;
+            margin-top: -10px;
+
+            border-radius: 0px 0px 10px 10px;
+            border: solid black 1px;
+
+            line-height: 36px;
+        }
+        .collection-item:hover {
+           background: #A5FEFF;
+        }
+    }
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px
+    }
+
+   .boxclose{
+       float:right;
+       cursor:pointer;
+       color: #fff;
+       border: 1px solid #AEAEAE;
+       border-radius: 30px;
+       background: #605F61;
+       font-size: 31px;
+       font-weight: bold;
+       display: inline-block;
+       line-height: 0px;
+       padding: 11px 3px;
+   }
+
+   .boxclose:hover {
+      background-color: #f44336;
+   }
+
+   .boxclose:before {
+       content: "×";
+   }
+
+   .delete-button {
+        float: right;
+        background-color: #b33;
+        margin-left: 5px;
+   }
+}
+
+#save {
+    float: right;
+    margin-right: 5px;
+    background-color: #3b3;
 }

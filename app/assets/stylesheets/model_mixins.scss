@@ -1,0 +1,14 @@
+@mixin descending-z-index($count: 30){
+  // @include on UL class
+  position: relative;
+  li{
+    position: relative;
+    $target: 0;
+    $index: $count;
+    @while $index > 0 {
+      &:nth-child(#{$target}){ z-index: #{$index}; }
+      $target: $target + 1;
+      $index: $index - 1;
+      }
+    }
+}

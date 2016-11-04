@@ -5,4 +5,8 @@ class Procedure < ApplicationRecord
         # This is very unsafe and need to add salt to it. 
         return Procedure.where('title LIKE :query', query: "%#{title}%").first
     end
+
+    def self.categories
+        return Procedure.all.select(:category).map(&:category).uniq
+    end
 end
