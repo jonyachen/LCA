@@ -9,7 +9,8 @@ function make_new_material_section(name, id) {
 	var $head = $('<div></div>', {
 		"class": 'material',
 		"text": name,
-		"data-id": id
+		"data-id": id,
+		"data-name": name
 	});
 
 	var $body = $('<ul></ul>', {
@@ -76,25 +77,27 @@ function make_delete_button(element) {
 function build_data() {
 	var result = [];
 	$('#build > .material-section').each(function( index ) {
-		var thing = {}
-		thing["name"] = $(this).find(".material").data("name");
-		thing["id"] = $(this).find(".material").data("id");
+		var material = {};
+		material["name"] = $(this).find(".material").data("name");
+		material["id"] = $(this).find(".material").data("id");
 
 		var procedures = [];
 		$(this).find(".process").each(function (index) {
 			procedures.push({"name": $(this).data("name"), "id": $(this).data("id")});
 		});
-		thing["procedures"] = procedures;
+		material["procedures"] = procedures;
 
-		result.push(thing);
+		result.push(material);
 	})
 	return result;
 }
 
 function fill_build( data ) {
-	for (material in data){
+	for (var key in data){
+		var material = data[key];
 		var $mat = make_new_material_section(material["name"], material["id"]);
-		for (proc in material["procedures"]) {
+		for (var key in material["procedures"]) {
+			var proc = material["procedures"][key];
 			add_proc_to($mat, proc["name"], proc["id"]);
 		}
 	}
@@ -164,16 +167,20 @@ $(document).ready(function() {
 			url: SAVE_URL,
 			data: { build: build_data() },
 			success: function(response, status, xhr) {
-				console.log(response);
+				// console.log(response);
 			},
 
 			error: function(xhr, status, errorThrown) {
-				console.log(status);
+				// console.log(status);
 			},
 
 			complete: function (xhr, status) {
-				console.log('done!');
+				// console.log('done!');
 			}
 		});
 	})
+
+	// if (curr_assembly != null) {
+	// 	fill_build(curr_assembly);
+	// }
 });

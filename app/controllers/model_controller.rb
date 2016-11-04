@@ -21,10 +21,8 @@ class ModelController < ApplicationController
   end
 
   def create
-  	# Hey Ronny, params[:build] should have all the necessary data
-
   	respond_to do |format|
-  		format.json { render :json => nil }
+  		format.json { render :json => params[:build] }
   	end
   end
 end

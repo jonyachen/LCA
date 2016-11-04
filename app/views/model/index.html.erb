@@ -20,6 +20,7 @@
         var materials = <%= @material_data.to_json.html_safe %>;
         var names = <%= @material_names.to_json.html_safe %>;
         var SAVE_URL = '/model';
+        // var curr_assembly = <% @curr_assembly %>
     </script>
 
     <% javascript_include_tag "model" %>
