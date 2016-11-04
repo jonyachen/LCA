@@ -1,6 +1,9 @@
 class ModelController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
   def index
-  	@material_data = Hash[Material.all.collect {|material| [material.title, nil]}] # Change nil to material.id?
+  	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
+  	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]
 
   	@material_options = Material.categories.collect do |category|
   		[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
@@ -15,5 +18,13 @@ class ModelController < ApplicationController
   	]
     
     render 'index'
+  end
+
+  def create
+  	# Hey Ronny, params[:build] should have all the necessary data
+
+  	respond_to do |format|
+  		format.json { render :json => nil }
+  	end
   end
 end

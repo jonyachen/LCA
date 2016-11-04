@@ -17,12 +17,14 @@
 
     <!-- vars -->
     <script type="text/javascript">
-        var materials = <%= @material_data.to_json.html_safe %>
-        var SAVE_URL = <% "nonsense" %>
+        var materials = <%= @material_data.to_json.html_safe %>;
+        var names = <%= @material_names.to_json.html_safe %>;
+        var SAVE_URL = '/model';
     </script>
 
     <% javascript_include_tag "model" %>
     <% stylesheet_link_tag "model", media: "all" %>
+
 </head>
 
 <body>
@@ -50,7 +52,7 @@
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% materials.each do |material, id| %>
-                                    <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id} %>
+                                    <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
                                 <% end %>
                             </ul>
                         </div>
@@ -72,7 +74,7 @@
                         <div class="collapsible-body">
                             <ul class="collection">
                                 <% procedures.each do |procedure, id| %>
-                                    <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id} %>
+                                    <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
                                 <% end %>
                             </ul>
                         </div>

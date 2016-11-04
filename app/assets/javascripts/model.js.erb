@@ -1,9 +1,6 @@
 /* global $, materials, SAVE_URL */
 
-function make_new_material_section(event, ui) {
-	var item = ui.draggable[0]
-	var name = item.innerText;
-	var id = $(item).data("id")
+function make_new_material_section(name, id) {
 
 	var $li = $('<li></li>', {
 		"class": 'material-section',
@@ -34,15 +31,17 @@ function make_new_material_section(event, ui) {
 		drop: function(event, ui) {
 			var from = ui.draggable[0];
 			var id = $(from).data("id");
+			var name = $(from).data("name");
 			if ($(from).data('type') == 'procedure') {
-				var $proc = $('<li></li>', {
-					"class": 'collection-item process',
-					"text": from.innerText,
-					"data-id": id
-				});
-				var $delButton = make_delete_button($proc);
-				$delButton.appendTo($proc);
-				$procdrop.before($proc);
+				add_proc_to($li, name, id);
+				// var $proc = $('<li></li>', {
+				// 	"class": 'collection-item process',
+				// 	"text": name,
+				// 	"data-id": id
+				// });
+				// var $delButton = make_delete_button($proc);
+				// $delButton.appendTo($proc);
+				// $procdrop.before($proc);
 			};
 
 		}
@@ -53,6 +52,18 @@ function make_new_material_section(event, ui) {
 
 	$li.appendTo($('#build'));
 	return $li;
+}
+
+function add_proc_to($mat, name, id) {
+	var $proc = $('<li></li>', {
+		"class": 'collection-item process',
+		"text": name,
+		"data-id": id,
+		"data-name": name
+	});
+	var $delButton = make_delete_button($proc);
+	$delButton.appendTo($proc);
+	$mat.find('.processes :last-child').before($proc);
 }
 
 function make_delete_button(element) {
@@ -67,11 +78,12 @@ function build_data() {
 	var result = [];
 	$('#build > .material-section').each(function( index ) {
 		var thing = {}
+		thing["name"] = $(this).find(".material").data("name");
 		thing["id"] = $(this).find(".material").data("id");
 
 		var procedures = [];
 		$(this).find(".process").each(function (index) {
-			procedures.push($(this).data("id"));
+			procedures.push({"name": $(this).data("name"), "id": $(this).data("id")});
 		});
 		thing["procedures"] = procedures;
 
@@ -79,6 +91,25 @@ function build_data() {
 	})
 	return result;
 }
+
+function fill_build( data ) {
+	for (material in data){
+		var $mat = make_new_material_section(material["name"], material["id"]);
+		for (proc in material["procedures"]) {
+			add_proc_to($mat, proc["name"], proc["id"]);
+		}
+	}
+}
+
+function clear_build() {
+	$('#build *').remove();
+}
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
@@ -111,8 +142,13 @@ $(document).ready(function() {
 
 	$('#assembly').droppable({
 		drop: function (event, ui) {
-			if ($(ui.draggable[0]).data('type') == 'material') {
-				var $li = make_new_material_section(event, ui);
+			var item = ui.draggable[0]
+			var name = item.innerText;
+			var id = $(item).data("id")
+
+			if ($(item).data('type') == 'material') {
+
+				var $li = make_new_material_section(name, id);
 			}
 		}
 	});
@@ -124,19 +160,20 @@ $(document).ready(function() {
 
 	$('#save').click(function() {
 		$.ajax({
+			dataType: "json",
 			type: "POST",
 			url: SAVE_URL,
-			data: build_data(),
+			data: { build: build_data() },
 			success: function(response, status, xhr) {
-				return;
+				console.log(response);
 			},
 
 			error: function(xhr, status, errorThrown) {
-				return;
+				console.log(status);
 			},
 
 			complete: function (xhr, status) {
-				return;
+				console.log('done!');
 			}
 		});
 	})
