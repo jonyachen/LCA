@@ -7,6 +7,11 @@ class ModelController < ApplicationController
       @user = User.find(session[:user_id])
     end
     
+    if session[:assembly_id] == nil
+      @curr_assembly = nil
+    else
+      @curr_assembly = Assembly.find(session[:assembly_id]).components
+    end
       
   	@material_data = Hash[Material.all.collect {|material| [material.title, nil]}] # Change nil to material.id?
 
@@ -25,8 +30,8 @@ class ModelController < ApplicationController
     render 'index'
   end
   
-  def store
-    hash = params[:data] #Find real key later
+  def create
+    hash = params[:build]
     return false if hash == nil
     
     if session[:assembly_id] == nil
