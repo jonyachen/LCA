@@ -3,7 +3,7 @@ class ModelController < ApplicationController
 
   def index
     if session[:user_id] == nil
-      @user = User.new
+      @user = User.create
       session[:user_id] = @user.id
     else
       @user = User.find(session[:user_id])
@@ -12,7 +12,7 @@ class ModelController < ApplicationController
     if session[:assembly_id] == nil
       @curr_assembly = nil.to_json
     else
-      @curr_assembly = Assembly.find(session[:assembly_id]).components
+      @curr_assembly = Assembly.find(session[:assembly_id]).components.to_json
     end
       
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
@@ -35,16 +35,20 @@ class ModelController < ApplicationController
 
   def create
     hash = params[:build]
-    return false if hash == nil
+    if hash == nil
+      result = false
+      render :nothing => true
+    end
     
     if session[:assembly_id] == nil
-      @assembly = Assembly.new(:user_id => session[:user_id])
+      @assembly = Assembly.create(:user_id => session[:user_id])
       session[:assembly_id] = @assembly.id
     else
       @assembly = Assembly.find(session[:assembly_id])
     end
     
     @assembly.components = hash
-    return @assembly.save
+    result = @assembly.save
+    render :nothing => true
   end
 end
