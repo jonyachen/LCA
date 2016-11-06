@@ -10,7 +10,7 @@ class ModelController < ApplicationController
     end
     
     if session[:assembly_id] == nil
-      @curr_assembly = nil.to_json
+      @curr_assembly = nil
     else
       @curr_assembly = Assembly.find(session[:assembly_id]).components
     end
