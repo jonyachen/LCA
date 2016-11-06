@@ -12,7 +12,7 @@ class ModelController < ApplicationController
     if session[:assembly_id] == nil
       @curr_assembly = nil.to_json
     else
-      @curr_assembly = Assembly.find(session[:assembly_id]).components.to_json
+      @curr_assembly = Assembly.find(session[:assembly_id]).components
     end
       
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
