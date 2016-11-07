@@ -22,10 +22,13 @@ function make_new_material_section(name, id) {
 		"text": "Drop your " + name + " processes here."
 	});
 
+	console.log("Creating a new Material..");
+
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
 	$body.appendTo($li);
 	add_inputs($head, 'material');
+
 	$li.droppable({
 		greedy: true,
 

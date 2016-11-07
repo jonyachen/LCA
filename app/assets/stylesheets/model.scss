@@ -156,13 +156,13 @@ html, body {
    .processes {
       margin: 0px;
       position: relative;
-      @include descending-z-index(100);
+      // @include descending-z-index(100);
       .collection-item {
          position: relative;
          background: #CCFEFF;
          margin: 0px auto;
          width: 800px;
-         right: -10px;
+         // right: -10px;
          // height: 66px;
          border-radius: 7px;
          // line-height: 36px;
