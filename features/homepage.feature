@@ -10,6 +10,10 @@ Background: I am on the LCA app homepage
   
 Scenario: Visit the homepage
     When I am on the homepage
-    Then I should see "+Material"
-    And I should see "+Sub-Assembly"
-    And I should see "Something"
+    Then I should see "Materials"
+    And I should see "Manufacturing"
+    And I should see "Transport"
+    And I should see "Use"
+    And I should see "End of Life"
+    
+    
