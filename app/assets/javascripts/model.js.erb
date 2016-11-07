@@ -69,7 +69,8 @@ function add_proc_to($mat, name, id) {
 	var $delButton = make_delete_button($proc, 'process');
 	$delButton.appendTo($proc);
 	add_inputs($proc, 'process');
-	$mat.find('.processes :last-child').before($proc);
+	// $mat.find('.processes :last-child').before($proc);
+	$mat.find('.processes :last').before($proc);
 }
 
 function make_delete_button(element, css_type) {
