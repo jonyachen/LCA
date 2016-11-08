@@ -191,8 +191,14 @@ $(document).ready(function() {
 
 	console.log(curr_assembly)
 	if (curr_assembly != null) {
-		console.log("filling")
-		console.log(curr_assembly)
 		fill_build(curr_assembly);
 	}
+
+	var menu_height = $('#menu .collapsible-header').first().height() * 5;
+	var library_height = $('#library').height();
+
+	// Tried dynamic height, fix later.
+	// $('<style></style>', {
+	// 	innerHTML: '#menu > li.active > .collapsible-body { max-height: ' + menu_height - library_height + ';}'
+	// }).appendTo($('head'));
 });

@@ -51,10 +51,10 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver' DUPLICATE
   gem 'byebug', platform: :mri
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
-  gem 'poltergeist'
+  # gem 'poltergeist' DUPLICATE
 end
 # setup Cucumber, RSpec, autotest support
 group :test do

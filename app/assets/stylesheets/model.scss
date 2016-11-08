@@ -1,6 +1,6 @@
 @import 'model_mixins';
 
-html, body {
+html, body, main {
     margin: 0px;
     height: 100%;
     width: 100%;
@@ -48,7 +48,7 @@ html, body {
     }
 
     > li.active > .collapsible-body {
-        max-height: 350px;
+        max-height: 250px;
         overflow-y: scroll;
         overflow-x: hidden;
 
