@@ -6,10 +6,6 @@
 require "simplecov"
 SimpleCov.start
 require 'cucumber/rails'
-require 'capybara'
-require 'capybara/cucumber'
-require 'capybara/poltergeist'
-require 'selenium-webdriver'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -60,16 +56,5 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-# Capybara.default_driver = :selenium
-Capybara.default_driver = :poltergeist
-# Capybara.register_driver :safari do |app|
-#    options = {
-#       :js_errors => false,
-#       :timeout => 360,
-#       :debug => false,
-#       :inspector => false,
-#    }
-#    Capybara::Selenium::Driver.new(app, :browser => :safari)
-# end
 
 World(FactoryGirl::Syntax::Methods)

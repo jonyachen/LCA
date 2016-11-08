@@ -72,4 +72,3 @@ Scenario: Add A Material
    And I should see "Wood"
    And I should see "Polymers"
    And I should see "Concrete"
-   Then I drag "Concrete" to "assembly"
