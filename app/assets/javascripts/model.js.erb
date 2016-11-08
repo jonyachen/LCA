@@ -22,7 +22,7 @@ function make_new_material_section(name, id) {
 		"text": "Drop your " + name + " processes here."
 	});
 
-	console.log("Creating a new Material..");
+	// console.log("Creating a new Material..");
 
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
@@ -96,12 +96,12 @@ function build_data() {
 
 		result.push(material);
 	})
-	console.log(result)
+	// console.log(result)
 	return result;
 }
 
 function fill_build( data ) {
-	console.log(data)
+	// console.log(data)
 	for (var key in data){
 		var material = data[key];
 		var $mat = make_new_material_section(material["name"], material["id"]);
@@ -116,12 +116,6 @@ function clear_build() {
 	$('#build *').remove();
 }
 
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
 */
@@ -131,6 +125,7 @@ $(window).load(function() {
 	});
 
 	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
+
 });
 
 $(document).ready(function() {
@@ -189,13 +184,20 @@ $(document).ready(function() {
 		});
 	})
 
-	console.log(curr_assembly)
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	// console.log(curr_assembly)
 	if (curr_assembly != null) {
 		fill_build(curr_assembly);
 	}
 
 	var menu_height = $('#menu .collapsible-header').first().height() * 5;
 	var library_height = $('#library').height();
+
 
 	// Tried dynamic height, fix later.
 	// $('<style></style>', {
