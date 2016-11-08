@@ -30,7 +30,7 @@ gem 'rails_12factor'
 
 group :production do
   gem 'pg'
-  
+
 end
 
 group :development do
@@ -51,8 +51,10 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'byebug', platform: :mri
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+  gem 'poltergeist'
 end
 # setup Cucumber, RSpec, autotest support
 group :test do
@@ -60,8 +62,10 @@ group :test do
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
+  gem 'selenium-webdriver'
   gem 'database_cleaner' # required by Cucumber
   gem 'autotest-rails'
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
+  gem 'poltergeist'
 end

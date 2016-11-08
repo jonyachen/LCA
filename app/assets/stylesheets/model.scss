@@ -125,88 +125,91 @@ html, body {
 
 #build {
     margin: 0px;
-
+    font-family: verdana;
     .material-section {
         margin-bottom: 15px;
     }
 
-    .text {
-        background-color: #f44336;
-        padding: 30px 40px;
-        color: white;
-        text-align: center;
+    [class*='input-'] {
+        width: 7%;
+        font-weight: normal;
+    }
+
+    [class*='label'] {
+        padding-left: 20px;
     }
 
     .material {
-        height: 56px;
-        background-color: white;
-
-        padding: 10px;
-        border-radius: 10px;
-        border: solid black 1px;
-
-        line-height: 36px;
-
-        text-align: left;
-
+      font-weight: bold;
+      font-size: 150%;
+      border-radius: 7px;
+      padding: 12px;
+      margin: 2px;
+      background-color: white;
+      line-height: 36px;
     }
-    
+
     .material:hover {
       background: #A5FEFF;
     }
 
-    .processes {
-        margin: 0px;
-        @include descending-z-index(100);
+   .processes {
+      margin: 0px;
+      position: relative;
+      // @include descending-z-index(100);
+      .collection-item {
+         position: relative;
+         background: #CCFEFF;
+         margin: 0px auto;
+         width: 800px;
+         // right: -10px;
+         // height: 66px;
+         border-radius: 7px;
+         // line-height: 36px;
+      }
+      .collection-item:hover {
+         background: #91FCFF;
+      }
+   }
+   //
+   // .boxclose{
+   //     float:right;
+   //     cursor:pointer;
+   //     color: #fff;
+   //     border: 1px solid #AEAEAE;
+   //     border-radius: 30px;
+   //     background: #605F61;
+   //     font-size: 31px;
+   //     font-weight: bold;
+   //     display: inline-block;
+   //     line-height: 0px;
+   //     padding: 11px 3px;
+   // }
 
-        .collection-item {
-            height: 66px;
-            padding-top: 20px;
-            margin-top: -10px;
-
-            border-radius: 0px 0px 10px 10px;
-            border: solid black 1px;
-
-            line-height: 36px;
-        }
-        .collection-item:hover {
-           background: #A5FEFF;
-        }
-    }
-    .close {
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 12px 16px 12px 16px
-    }
-
-   .boxclose{
-       float:right;
-       cursor:pointer;
-       color: #fff;
-       border: 1px solid #AEAEAE;
-       border-radius: 30px;
-       background: #605F61;
-       font-size: 31px;
-       font-weight: bold;
-       display: inline-block;
-       line-height: 0px;
-       padding: 11px 3px;
+   [class*='close-'] {
+      // top: 0;
+      font-size: 80%;
+      border-radius: 7px;
+      // position: absolute;
+      float:right;
+      // display: inline-block;
    }
 
-   .boxclose:hover {
-      background-color: #f44336;
+   [class*='close-']:hover {
+       background-color: #f44336;
+       color: white;
    }
 
-   .boxclose:before {
-       content: "×";
+   .close-material {
+      padding: 12px 8px 12px 11px;
+      margin: 2px;
    }
 
-   .delete-button {
-        float: right;
-        background-color: #b33;
-        margin-left: 5px;
+   .close-process {
+      border-radius: 100px;
+      padding: 3px 2px 3px 3px;
    }
+
 }
 
 #save {
