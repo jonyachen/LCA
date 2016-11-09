@@ -36,7 +36,9 @@ class ModelController < ApplicationController
     hash = params[:build]
     if hash == nil
       result = false
-      render :nothing => true
+      respond_to do |format|
+      	format.json { nil.to_json }
+      end
     end
     
     if session[:assembly_id] == nil
@@ -48,6 +50,10 @@ class ModelController < ApplicationController
     
     @assembly.components = hash
     result = @assembly.save
-    render :nothing => true
+
+    respond_to do |format|
+    	format.json { nil.to_json }
+    end
+
   end
 end

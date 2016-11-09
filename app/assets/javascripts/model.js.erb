@@ -165,6 +165,7 @@ $(document).ready(function() {
 	})
 
 	$('#save').click(function() {
+		Materialize.toast('Saving...', 2000);
 		$.ajax({
 			dataType: "json",
 			type: "POST",
@@ -172,14 +173,15 @@ $(document).ready(function() {
 			data: { build: build_data() },
 			success: function(response, status, xhr) {
 				// console.log(response);
+				Materialize.toast('Saved', 2000);
 			},
 
 			error: function(xhr, status, errorThrown) {
-				// console.log(status);
+				// console.log(errorThrown);
 			},
 
 			complete: function (xhr, status) {
-				// console.log('done!');
+				// console.log(status);
 			}
 		});
 	})
