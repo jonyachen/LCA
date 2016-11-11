@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-11-11T06:02:08+00:00">2016-11-11T06:02:08+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-11-11T05:23:44+00:00">2016-11-11T05:23:44+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.32
+         2.65
        </span>
     </span> hits/line)
   </h2>
@@ -67,7 +67,7 @@
         <td>31</td>
         <td>16</td>
         <td>15</td>
-        <td>10.6</td>
+        <td>12.7</td>
       </tr>
       
       <tr>
@@ -107,7 +107,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>1.4</td>
+        <td>1.6</td>
       </tr>
       
       <tr>
@@ -117,7 +117,7 @@
         <td>6</td>
         <td>5</td>
         <td>1</td>
-        <td>1.5</td>
+        <td>1.7</td>
       </tr>
       
       <tr>
@@ -287,17 +287,17 @@
         <td>15</td>
         <td>11</td>
         <td>4</td>
-        <td>6.4</td>
+        <td>7.5</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#0391857cbba3dd956d5dd48ab27025901dc0c931" class="src_link" title="features/step_definitions/lca_steps.rb">features/step_definitions/lca_steps.rb</a></td>
-        <td class="red strong">80.0 %</td>
+        <td class="yellow strong">90.0 %</td>
         <td>15</td>
         <td>10</td>
-        <td>8</td>
-        <td>2</td>
-        <td>0.8</td>
+        <td>9</td>
+        <td>1</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -312,7 +312,7 @@
       
       <tr>
         <td class="strong"><a href="#725d0a374a54af27a256c22ac869a45a6817e6dd" class="src_link" title="features/step_definitions/web_steps.rb">features/step_definitions/web_steps.rb</a></td>
-        <td class="red strong">31.15 %</td>
+        <td class="red strong">30.33 %</td>
         <td>254</td>
         <td>122</td>
         <td>38</td>
@@ -327,7 +327,7 @@
         <td>11</td>
         <td>5</td>
         <td>6</td>
-        <td>1.2</td>
+        <td>1.4</td>
       </tr>
       
       <tr>
@@ -424,20 +424,20 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="4">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="4">
+          <span class="hits">6</span>
           
           <code class="ruby">    if session[:user_id] == nil</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="5">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="5">
+          <span class="hits">6</span>
           
           <code class="ruby">      @user = User.create</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="6">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="6">
+          <span class="hits">6</span>
           
           <code class="ruby">      session[:user_id] = @user.id</code>
         </li>
@@ -466,14 +466,14 @@
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="11">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="11">
+          <span class="hits">6</span>
           
           <code class="ruby">    if session[:assembly_id] == nil</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="12">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="12">
+          <span class="hits">6</span>
           
           <code class="ruby">      @curr_assembly = nil</code>
         </li>
@@ -502,14 +502,14 @@
           <code class="ruby">      </code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="17">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="60" data-linenumber="17">
+          <span class="hits">60</span>
           
           <code class="ruby">  	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]</code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="18">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="60" data-linenumber="18">
+          <span class="hits">60</span>
           
           <code class="ruby">  	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]</code>
         </li>
@@ -520,14 +520,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="20">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="20">
+          <span class="hits">6</span>
           
           <code class="ruby">  	@material_options = Material.categories.collect do |category|</code>
         </li>
       
-        <li class="covered" data-hits="70" data-linenumber="21">
-          <span class="hits">70</span>
+        <li class="covered" data-hits="84" data-linenumber="21">
+          <span class="hits">84</span>
           
           <code class="ruby">  		[category, Material.where(category: category).collect {|material| [material.title, material.id]}]</code>
         </li>
@@ -544,20 +544,20 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="24">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="24">
+          <span class="hits">6</span>
           
           <code class="ruby">  	@procedures = Hash[Procedure.categories.collect do |category|</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="25">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="12" data-linenumber="25">
+          <span class="hits">12</span>
           
           <code class="ruby">  		[category, Material.all.collect do |material|</code>
         </li>
       
-        <li class="covered" data-hits="105" data-linenumber="26">
-          <span class="hits">105</span>
+        <li class="covered" data-hits="126" data-linenumber="26">
+          <span class="hits">126</span>
           
           <code class="ruby">  			[material.title, Procedure.where(material: material.title, category: category).collect {|procedure| [procedure.title, procedure.id]}]</code>
         </li>
@@ -592,8 +592,8 @@
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="32">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="32">
+          <span class="hits">6</span>
           
           <code class="ruby">    render &#39;index&#39;</code>
         </li>
@@ -940,8 +940,8 @@
           <code class="ruby">    def self.categories</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="12">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="12">
+          <span class="hits">6</span>
           
           <code class="ruby">        return Material.all.select(:category).map(&amp;:category).uniq.sort</code>
         </li>
@@ -1030,8 +1030,8 @@
           <code class="ruby">    def self.categories</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="10">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="10">
+          <span class="hits">6</span>
           
           <code class="ruby">        return Procedure.all.select(:category).map(&amp;:category).uniq</code>
         </li>
@@ -2578,14 +2578,14 @@
           <code class="ruby">Given(/^the following Materials exist:$/) do |table|</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="7">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="7">
+          <span class="hits">6</span>
           
           <code class="ruby">   table.hashes.each do |material|</code>
         </li>
       
-        <li class="covered" data-hits="45" data-linenumber="8">
-          <span class="hits">45</span>
+        <li class="covered" data-hits="54" data-linenumber="8">
+          <span class="hits">54</span>
           
           <code class="ruby">     Material.create(material)</code>
         </li>
@@ -2614,14 +2614,14 @@
           <code class="ruby">Given(/^the following Processes exist:$/) do |table|</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="13">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="13">
+          <span class="hits">6</span>
           
           <code class="ruby">   table.hashes.each do |process|</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="14">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="36" data-linenumber="14">
+          <span class="hits">36</span>
           
           <code class="ruby">     Procedure.create(process)</code>
         </li>
@@ -2723,11 +2723,11 @@
         <div class="source_table" id="0391857cbba3dd956d5dd48ab27025901dc0c931">
   <div class="header">
     <h3>features/step_definitions/lca_steps.rb</h3>
-    <h4><span class="red">80.0 %</span> covered</h4>
+    <h4><span class="yellow">90.0 %</span> covered</h4>
     <div>
       <b>10</b> relevant lines. 
-      <span class="green"><b>8</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -2812,8 +2812,8 @@
           <code class="ruby">When /^I enter &quot;(.*)&quot; with (\d+) kg$/ do |material, amount|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
-          
+        <li class="covered" data-hits="2" data-linenumber="14">
+          <span class="hits">2</span>
           
           <code class="ruby">	pending</code>
         </li>
@@ -3154,8 +3154,8 @@
           <code class="ruby">Given /^(?:|I )am on (.+)$/ do |page_name|</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="45">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="45">
+          <span class="hits">6</span>
           
           <code class="ruby">  visit path_to(page_name)</code>
         </li>
@@ -4510,8 +4510,8 @@
           <code class="ruby">  def path_to(page_name)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="14">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="14">
+          <span class="hits">6</span>
           
           <code class="ruby">    case page_name</code>
         </li>
@@ -4528,8 +4528,8 @@
           <code class="ruby">    when /^the home\s?page$/</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="17">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="17">
+          <span class="hits">6</span>
           
           <code class="ruby">      &#39;/&#39;</code>
         </li>
