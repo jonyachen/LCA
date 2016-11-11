@@ -1,4 +1,4 @@
-When(/^Given I am on the homepage$/) do
+Given(/^I am on the homepage$/) do
   visit root_path
 end
 
