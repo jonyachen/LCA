@@ -120,12 +120,30 @@ function clear_build() {
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
 */
 $(window).load(function() {
+	/*
 	$('#material-search').autocomplete({
 		data: materials
 	});
+	*/
 
 	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
+	
+});
 
+/* Material search feature: updates drop-down list every time material search text box is updated */
+$(function(){
+	$('#material-search').keyup(function() {
+		var input = $('#material-search').val()
+		$('#material-dropdown .collapsible').each(function() {
+//			var category_empty = TRUE;
+			$('.draggable').each(function() {
+				$('this:not(:contains(input))').hide(); 
+			});
+//			if (category_empty.is(TRUE)) {
+//				$(this).hide();
+//			}
+		});
+	});
 });
 
 $(document).ready(function() {
