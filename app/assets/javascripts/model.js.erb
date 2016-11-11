@@ -135,15 +135,9 @@ $(function(){
 	$('#material-search').keyup(function() {
 		var input = $('#material-search').val()
 		var materials = '#material-dropdown .collapsible .draggable';
-		$(materials).show();
-				$('#material-dropdown .collapsible').each(function() {
-					var empty_category = true;
-					$('.draggable:not(:contains('+ input +'))').hide();
-					$('.draggable:contains('+ input +')').each(function(){empty_category = false;});
-					if(empty_category.is(true)){$(this).hide();}
-					else{$(this).show();}
-				});
-		});
+		$(materials).show(); 
+		$(materials + ':not(:contains('+ input +'))').hide(); 
+	});
 });
 
 $(document).ready(function() {
