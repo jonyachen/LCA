@@ -1,14 +1,14 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "C:/Users/Ronan/Documents/cs169/proj/config/environment.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/application.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/application.rb": [
         1,
         null,
         1,
@@ -35,12 +35,12 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/boot.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/boot.rb": [
         1,
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/environments/test.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/environments/test.rb": [
         1,
         null,
         null,
@@ -84,7 +84,7 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/application_controller_renderer.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -92,7 +92,7 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/assets.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -108,7 +108,7 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/backtrace_silencers.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -117,20 +117,20 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/cookies_serializer.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/cookies_serializer.rb": [
         null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/inflections.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -148,13 +148,13 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/mime_types.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/new_framework_defaults.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/new_framework_defaults.rb": [
         null,
         null,
         null,
@@ -180,12 +180,12 @@
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/session_store.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/initializers/wrap_parameters.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -201,7 +201,7 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/config/routes.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/routes.rb": [
         1,
         1,
         null,
@@ -212,7 +212,7 @@
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/support/paths.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/support/paths.rb": [
         null,
         null,
         null,
@@ -226,10 +226,10 @@
         null,
         null,
         1,
-        4,
+        5,
         null,
         null,
-        4,
+        5,
         null,
         null,
         null,
@@ -252,7 +252,7 @@
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/support/selectors.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/support/selectors.rb": [
         null,
         null,
         null,
@@ -298,21 +298,21 @@
         null,
         1
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/step_definitions/homepage_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/homepage_steps.rb": [
         1,
         0,
         null,
         null,
         null,
         1,
-        4,
-        36,
+        5,
+        45,
         null,
         null,
         null,
         1,
-        4,
-        24,
+        5,
+        30,
         null,
         null,
         null,
@@ -329,7 +329,7 @@
         0,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/step_definitions/lca_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/lca_steps.rb": [
         1,
         1,
         1,
@@ -346,14 +346,14 @@
         0,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/step_definitions/materials_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/materials_steps.rb": [
         1,
         0,
         null,
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/features/step_definitions/web_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/web_steps.rb": [
         null,
         null,
         null,
@@ -398,7 +398,7 @@
         null,
         null,
         1,
-        4,
+        5,
         null,
         null,
         1,
@@ -414,7 +414,7 @@
         null,
         null,
         1,
-        0,
+        1,
         null,
         null,
         1,
@@ -609,7 +609,7 @@
         0,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/models/material.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/material.rb": [
         1,
         null,
         1,
@@ -621,99 +621,104 @@
         null,
         null,
         1,
-        4,
+        5,
         null,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/models/application_record.rb": [
-        1,
-        1,
-        null
-      ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/models/procedure.rb": [
-        1,
-        1,
-        null,
-        1,
-        null,
-        0,
-        null,
-        null,
-        1,
-        4,
-        null,
-        null
-      ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/controllers/model_controller.rb": [
-        1,
-        1,
-        null,
-        1,
-        4,
-        4,
-        4,
-        null,
-        0,
-        null,
-        null,
-        4,
-        4,
-        null,
-        0,
-        null,
-        null,
-        40,
-        40,
-        null,
-        4,
-        56,
-        null,
-        null,
-        4,
-        8,
-        84,
-        null,
-        null,
-        null,
-        null,
-        null,
-        4,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null
-      ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/procedure.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        0,
+        null,
+        null,
+        1,
+        5,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/faludi-lca-app/app/controllers/model_controller.rb": [
+        1,
+        null,
+        1,
+        5,
+        5,
+        5,
+        null,
+        0,
+        null,
+        null,
+        5,
+        5,
+        null,
+        0,
+        null,
+        null,
+        50,
+        50,
+        null,
+        5,
+        70,
+        null,
+        null,
+        5,
+        10,
+        105,
+        null,
+        null,
+        null,
+        null,
+        null,
+        5,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/faludi-lca-app/app/controllers/application_controller.rb": [
+        1,
         1,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/helpers/model_helper.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Ronan/Documents/cs169/proj/app/models/user.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/helpers/model_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/user.rb": [
         1,
         1,
         1,
@@ -733,7 +738,7 @@
         null
       ]
     },
-    "timestamp": 1478639165
+    "timestamp": 1478844128
   },
   "RSpec": {
     "coverage": {

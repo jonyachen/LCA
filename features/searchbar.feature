@@ -1,4 +1,4 @@
-Feature: Search for materials and features
+Feature: Search for materials and processes
 
     As a product designer
     So that I can search for materials and processes
@@ -26,7 +26,6 @@ Background: Materials and Processes have been added to the database
       | Hot Roll        | Manufacturing    | Steel    |
       | Cold Roll       | Manufacturing    | Steel    |
       | Tempering       | Manufacturing    | Steel    |
-
 
 Scenario: Search for Materials
   Given I am on the homepage
