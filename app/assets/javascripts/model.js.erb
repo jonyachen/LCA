@@ -134,16 +134,16 @@ $(window).load(function() {
 $(function(){
 	$('#material-search').keyup(function() {
 		var input = $('#material-search').val()
-		$('#material-dropdown .collapsible').each(function() {
-//			var category_empty = TRUE;
-			$('.draggable').each(function() {
-				$('this:not(:contains(input))').hide(); 
-			});
-//			if (category_empty.is(TRUE)) {
-//				$(this).hide();
-//			}
+		var materials = '#material-dropdown .collapsible .draggable';
+		$(materials).show();
+				$('#material-dropdown .collapsible').each(function() {
+					var empty_category = true;
+					$('.draggable:not(:contains('+ input +'))').hide();
+					$('.draggable:contains('+ input +')').each(function(){empty_category = false;});
+					if(empty_category.is(true)){$(this).hide();}
+					else{$(this).show();}
+				});
 		});
-	});
 });
 
 $(document).ready(function() {
