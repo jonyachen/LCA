@@ -165,6 +165,26 @@ $(function(){
 		$(materials + ':Contains('+ input +')').show();
 		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
 	});
+	
+	$('#manufacturing-search').keyup(function() {
+		var input = $('#manufacturing-search').val();
+		var categories = '#manufacturing-dropdown .collapsible';
+		var materials = '#manufacturing-dropdown .collapsible .draggable';
+		$(categories).hide();
+		$(materials).hide();
+		$(materials + ':Contains('+ input +')').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+	
+	$('#transport-search').keyup(function() {
+		var input = $('#transport-search').val();
+		var categories = '#transport .collapsible';
+		var materials = '#transport .collapsible .draggable';
+		$(categories).hide();
+		$(materials).hide();
+		$(materials + ':Contains('+ input +')').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+	});
 });
 
 $(document).ready(function() {

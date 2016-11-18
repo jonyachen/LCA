@@ -64,9 +64,10 @@
           </div>
         </li>
         <!-- Manufacturing -->
-        <li>
+        <li id="manufacturing-dropdown">
           <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
           <div class="collapsible-body">
+              <input type="text" id="manufacturing-search" class="autocomplete">
               <ul>
                 <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
                     <ul id="procedures" class="collapsible" data-collapsible="expandable">
@@ -87,9 +88,10 @@
         </li>
 
         <!-- Transport -->
-        <li>
+        <li id="transport-dropdown">
           <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_more</i>Transport</div>
           <div class="collapsible-body">
+              <input type="text" id="transport-search" class="autocomplete">
               <ul>
                 <% (@procedures['Transportation'] || []).each do |material, procedures| %>
                     <ul id="procedures" class="collapsible" data-collapsible="expandable">
