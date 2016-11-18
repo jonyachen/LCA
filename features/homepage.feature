@@ -6,6 +6,11 @@ Feature: display homepage
 
 Background: Materials and Processes have been added to the database
 
+      Given the following Users exist:
+      | name                | login            | password               |
+      | John Snow           | user123          | secet_pass1234         |
+
+
       Given the following Materials exist:
       | title            | category  |
       | Steel            | Metal     |
@@ -27,8 +32,13 @@ Background: Materials and Processes have been added to the database
       | Cold Roll       | Manufacturing    | Steel    |
       | Tempering       | Manufacturing    | Steel    |
 
+      Given I am on the loginpage
+
+      And I fill in "username" with "user123"
+      And I fill in "password" with "secet_pass1234"
+      And I press "Login"
+
 Scenario: Visit the homepage
-    Given I am on the homepage
     Then I should see "Materials"
     And I should see "Manufacturing"
     And I should see "Transport"
@@ -38,7 +48,6 @@ Scenario: Visit the homepage
     And I should see "Materials"
 
 Scenario: View Collapsible Materials
-   Given I am on the homepage
    Then I should see "Materials"
    And I choose "Materials" from "library"
    Then I should see "Ceramic"
@@ -49,7 +58,6 @@ Scenario: View Collapsible Materials
    And I should see "Polymers"
 
 Scenario: View Collapsible Processes
-   Given I am on the homepage
    Then I should see "Manufacturing"
    And I choose "Manufacturing" from "library"
    Then I should see "Ceramic"
@@ -62,7 +70,6 @@ Scenario: View Collapsible Processes
    And I should see "Cold Roll"
 
 Scenario: Add A Material
-   Given I am on the homepage
    Then I should see "Materials"
    And I choose "Materials" from "library"
    Then I should see "Ceramic"

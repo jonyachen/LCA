@@ -52,9 +52,7 @@ Scenario: Visit Login Page
    And I fill in "password" with "secet_pass1234"
    And I press "Login"
 
-   Then I should see "Login Successful"
-   And I should see "Materials"
-   And I should see "Welcome Back John Snow"
+   Then I should see "Materials"
 
 Scenario: Visit Signup Page
    Given I am on the welcomepage
@@ -77,4 +75,3 @@ Scenario: Signup a New User
    And I press "Signup"
 
    Then I should see "Materials"
-   And I should see "Welcome John Snow!"
