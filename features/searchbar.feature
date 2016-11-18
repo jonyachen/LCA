@@ -1,11 +1,11 @@
-Feature: Assembly FileTree
+Feature: Search for materials and features
 
     As a product designer
-    So that I can navigate my existing assemblies
-    I need to be able to open an assemblies panel and navigate to assemblies
+    So that I can search for materials and processes
+    I need to filter materials and processes by text input
 
 Background: Materials and Processes have been added to the database
-
+  
       Given the following Materials exist:
       | title            | category  |
       | Steel            | Metal     |
@@ -27,15 +27,18 @@ Background: Materials and Processes have been added to the database
       | Cold Roll       | Manufacturing    | Steel    |
       | Tempering       | Manufacturing    | Steel    |
 
-@wip
-Scenario: Open Assemblies FileTree
-   Given I am on the homepage
-   Then I should see "Assemblies"
-   And I choose "Materials" from "library"
-   Then I should see "Ceramic"
-   And I should see "Chemicals"
-   And I should see "Metal"
-   And I should see "Polymers"
-   And I should see "Wood"
-   And I should see "Polymers"
-   And I should see "Concrete"
+
+Scenario: Search for Materials
+  Given I am on the homepage
+  When I fill in "material-search" with "S"
+  Then "Glass" should be visible.
+  And "Steel" should be visible.
+  And "Metal" should be visible.
+  And "Epoxy" should not be visible.
+  And "Chemicals" should not be visible.
+  When I fill in "material-search" with "Steel"
+  Then "Metals" should be visible.
+  And "Ceramics" should not be visible.
+  When I clear "material-search"
+  Then "Chemicals" should be visible
+  And "Metals" should be visible.
