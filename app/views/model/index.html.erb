@@ -12,39 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-    <!-- FileTree -->
-    <script src="jquery.js" type="text/javascript"></script>
-	<script src="jquery.easing.js" type="text/javascript"></script>
-	<script src="jqueryFileTree.js" type="text/javascript"></script>
-	<link href="jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
-
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-    <!-- FileTree Styling -->
-    <style type="text/css">
-		H2 {
-			font-family: Georgia, serif;
-			font-size: 16px;
-			font-weight: normal;
-			margin: 0px 0px 10px 0px;
-		}
-		.example {
-			float: left;
-			margin: 15px;
-		}
-    	.demo {
-    		width: 300px;
-    		height: 600px;
-    		border-top: solid 1px #BBB;
-    		border-left: solid 1px #BBB;
-    		border-bottom: solid 1px #FFF;
-    		border-right: solid 1px #FFF;
-    		background: #FFF;
-    		overflow: scroll;
-    		padding: 5px;
-    	}
-    </style>
     
     <!-- vars -->
     <script type="text/javascript">
@@ -53,15 +22,6 @@
         var SAVE_URL = '/model';
         var curr_assembly = <%= @curr_assembly.to_json.html_safe %>;
     </script>
-    
-    <script type="text/javascript">
-			
-		$(document).ready( function() {
-			$('#assemblyTree').fileTree({ root: '../../demo/', script: 'connectors/jqueryFileTree.php', folderEvent: 'dblclick', expandSpeed: 1, collapseSpeed: 1 }, function(file) { 
-				alert(file);
-			});
-		});
-	</script>
 
     <% javascript_include_tag "model" %>
     <% stylesheet_link_tag "model", media: "all" %>
@@ -168,13 +128,6 @@
             Drop your materials here!
         <button id="save" class="btn-flat"> Save </button>
     </td>
-    
-    <!--<td id="fileTree">-->
-    <!--    <div class="example">-->
-    <!--		<h2>Assemblies in this project:</h2>-->
-    <!--		<div id="assemblyTree" class="demo"></div>-->
-	   <!-- </div>-->
-    <!--</td>-->
 
     </tr>
 </table>
