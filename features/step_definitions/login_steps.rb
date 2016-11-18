@@ -1,13 +1,18 @@
 
 Given(/^the following Users exist:$/) do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+   table.hashes.each do |u|
+     User.create(u)
+   end
+end
+
+Given(/^I am on the signuppage$/) do
+  visit signup_path
 end
 
 Given(/^I am on the loginpage$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit login_path
 end
 
 Given(/^I am on the welcomepage$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit welcome_path
 end

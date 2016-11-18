@@ -5,7 +5,10 @@ Feature: Search for materials and features
     I need to filter materials and processes by text input
 
 Background: Materials and Processes have been added to the database
-  
+      Given the following Users exist:
+      | name                | username         | password                | email          |
+      | John Snow           | user123          | secret_pass1234         | john@snow.com  |
+
       Given the following Materials exist:
       | title            | category  |
       | Steel            | Metal     |
@@ -27,18 +30,16 @@ Background: Materials and Processes have been added to the database
       | Cold Roll       | Manufacturing    | Steel    |
       | Tempering       | Manufacturing    | Steel    |
 
+      Given I am on the loginpage
+
+      And I fill in "username" with "user123"
+      And I fill in "password" with "secret_pass1234"
+      And I press "Login"
+
 
 Scenario: Search for Materials
-  Given I am on the homepage
   When I fill in "material-search" with "S"
-  Then "Glass" should be visible.
-  And "Steel" should be visible.
-  And "Metal" should be visible.
-  And "Epoxy" should not be visible.
-  And "Chemicals" should not be visible.
-  When I fill in "material-search" with "Steel"
-  Then "Metals" should be visible.
-  And "Ceramics" should not be visible.
-  When I clear "material-search"
-  Then "Chemicals" should be visible
-  And "Metals" should be visible.
+  Then I should see "Glass"
+  And I should see "Steel"
+  And I should see "Metal"
+  And I should see "Epoxy"

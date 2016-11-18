@@ -1,6 +1,6 @@
 /* global $, materials, SAVE_URL */
 
-function make_new_material_section(name, id) {
+function make_new_material_section(name, id, quantity=0, measurement="kg") {
 
 	var $li = $('<li></li>', {
 		"class": 'material-section',
@@ -10,7 +10,9 @@ function make_new_material_section(name, id) {
 		"class": 'material',
 		"text": name,
 		"data-id": id,
-		"data-name": name
+		"data-name": name,
+		"quantity": quantity,
+		"measurement": measurement
 	});
 
 	var $body = $('<ul></ul>', {
@@ -28,6 +30,8 @@ function make_new_material_section(name, id) {
 	$head.appendTo($li);
 	$body.appendTo($li);
 	add_inputs($head, 'material');
+	$head.find("#quantity").val(quantity);
+	$head.find("#measurement").val(measurement);
 
 	$li.droppable({
 		greedy: true,
@@ -37,7 +41,14 @@ function make_new_material_section(name, id) {
 			var id = $(from).data("id");
 			var name = $(from).data("name");
 			if ($(from).data('type') == 'procedure') {
-				add_proc_to($li, name, id);
+				//console.log($(this).processes.offsetparent.childElementCount);
+				console.log($(this).find(".processes").children().length);
+				if ($(this).find(".processes").children().length > 1) {
+					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
+				}
+				else {
+					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
+				}
 			};
 
 		}
@@ -59,16 +70,22 @@ function add_inputs($obj, obj_type, css_type) {
 	}
 }
 
-function add_proc_to($mat, name, id) {
+function add_proc_to($mat, name, id, quantity=0, measurement="") {
 	var $proc = $('<li></li>', {
 		"class": 'collection-item process',
 		"text": name,
 		"data-id": id,
-		"data-name": name
+		"data-name": name,
+		"quantity": quantity,
+		"measurement": measurement
 	});
 	var $delButton = make_delete_button($proc, 'process');
 	$delButton.appendTo($proc);
 	add_inputs($proc, 'process');
+
+	$proc.find("#quantity").val(quantity);
+	$proc.find("#measurement").val(measurement);
+
 	// $mat.find('.processes :last-child').before($proc);
 	$mat.find('.processes :last').before($proc);
 }
@@ -87,27 +104,29 @@ function build_data() {
 		var material = {};
 		material["name"] = $(this).find(".material").data("name");
 		material["id"] = $(this).find(".material").data("id");
+		material["quantity"] = $(this).find("input#quantity").val()
+		material["measurement"] = $(this).find("input#measurement").val()
 
 		var procedures = [];
 		$(this).find(".process").each(function (index) {
-			procedures.push({"name": $(this).data("name"), "id": $(this).data("id")});
+			procedures.push({"name": $(this).data("name"), "id": $(this).data("id"), "quantity": $(this).find("input#quantity").val(), "measurement": $(this).find("input#measurement").val()});
 		});
 		material["procedures"] = procedures;
 
 		result.push(material);
 	})
-	// console.log(result)
+	console.log(result)
 	return result;
 }
 
 function fill_build( data ) {
-	// console.log(data)
+	//console.log(data)
 	for (var key in data){
 		var material = data[key];
-		var $mat = make_new_material_section(material["name"], material["id"]);
+		var $mat = make_new_material_section(material["name"], material["id"], material["quantity"], material["measurement"]);
 		for (var key in material["procedures"]) {
 			var proc = material["procedures"][key];
-			add_proc_to($mat, proc["name"], proc["id"]);
+			add_proc_to($mat, proc["name"], proc["id"], proc["quantity"], proc["measurement"]);
 		}
 	}
 }
@@ -212,4 +231,42 @@ $(document).on('turbolinks:load', function() {
 	// $('<style></style>', {
 	// 	innerHTML: '#menu > li.active > .collapsible-body { max-height: ' + menu_height - library_height + ';}'
 	// }).appendTo($('head'));
+});
+
+/* Material search feature: updates drop-down list every time material search text box is updated */
+$(function(){
+
+	$.expr[':'].Contains = function(a,i,m){
+     return $(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	};
+
+	$('#material-search').keyup(function() {
+		var input = $('#material-search').val();
+		var categories = '#material-dropdown .collapsible';
+		var materials = '#material-dropdown .collapsible .draggable';
+		$(categories).hide();
+		$(materials).hide();
+		$(materials + ':Contains('+ input +')').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+
+	$('#manufacturing-search').keyup(function() {
+		var input = $('#manufacturing-search').val();
+		var categories = '#manufacturing-dropdown .collapsible';
+		var materials = '#manufacturing-dropdown .collapsible .draggable';
+		$(categories).hide();
+		$(materials).hide();
+		$(materials + ':Contains('+ input +')').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+
+	$('#transport-search').keyup(function() {
+		var input = $('#transport-search').val();
+		var categories = '#transport .collapsible';
+		var materials = '#transport .collapsible .draggable';
+		$(categories).hide();
+		$(materials).hide();
+		$(materials + ':Contains('+ input +')').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+	});
 });

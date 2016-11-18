@@ -7,8 +7,8 @@ Feature: display homepage
 Background: Materials and Processes have been added to the database
 
       Given the following Users exist:
-      | name                | login            | password               |
-      | John Snow           | user123          | secet_pass1234         |
+      | name                | username         | password                | email          | 
+      | John Snow           | user123          | secret_pass1234         | john@snow.com  |
 
 
       Given the following Materials exist:
@@ -35,7 +35,7 @@ Background: Materials and Processes have been added to the database
       Given I am on the loginpage
 
       And I fill in "username" with "user123"
-      And I fill in "password" with "secet_pass1234"
+      And I fill in "password" with "secret_pass1234"
       And I press "Login"
 
 Scenario: Visit the homepage
