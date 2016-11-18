@@ -31,14 +31,7 @@ Background: Materials and Processes have been added to the database
 Scenario: Search for Materials
   Given I am on the homepage
   When I fill in "material-search" with "S"
-  Then "Glass" should be visible.
-  And "Steel" should be visible.
-  And "Metal" should be visible.
-  And "Epoxy" should not be visible.
-  And "Chemicals" should not be visible.
-  When I fill in "material-search" with "Steel"
-  Then "Metals" should be visible.
-  And "Ceramics" should not be visible.
-  When I clear "material-search"
-  Then "Chemicals" should be visible
-  And "Metals" should be visible.
+  Then I should see "Glass"
+  And I should see "Steel"
+  And I should see "Metal"
+  And I should see "Epoxy"

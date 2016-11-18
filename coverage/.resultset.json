@@ -1,14 +1,14 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/Daniel/dev/faludi-lca-app/config/environment.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/application.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/application.rb": [
         1,
         null,
         1,
@@ -35,12 +35,12 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/boot.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/environments/test.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/environments/test.rb": [
         1,
         null,
         null,
@@ -84,7 +84,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/application_controller_renderer.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -92,7 +92,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/assets.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -108,7 +108,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/backtrace_silencers.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -117,20 +117,20 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/cookies_serializer.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/cookies_serializer.rb": [
         null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/inflections.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -148,13 +148,13 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/mime_types.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/new_framework_defaults.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/new_framework_defaults.rb": [
         null,
         null,
         null,
@@ -180,12 +180,12 @@
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/session_store.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/initializers/wrap_parameters.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -201,7 +201,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/config/routes.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/config/routes.rb": [
         1,
         1,
         null,
@@ -212,7 +212,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/support/paths.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/support/paths.rb": [
         null,
         null,
         null,
@@ -252,7 +252,7 @@
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/support/selectors.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/support/selectors.rb": [
         null,
         null,
         null,
@@ -298,7 +298,7 @@
         null,
         1
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/step_definitions/homepage_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/homepage_steps.rb": [
         1,
         7,
         null,
@@ -329,7 +329,7 @@
         0,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/step_definitions/lca_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/lca_steps.rb": [
         1,
         1,
         1,
@@ -346,7 +346,7 @@
         2,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/step_definitions/login_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/login_steps.rb": [
         null,
         1,
         null,
@@ -361,14 +361,14 @@
         4,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/step_definitions/materials_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/materials_steps.rb": [
         1,
         0,
         null,
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/features/step_definitions/web_steps.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/features/step_definitions/web_steps.rb": [
         null,
         null,
         null,
@@ -474,8 +474,8 @@
         null,
         null,
         1,
-        31,
-        31,
+        35,
+        35,
         null,
         0,
         null,
@@ -624,7 +624,7 @@
         0,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/models/material.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/material.rb": [
         1,
         null,
         1,
@@ -640,12 +640,12 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/models/application_record.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/models/procedure.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/procedure.rb": [
         1,
         1,
         null,
@@ -659,7 +659,7 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/controllers/model_controller.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/controllers/model_controller.rb": [
         1,
         null,
         1,
@@ -720,20 +720,20 @@
         null,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/helpers/model_helper.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/helpers/model_helper.rb": [
         1,
         null
       ],
-      "/Users/Daniel/dev/faludi-lca-app/app/models/user.rb": [
+      "/home/ubuntu/workspace/faludi-lca-app/app/models/user.rb": [
         1,
         1,
         1,
@@ -753,7 +753,7 @@
         null
       ]
     },
-    "timestamp": 1478853074
+    "timestamp": 1479453987
   },
   "RSpec": {
     "coverage": {
