@@ -10,9 +10,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-        <%= render 'layouts/navigation' %>
-    </header>
+     <% unless controller_name == "users" %>
+       <header>
+           <%= render 'layouts/navigation' %>
+       </header>
+     <% end %>
     <main role="main">
        <%= render 'layouts/messages' %>
        <%= yield %>

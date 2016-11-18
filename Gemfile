@@ -28,6 +28,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'rails_12factor'
 
+gem 'devise'
+
+gem 'jquery-turbolinks'
+
 group :production do
   gem 'pg'
 

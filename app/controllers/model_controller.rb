@@ -1,19 +1,23 @@
 class ModelController < ApplicationController
 
   def index
+   #  before_action :authenticate_user!
+
     if session[:user_id] == nil
-      @user = User.create
-      session[:user_id] = @user.id
+      # For Testing Purposes
+      redirect_to welcome_path
+      # @user = User.create
+      # session[:user_id] = @user.id
     else
       @user = User.find(session[:user_id])
     end
-    
+
     if session[:assembly_id] == nil
       @curr_assembly = nil
     else
       @curr_assembly = Assembly.find(session[:assembly_id]).components
     end
-      
+
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
   	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]
 
@@ -28,8 +32,6 @@ class ModelController < ApplicationController
 	  	]
   	end
   	]
-    
-    render 'index'
   end
 
   def create
@@ -40,14 +42,14 @@ class ModelController < ApplicationController
       	format.json { nil.to_json }
       end
     end
-    
+
     if session[:assembly_id] == nil
       @assembly = Assembly.create(:user_id => session[:user_id])
       session[:assembly_id] = @assembly.id
     else
       @assembly = Assembly.find(session[:assembly_id])
     end
-    
+
     @assembly.components = hash
     result = @assembly.save
 

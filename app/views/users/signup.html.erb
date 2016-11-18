@@ -1,0 +1,36 @@
+<%- if not flash[:ajax]%>
+   <header class="site__header island">
+     <div class="wrap">
+      <span style="display: block;"><h1 class="site__title mega">Faludi Design</h1></span>
+       <span class="beta subhead">The Ultimate LCA Application</span>
+     </div>
+   </header>
+<% end %>
+
+<div id="message_space"> </div>
+<%= form_tag signup_path, :method => :post do %>
+
+   <!-- <label class="beta subhead"><b>Full Name</b></label> -->
+   <input type="text" class="input" placeholder="Full Name" name="name" required>
+   <br>
+   <br>
+
+   <input type="text" class="input" placeholder="Username" name="username" required>
+   <br>
+   <br>
+
+   <input type="text" class="input" placeholder="Email" name="email" required>
+   <br>
+   <br>
+   <!-- <label class="beta subhead"><b>Password</b></label> -->
+
+   <input type="password" class="input" placeholder="Password" name="password" required>
+   <br>
+   <br>
+
+   <input type="password" class="input" placeholder="Confirm Password" name="confirm_password" required>
+   <br>
+   <br>
+   <button id="signup" class="butt" type="submit">Signup</button>
+
+<% end %>

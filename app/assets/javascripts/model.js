@@ -119,16 +119,16 @@ function clear_build() {
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
 */
-$(window).load(function() {
-	$('#material-search').autocomplete({
-		data: materials
-	});
+// $(document).load(function() {
+// 	$('#material-search').autocomplete({
+// 		data: materials
+// 	});
+//
+// 	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
+//
+// });
 
-	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
-
-});
-
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
 	$('.draggable').draggable({
 		containment: 'window',
 		appendTo: 'body',
@@ -145,6 +145,13 @@ $(document).ready(function() {
 			left: 50,
 		}
 	});
+
+	$('#material-search').autocomplete({
+		data: materials
+	});
+
+	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
+
 
 	$('#assembly').droppable({
 		drop: function (event, ui) {
