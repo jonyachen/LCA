@@ -1,6 +1,8 @@
 /* global $, materials, SAVE_URL */
 
-function make_new_material_section(name, id, quantity=0, measurement="kg") {
+function make_new_material_section(name, id, quantity, measurement) {
+	quantity = typeof quantity !== 'undefined' ? quantity : 0;
+	measurement = typeof measurement !== 'undefined' ? measurement : "kg";
 
 	var $li = $('<li></li>', {
 		"class": 'material-section',
@@ -70,7 +72,9 @@ function add_inputs($obj, obj_type, css_type) {
 	}
 }
 
-function add_proc_to($mat, name, id, quantity=0, measurement="") {
+function add_proc_to($mat, name, id, quantity, measurement) {
+	quantity = typeof quantity !== 'undefined' ? quantity : 0;
+	measurement = typeof measurement !== 'undefined' ? measurement : "";
 	var $proc = $('<li></li>', {
 		"class": 'collection-item process',
 		"text": name,
