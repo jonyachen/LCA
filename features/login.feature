@@ -70,3 +70,35 @@ Scenario: Signup a New User
    And I press "Signup"
 
    Then I should see "Materials"
+
+Scenario: Signup Errors
+   Background:
+      Given I am on the signuppage
+      And I fill in "username" with "user1234"
+      And I fill in "name" with "John Snow"
+      And I fill in "email" with "john@knightswatch.net"
+      And I fill in "password" with "abcd"
+      And I fill in "confirm_password" with "abcd"
+      And I press "Signup"
+
+   Scenario: Same Username
+      Given I am on the signuppage
+      And I fill in "username" with "user1234"
+      And I fill in "name" with "John Snow2"
+      And I fill in "email" with "john2@knightswatch.net"
+      And I fill in "password" with "abcd"
+      And I fill in "confirm_password" with "abcd"
+      And I press "Signup"
+
+      Then I should see "Error"
+
+   Scenario: Same email
+      Given I am on the signuppage
+      And I fill in "username" with "otheruser"
+      And I fill in "name" with "John Snow"
+      And I fill in "email" with "john@knightswatch.net"
+      And I fill in "password" with "abcd"
+      And I fill in "confirm_password" with "abcd"
+      And I press "Signup"
+
+      Then I should see "Error"
