@@ -7,6 +7,54 @@
  *
  * Copyright (c) 2016 Daniel Eden
  */
+header {
+   position:relative
+}
+
+ html, body, main {
+     margin: 0px;
+     height: 100%;
+     width: 100%;
+     overflow: scroll;
+ }
+
+ .navigation-bar {
+  background-color: #FFFFFF;
+  height: 70px;
+  width: 100%;
+  text-align:center;
+}
+
+ #navigation-container {
+     margin: 0 auto;
+     ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border-style: groove;
+        border-width: 2px;
+        background-color: #FFFFFF;
+    }
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    /* Change the link color to #111 (black) on hover */
+    li a:hover {
+        background-color: #D5D5D5;
+    }
+
+}
+
 
  /* The alert message box */
 .alert {
