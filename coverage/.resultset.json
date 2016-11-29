@@ -490,6 +490,8 @@
         1,
         1,
         1,
+        1,
+        null,
         null
       ],
       "/Users/Daniel/dev/faludi-lca-app/features/support/paths.rb": [
@@ -1029,6 +1031,14 @@
         1,
         0,
         0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
         0,
         0,
         0,
@@ -1175,7 +1185,7 @@
         null
       ]
     },
-    "timestamp": 1479459713
+    "timestamp": 1480412135
   },
   "RSpec": {
     "coverage": {

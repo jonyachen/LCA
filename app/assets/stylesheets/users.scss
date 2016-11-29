@@ -8,6 +8,9 @@
  * Copyright (c) 2016 Daniel Eden
  */
 
+header {
+   background-color: black;
+}
 
 html, body, main {
   margin: 0px;
@@ -20,12 +23,12 @@ html {
 }
 
 #navigation-bar {
-  background-color: #FFFFFF;
+  background-color: black;
   height: 55px;
   width: 100%;
   text-align: center;
-  border-style: groove;
-  border-width: 2px;
+  // border-style: groove;
+  // border-width: 2px;
 }
 
 #navigation-container {
@@ -37,22 +40,23 @@ html {
    }
 
    li {
+      color: white; // text color
       float: left;
       display: inline;
    }
 
    li a {
       display: block;
-      color: black;
       text-align: center;
       padding: 14px 16px;
       text-decoration: none;
    }
 
+
    /* Change the link color to #111 (black) on hover */
-   li a:hover {
-      background-color: #D5D5D5;
-   }
+   // li a:hover {
+   //    background-color: #D5D5D5;
+   // }
 
 }
 
@@ -63,6 +67,15 @@ html {
     background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+}
+
+.thin-font {
+   @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 100;
+      src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+   }
 }
 
 // html, body {

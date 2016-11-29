@@ -31,7 +31,7 @@ Scenario: Visit the Welcome Page
     Given I am on the welcomepage
     Then I should see "Login"
     And I should see "Signup"
-    And I should see "Faludi Design"
+    And I should see "Faludi"
 
 Scenario: Visit Login Page
 
