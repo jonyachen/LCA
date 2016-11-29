@@ -8,12 +8,12 @@
  * Copyright (c) 2016 Daniel Eden
  */
 
+
 html, body, main {
   margin: 0px;
   height: 100%;
   width: 100%;
 }
-
 
 html {
    overflow: scroll;
@@ -21,19 +21,19 @@ html {
 
 #navigation-bar {
   background-color: #FFFFFF;
-  height: 70px;
+  height: 55px;
   width: 100%;
   text-align: center;
+  border-style: groove;
+  border-width: 2px;
 }
 
-#navigation_container {
+#navigation-container {
    margin: 0 auto;
 
    ul {
       list-style-type: none;
       background-color: #FFFFFF;
-      border-style: groove;
-      border-width: 2px;
    }
 
    li {
@@ -69,18 +69,18 @@ html {
 //     background: black;
 // }
 
- @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 100;
-    src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+@font-face {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 100;
+   src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff) format('woff');
 }
 
 @font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
 }
 //
 // @font-face {
