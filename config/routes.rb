@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   match '/login' => 'users#login', via: [:get, :post]
   match '/logout' => 'users#logout', via: [:get, :post]
   match '/signup' => 'users#signup', via: [:get, :post]
+  match '/profile' => 'users#profile', via: [:get, :post]
+
 end

@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" id="projects-page">
 
-<head>
+<body>
+
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
@@ -9,8 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 
     <!-- Materialize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
 
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,115 +27,115 @@
     <% javascript_include_tag "model" %>
     <% stylesheet_link_tag "model", media: "all" %>
 
-</head>
+<div class="projects-page">
+   <table id="workspace">
+       <tr id="header">
+           <td><h4 class="section-title">Library</h4></td>
+           <td><h4 class="section-title">Assembly</h4></td>
+       </tr>
 
-<body>
+       <tr>
+       <td id="library">
+       <!-- Library menu -->
+       <ul id="menu" class="collapsible" data-collapsible="accordion">
+           <!-- Materials -->
+           <li id="material-dropdown">
+             <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
+             <div class="collapsible-body">
+               <input type="text" id="material-search" class="autocomplete">
+               <ul>
+                   <% @material_options.each do |category, materials| %>
+                       <ul id="materials" class="collapsible" data-collapsible="expandable">
+                       <li>
+                           <div class="collapsible-header"><i class="material-icons">expand_more</i><%= category %></div>
+                           <div class="collapsible-body">
+                               <ul class="collection">
+                                   <% materials.each do |material, id| %>
+                                       <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
+                                   <% end %>
+                               </ul>
+                           </div>
+                       </li>
+                       </ul>
+                   <% end %>
+               </ul>
+             </div>
+           </li>
+           <!-- Manufacturing -->
+           <li id="manufacturing-dropdown">
+             <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
+             <div class="collapsible-body">
+                 <input type="text" id="manufacturing-search" class="autocomplete">
+                 <ul>
+                   <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
+                       <ul id="procedures" class="collapsible" data-collapsible="expandable">
+                       <li>
+                           <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
+                           <div class="collapsible-body">
+                               <ul class="collection">
+                                   <% procedures.each do |procedure, id| %>
+                                       <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
+                                   <% end %>
+                               </ul>
+                           </div>
+                       </li>
+                       </ul>
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
 
-<table id="workspace">
-    <tr id="header">
-        <td><h4 class="section-title">Library</h4></td>
-        <td><h4 class="section-title">Assembly</h4></td>
-    </tr>
+           <!-- Transport -->
+           <li id="transport-dropdown">
+             <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_more</i>Transport</div>
+             <div class="collapsible-body">
+                 <input type="text" id="transport-search" class="autocomplete">
+                 <ul>
+                   <% (@procedures['Transportation'] || []).each do |material, procedures| %>
+                       <ul id="procedures" class="collapsible" data-collapsible="expandable">
+                       <li>
+                           <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
+                           <div class="collapsible-body">
+                               <ul class="collection">
+                                   <% procedures.each do |procedure| %>
+                                       <li class="collection-item draggable" data-type="procedure"><%= procedure %></li>
+                                   <% end %>
+                               </ul>
+                           </div>
+                       </li>
+                       </ul>
+                   <% end %>
+                 </ul>          </div>
+           </li>
 
-    <tr>
-    <td id="library">
-    <!-- Library menu -->
-    <ul id="menu" class="collapsible" data-collapsible="accordion">
-        <!-- Materials -->
-        <li id="material-dropdown">
-          <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
-          <div class="collapsible-body">
-            <input type="text" id="material-search" class="autocomplete">
-            <ul>
-                <% @material_options.each do |category, materials| %>
-                    <ul id="materials" class="collapsible" data-collapsible="expandable">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= category %></div>
-                        <div class="collapsible-body">
-                            <ul class="collection">
-                                <% materials.each do |material, id| %>
-                                    <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
-                                <% end %>
-                            </ul>
-                        </div>
-                    </li>
-                    </ul>
-                <% end %>
-            </ul>
-          </div>
-        </li>
-        <!-- Manufacturing -->
-        <li id="manufacturing-dropdown">
-          <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
-          <div class="collapsible-body">
-              <input type="text" id="manufacturing-search" class="autocomplete">
-              <ul>
-                <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
-                    <ul id="procedures" class="collapsible" data-collapsible="expandable">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
-                        <div class="collapsible-body">
-                            <ul class="collection">
-                                <% procedures.each do |procedure, id| %>
-                                    <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
-                                <% end %>
-                            </ul>
-                        </div>
-                    </li>
-                    </ul>
-                <% end %>
-              </ul>
-          </div>
-        </li>
+           <!-- Use -->
+           <li>
+             <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_more</i>Use</div>
+             <div class="collapsible-body"><p>Add Use Processes Here</p></div>
+           </li>
 
-        <!-- Transport -->
-        <li id="transport-dropdown">
-          <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_more</i>Transport</div>
-          <div class="collapsible-body">
-              <input type="text" id="transport-search" class="autocomplete">
-              <ul>
-                <% (@procedures['Transportation'] || []).each do |material, procedures| %>
-                    <ul id="procedures" class="collapsible" data-collapsible="expandable">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
-                        <div class="collapsible-body">
-                            <ul class="collection">
-                                <% procedures.each do |procedure| %>
-                                    <li class="collection-item draggable" data-type="procedure"><%= procedure %></li>
-                                <% end %>
-                            </ul>
-                        </div>
-                    </li>
-                    </ul>
-                <% end %>
-              </ul>          </div>
-        </li>
+           <!-- End of Life -->
+           <li>
+             <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
+             <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
+           </li>
+       </ul>
+       </td>
 
-        <!-- Use -->
-        <li>
-          <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_more</i>Use</div>
-          <div class="collapsible-body"><p>Add Use Processes Here</p></div>
-        </li>
+       <!-- Build -->
+      <td id="assembly">
 
-        <!-- End of Life -->
-        <li>
-          <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
-          <div class="collapsible-body"><p>Add End-of-Life Processes Here</p></div>
-        </li>
-    </ul>
-    </td>
+           <ul id="build" style = " height:400px; border:1px solid #D5D5D5;  overflow-y:scroll;" class="collection"></ul>
 
-    <!-- Build -->
-   <td id="assembly">
-        
-        <ul id="build" style = " height:400px; border:1px solid #D5D5D5;  overflow-y:scroll;" class="collection"></ul>
-            
-            Drop your materials here!
-            
-        <button id="save" class="btn-flat"> Save </button>
-        
-    </td>
-    
-    </tr>
-</table>
+               Drop your materials here!
+
+           <button id="save" class="btn-flat"> Save </button>
+
+       </td>
+
+       </tr>
+   </table>
+</div>
+
 </body>
+</html
