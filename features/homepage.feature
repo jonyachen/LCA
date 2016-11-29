@@ -1,4 +1,4 @@
-Feature: display homepage
+Feature: Homepage
 
     As a product designer
     So that I can see features available in the program
@@ -7,7 +7,7 @@ Feature: display homepage
 Background: Materials and Processes have been added to the database
 
       Given the following Users exist:
-      | name                | username         | password                | email          | 
+      | name                | username         | password                | email          |
       | John Snow           | user123          | secret_pass1234         | john@snow.com  |
 
 
