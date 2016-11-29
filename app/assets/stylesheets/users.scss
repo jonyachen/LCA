@@ -8,47 +8,51 @@
  * Copyright (c) 2016 Daniel Eden
  */
 
- html, body, main {
-     margin: 0px;
-     height: 100%;
-     width: 100%;
-     overflow: scroll;
- }
+html, body, main {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+
+html {
+   overflow: scroll;
+}
 
 #navigation-bar {
   background-color: #FFFFFF;
   height: 70px;
   width: 100%;
-  text-align:center;
+  text-align: center;
 }
 
- #navigation-container {
-     margin: 0 auto;
-     ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        border-style: groove;
-        border-width: 2px;
-        background-color: #FFFFFF;
-    }
-    li {
-        float: left;
-    }
+#navigation_container {
+   margin: 0 auto;
 
-    li a {
-        display: block;
-        color: black;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
+   ul {
+      list-style-type: none;
+      background-color: #FFFFFF;
+      border-style: groove;
+      border-width: 2px;
+   }
 
-    /* Change the link color to #111 (black) on hover */
-    li a:hover {
-        background-color: #D5D5D5;
-    }
+   li {
+      float: left;
+      display: inline;
+   }
+
+   li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+   }
+
+   /* Change the link color to #111 (black) on hover */
+   li a:hover {
+      background-color: #D5D5D5;
+   }
 
 }
 
@@ -78,27 +82,27 @@
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
 }
+//
+// @font-face {
+//     font-family: 'Roboto';
+//     font-style: normal;
+//     font-weight: 700;
+//     src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+// }
+//
+// @font-face {
+//     font-family: 'Roboto';
+//     font-style: italic;
+//     font-weight: 400;
+//     src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/1pO9eUAp8pSF8VnRTP3xnnYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+// }
 
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
-}
-
-@font-face {
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/1pO9eUAp8pSF8VnRTP3xnnYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
-}
-
-@font-face {
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 700;
-    src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC7rIa-7acMAeDBVuclsi6Gc.woff) format('woff');
-}
+// @font-face {
+//     font-family: 'Roboto';
+//     font-style: italic;
+//     font-weight: 700;
+//     src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC7rIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+// }
 
  /*-----------------------------------*\
   $RESET
@@ -177,7 +181,6 @@ input, select, button, textarea {
 
 h1, .alpha {
   margin-bottom: 1.5rem;
-
   font-size: 3rem;
   font-weight: 100;
   line-height: 1;
@@ -261,8 +264,6 @@ html {
   -webkit-font-smoothing: antialiased;
   width: 100%;
 
-  overflow: hidden-x;
-
   /* Centering in The Unknown */
   text-align: center;
 }
@@ -287,25 +288,25 @@ html {
   }
 }
 
-@media (min-width: 650px) {
-  html {
-    height: 100%;
-  }
-
-  html:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    margin-right: -0.25em;
-  }
-
-  body {
-    display: inline-block;
-    vertical-align: middle;
-   //  max-width: 38rem;
-  }
-}
+// @media (min-width: 650px) {
+//   html {
+//     height: 100%;
+//   }
+//
+//   html:before {
+//     content: '';
+//     display: inline-block;
+//     height: 100%;
+//     vertical-align: middle;
+//     margin-right: -0.25em;
+//   }
+//
+//   body {
+//     display: inline-block;
+//     vertical-align: middle;
+//    //  max-width: 38rem;
+//   }
+// }
 
 /*-----------------------------------*\
   $HEADER
