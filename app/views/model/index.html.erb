@@ -38,13 +38,14 @@
        <td id="library">
        <!-- Library menu -->
        <ul id="menu" class="collapsible" data-collapsible="accordion">
-
-
            <!-- Materials -->
            <li id="material-dropdown">
              <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
              <div class="collapsible-body">
-               <input type="text" id="material-search" class="autocomplete">
+               <div class="input-field col s6">
+                    <i class="material-icons prefix">search</i>
+                    <input id="material-search" placeholder="Search materials" type="text" class="autocomplete">
+                </div>
                <ul>
                    <% @material_options.each do |category, materials| %>
                        <ul id="materials" class="collapsible" data-collapsible="expandable">
@@ -67,9 +68,12 @@
            <li id="manufacturing-dropdown">
              <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
              <div class="collapsible-body">
-                 <input type="text" id="manufacturing-search" class="autocomplete">
-                 <ul>
-                   <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">search</i>
+                    <input id="manufacturing-search" placeholder="Search processes" type="text" class="autocomplete">
+                </div>
+                <ul>
+                    <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
                        <ul id="procedures" class="collapsible" data-collapsible="expandable">
                        <li>
                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
