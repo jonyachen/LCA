@@ -10,6 +10,6 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-When /^I enter "(.*)" with (\d+) kg$/ do |material, amount|
-	pending
+When /^I create an assembly named "([^"]*)"$/ do |name|
+  Assembly.create(:user_id =>User.find_by_username("user123").id, :name => name)
 end

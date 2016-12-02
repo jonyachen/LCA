@@ -18,19 +18,20 @@
 
 <br>
 
+<% if @current_user.assemblys.size > 0 %>
 <body>
    <table class="center">
       <tr>
          <th>Assembly</th>
          <th>Last Edited</th>
       </tr>
-      
-      <% @current_user.assemblys.order('updated_at DESC').each do |assemb| %>
-         <tr>
-            <td><%= link_to assemb.name, root_path(:id => assemb.id), method: 'GET', class: 'nav-link' %></td>
-            <td><%= assemb.updated_at %></td>
-         </tr>
-      <% end %>
+         <% @current_user.assemblys.order('updated_at DESC').each do |assemb| %>
+            <tr>
+               <td><%= link_to assemb.name, root_path(:id => assemb.id), method: 'GET', class: 'nav-link' %></td>
+               <td><%= assemb.updated_at %></td>
+            </tr>
+         <% end %>
       
    </table>
 </body>
+<% end %>

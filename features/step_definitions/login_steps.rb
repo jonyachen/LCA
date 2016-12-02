@@ -16,3 +16,11 @@ end
 Given(/^I am on the welcomepage$/) do
   visit welcome_path
 end
+
+Given(/^I am on the profile page$/) do
+  visit profile_path
+end
+
+Given(/^I visit my profile$/) do
+  visit profile_path
+end

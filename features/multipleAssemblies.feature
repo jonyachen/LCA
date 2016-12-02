@@ -8,6 +8,16 @@ Background: Materials and Processes have been added to the database
 
     Given I am on the homepage
     
+    Given the following Users exist:
+   | name                | username         | password                | email          |
+   | John Snow           | user123          | secret_pass1234         | john@snow.com  |
+
+   And I am on the loginpage
+
+   Then I fill in "username" with "user123"
+   And I fill in "password" with "secet_pass1234"
+   And I press "Login"
+
     Given the following Materials exist:
     | title            | category  |
     | Steel            | Metal     |
@@ -28,34 +38,17 @@ Background: Materials and Processes have been added to the database
     | Hot Roll        | Manufacturing    | Steel    |
     | Cold Roll       | Manufacturing    | Steel    |
     | Tempering       | Manufacturing    | Steel    |
-    
-    And I enter "Steel" with 25 kg
-    And I enter "Wood" with 10 kg
-    And I enter "Copper" with 5 kg
 
-@wip
 Scenario: Create an assembly and see it in the profile
    Given I create an assembly named "Assembly1"
-   And I go to the Profile page
+   And I visit my profile
    Then I should see "Assembly1"
+   Then I follow "Assembly1"
+   Then I should see "Materials"
    
-@wip
 Scenario: Create 2 assemblies and see both in the profile
    Given I create an assembly named "Assembly1"
    And I create an assembly named "Assembly2"
-   And I go to the Profile page
+   And I visit my profile
    Then I should see "Assembly1"
    And I should see "Assembly2"
- 
-@wip
-Scenario: Materials are loaded correctly between assemblies
-   Given I create an assembly named "Assembly1" with material "Concrete"
-   And I create an assembly named "Assembly2"
-   And I go to the Profile page
-   Then I should see "Assembly1"
-   And I should see "Assembly2"
-   Then I click "Assembly1"
-   Then I should see "Concrete"
-   And I go to the Profile page
-   And I click "Assembly2"
-   Then I should not see "Concrete"
