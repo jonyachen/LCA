@@ -19,7 +19,6 @@
 <br>
 
 <% if @current_user.assemblys.size > 0 %>
-<body>
    <table class="center">
       <tr>
          <th>Assembly</th>
@@ -31,7 +30,6 @@
                <td><%= assemb.updated_at %></td>
             </tr>
          <% end %>
-      
+
    </table>
-</body>
 <% end %>
