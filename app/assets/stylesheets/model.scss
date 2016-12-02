@@ -57,9 +57,9 @@
    }
 
    #menu {
-       width: 350px;
-      //  background-color: #ddd;
-       margin: 0;
+      width: 350px;
+      max-height: 40vh;
+      margin: 0;
 
       .collapsible-header {
          // border-right-style: solid;
@@ -74,7 +74,7 @@
        }
 
        > li.active > .collapsible-body {
-           max-height: 150px;
+           max-height: 40vh;
            overflow-y: scroll;
            overflow-x: hidden;
 
