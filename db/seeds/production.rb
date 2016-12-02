@@ -13,6 +13,11 @@ Procedure.delete_all
 Procedure.create!(:title => "Rail", :category => "Transportation")
 Procedure.create!(:title => "Truck", :category => "Transportation")
 Procedure.create!(:title => "Boat", :category => "Transportation") 
+Procedure.create!(:title => "Plane", :category => "Transportation") 
+
 Procedure.create!(:title => "Hot Roll", :category => "Manufacturing", :material => "Steel") 
 Procedure.create!(:title => "Cold Roll", :category => "Manufacturing", :material => "Steel") 
 Procedure.create!(:title => "Tempering", :category => "Manufacturing", :material => "Glass") 
+
+Procedure.create!(:title => "Landfill", :category => "EoL")
+Procedure.create!(:title => "Recycle", :category => "EoL")

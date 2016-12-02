@@ -2,7 +2,6 @@ class ModelController < ApplicationController
 
   def index
    #  before_action :authenticate_user!
-
     if session[:user_id] == nil
       # For Testing Purposes
       redirect_to welcome_path
@@ -11,11 +10,26 @@ class ModelController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
-
-    if session[:assembly_id] == nil
+    
+    if session[:assembly_id] == nil or params[:new] == "true"
+      params[:new] = nil
+      session[:assembly_id] = nil
       @curr_assembly = nil
+      @curr_name = nil
     else
       @curr_assembly = Assembly.find(session[:assembly_id]).components
+      @curr_name = Assembly.find(session[:assembly_id]).name
+    end
+    
+    if params[:id] != nil
+      if @user.assemblys.find_by_id(params[:id]) == nil
+        params[:id] = nil
+        redirect_to root_path
+      else
+        session[:assembly_id] = params[:id]
+        @curr_assembly = @user.assemblys.find_by_id(params[:id]).components
+        @curr_name = Assembly.find_by_id(params[:id]).name
+      end
     end
 
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
@@ -47,10 +61,11 @@ class ModelController < ApplicationController
       @assembly = Assembly.create(:user_id => session[:user_id])
       session[:assembly_id] = @assembly.id
     else
-      @assembly = Assembly.find(session[:assembly_id])
+        @assembly = Assembly.find(session[:assembly_id])
     end
 
     @assembly.components = hash
+    @assembly.name = params[:assembly_name]
     result = @assembly.save
 
     respond_to do |format|

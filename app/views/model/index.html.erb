@@ -22,6 +22,7 @@
         var names = <%= @material_names.to_json.html_safe %>;
         var SAVE_URL = '/model';
         var curr_assembly = <%= @curr_assembly.to_json.html_safe %>;
+        var curr_name = <%= @curr_name.to_json.html_safe %>;
     </script>
 
     <% javascript_include_tag "model" %>
@@ -31,8 +32,11 @@
    <table id="workspace">
        <tr id="header">
            <td><h4 class="section-title">Library</h4></td>
-           <td><h4 class="section-title">Assembly</h4></td>
+           <td><div class="assembly-box"> 
+               <input type="text" placeholder="Assembly title here" id="assembly-title" onkeypress="return searchKeyPress(event);">
+           </div></td>
        </tr>
+       
 
        <tr>
        <td id="library">
@@ -138,4 +142,4 @@
 </div>
 
 </body>
-</html
+</html>

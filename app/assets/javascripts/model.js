@@ -119,12 +119,14 @@ function build_data() {
 
 		result.push(material);
 	})
-	console.log(result)
+	//console.log(result)
+	
 	return result;
 }
 
-function fill_build( data ) {
+function fill_build(data, name) {
 	//console.log(data)
+	$("#assembly-title").val(name);
 	for (var key in data){
 		var material = data[key];
 		var $mat = make_new_material_section(material["name"], material["id"], material["quantity"], material["measurement"]);
@@ -139,6 +141,14 @@ function clear_build() {
 	$('#build *').remove();
 }
 
+function searchKeyPress(e){
+	e = e||window.event;
+    if (e.keyCode == 13) {
+        $("#save").click();
+        return false;
+    }
+    return true;
+}
 /*
 Pretty hack-ey. document.ready doesn't seem to work here. This also causes problems loading custom css.
 */
@@ -151,6 +161,7 @@ Pretty hack-ey. document.ready doesn't seem to work here. This also causes probl
 //
 // });
 
+    
 $(document).on('turbolinks:load', function() {
 	$('.draggable').draggable({
 		containment: 'window',
@@ -193,14 +204,14 @@ $(document).on('turbolinks:load', function() {
 		containment: "window",
 		appendTo: 'body'
 	})
-
+	
 	$('#save').click(function() {
 		Materialize.toast('Saving...', 2000);
 		$.ajax({
 			dataType: "json",
 			type: "POST",
 			url: SAVE_URL,
-			data: { build: build_data() },
+			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
 			success: function(response, status, xhr) {
 				// console.log(response);
 				Materialize.toast('Saved', 2000);
@@ -224,7 +235,7 @@ $(document).on('turbolinks:load', function() {
 
 	// console.log(curr_assembly)
 	if (curr_assembly != null) {
-		fill_build(curr_assembly);
+		fill_build(curr_assembly, curr_name);
 	}
 
 	var menu_height = $('#menu .collapsible-header').first().height() * 5;
@@ -236,6 +247,7 @@ $(document).on('turbolinks:load', function() {
 	// 	innerHTML: '#menu > li.active > .collapsible-body { max-height: ' + menu_height - library_height + ';}'
 	// }).appendTo($('head'));
 });
+
 
 /* Material search feature: updates drop-down list every time material search text box is updated */
 $(function(){
@@ -273,4 +285,5 @@ $(function(){
 		$(materials + ':Contains('+ input +')').show();
 		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
 	});
+	
 });

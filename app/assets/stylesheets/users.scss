@@ -337,6 +337,17 @@ html {
     -webkit-animation: hue 60s infinite linear;
   }
 
+#Faludi a:link { 
+    text-decoration:none; 
+    }
+  
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+    font: 120%/1.5 "Roboto", Verdana, sans-serif;
+    
+  }
+  
 .site__content {
   -webkit-animation: bounceInUp 1s;
   -webkit-animation-delay: .1s;
