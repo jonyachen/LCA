@@ -27,6 +27,10 @@ Background:
       | Cold Roll       | Manufacturing    | Steel    |
       | Tempering       | Manufacturing    | Steel    |
 
+      Given the following Users exist:
+      | name                | username         | password                | email          |
+      | John Snow           | snowman          | secret_pass1234         | john@snow.com  |
+
 Scenario: Visit the Welcome Page
     Given I am on the welcomepage
     Then I should see "Login"
@@ -40,17 +44,14 @@ Scenario: Visit Login Page
    And I fill in "password" with "secet_pass1234"
 
 Scenario: Visit Login Page
-   Given the following Users exist:
-   | name                | username         | password                | email          |
-   | John Snow           | user123          | secret_pass1234         | john@snow.com  |
 
    And I am on the loginpage
 
-   Then I fill in "username" with "user123"
+   Then I fill in "username" with "snowman"
    And I fill in "password" with "secet_pass1234"
    And I press "Login"
 
-   Then I should see "Materials"
+   Then I should see "Library"
 
 Scenario: Visit Signup Page
    Given I am on the signuppage
@@ -69,21 +70,12 @@ Scenario: Signup a New User
    And I fill in "confirm_password" with "abcd"
    And I press "Signup"
 
-   Then I should see "Materials"
+   Then I should see "Library"
 
 Scenario: Signup Errors
-   Background:
-      Given I am on the signuppage
-      And I fill in "username" with "user1234"
-      And I fill in "name" with "John Snow"
-      And I fill in "email" with "john@knightswatch.net"
-      And I fill in "password" with "abcd"
-      And I fill in "confirm_password" with "abcd"
-      And I press "Signup"
-
    Scenario: Same Username
       Given I am on the signuppage
-      And I fill in "username" with "user1234"
+      And I fill in "username" with "snowman"
       And I fill in "name" with "John Snow2"
       And I fill in "email" with "john2@knightswatch.net"
       And I fill in "password" with "abcd"
@@ -91,14 +83,16 @@ Scenario: Signup Errors
       And I press "Signup"
 
       Then I should see "Error"
+      And I should not see "Library"
 
    Scenario: Same email
       Given I am on the signuppage
       And I fill in "username" with "otheruser"
       And I fill in "name" with "John Snow"
-      And I fill in "email" with "john@knightswatch.net"
+      And I fill in "email" with "john@snow.com"
       And I fill in "password" with "abcd"
       And I fill in "confirm_password" with "abcd"
       And I press "Signup"
 
       Then I should see "Error"
+      And I should not see "Library"
