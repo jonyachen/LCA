@@ -79,12 +79,4 @@ class UsersController < ApplicationController
       params.permit(:username, :password)
    end
 
-   # def signup_params
-   #    devise_parameter_sanitizer.permit(:username, :password, :name, :email).except(:confirm_password)
-   # end
-   #
-   # def login_params
-   #    devise_parameter_sanitizer.permit(:username, :password)
-   # end
-
 end
