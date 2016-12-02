@@ -44,11 +44,12 @@
            padding: 0px;
          //   background-color: #ddd;
            text-align: center;
-           border: solid black 1px;
+           border: none;
        }
 
        .section-title {
            // margin: 0px;
+           border: none;
        }
    }
 
@@ -58,7 +59,7 @@
 
    #menu {
       width: 350px;
-      max-height: 40vh;
+      max-height: inherit;
       margin: 0;
 
       .collapsible-header {
@@ -74,7 +75,7 @@
        }
 
        > li.active > .collapsible-body {
-           max-height: 40vh;
+           max-height: 45vh;
            overflow-y: scroll;
            overflow-x: hidden;
 
