@@ -5,7 +5,7 @@ function make_new_material_section(name, id, quantity, measurement) {
 	measurement = typeof measurement !== 'undefined' ? measurement : "kg";
 
 	var $li = $('<li></li>', {
-		"class": 'material-section',
+		"class": 'material-section'
 	});
 
 	var $head = $('<div></div>', {
@@ -51,7 +51,7 @@ function make_new_material_section(name, id, quantity, measurement) {
 				else {
 					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
 				}
-			};
+			}
 
 		}
 	});
@@ -166,7 +166,6 @@ $(document).on('turbolinks:load', function() {
 	$('.draggable').draggable({
 		containment: 'window',
 		appendTo: 'body',
-
 		helper: function (event) {
 			return $('<div></div>', {
 				"class": "drag-thing",
@@ -234,7 +233,7 @@ $(document).on('turbolinks:load', function() {
 	});
 
 	// console.log(curr_assembly)
-	if (curr_assembly != null) {
+	if (curr_assembly !== null) {
 		fill_build(curr_assembly, curr_name);
 	}
 
@@ -270,16 +269,6 @@ $(function(){
 		var input = $('#manufacturing-search').val();
 		var categories = '#manufacturing-dropdown .collapsible';
 		var materials = '#manufacturing-dropdown .collapsible .draggable';
-		$(categories).hide();
-		$(materials).hide();
-		$(materials + ':Contains('+ input +')').show();
-		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
-	});
-
-	$('#transport-search').keyup(function() {
-		var input = $('#transport-search').val();
-		var categories = '#transport .collapsible';
-		var materials = '#transport .collapsible .draggable';
 		$(categories).hide();
 		$(materials).hide();
 		$(materials + ':Contains('+ input +')').show();
