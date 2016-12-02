@@ -3,6 +3,7 @@ class ModelController < ApplicationController
   def index
    #  before_action :authenticate_user!
     if session[:user_id] == nil
+      puts "USER is NIL"
       # For Testing Purposes
       redirect_to welcome_path
       # @user = User.create
@@ -10,7 +11,7 @@ class ModelController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
-    
+
     if session[:assembly_id] == nil or params[:new] == "true"
       params[:new] = nil
       session[:assembly_id] = nil
@@ -20,7 +21,7 @@ class ModelController < ApplicationController
       @curr_assembly = Assembly.find(session[:assembly_id]).components
       @curr_name = Assembly.find(session[:assembly_id]).name
     end
-    
+
     if params[:id] != nil
       if @user.assemblys.find_by_id(params[:id]) == nil
         params[:id] = nil
