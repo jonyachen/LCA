@@ -333,13 +333,10 @@ html {
     color: #f35626;
     background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
+    -webkit-text-fill-color: transparent;
     -webkit-animation: hue 60s infinite linear;
   }
 
-#Faludi a:link { 
-    text-decoration:none; 
-    }
   
 table.center {
     margin-left:auto; 
