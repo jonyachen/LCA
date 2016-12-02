@@ -1112,14 +1112,6 @@
         0,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null
       ],
       "/Users/Daniel/dev/faludi-lca-app/app/controllers/application_controller.rb": [
@@ -1141,7 +1133,6 @@
       ],
       "/Users/Daniel/dev/faludi-lca-app/app/controllers/model_controller.rb": [
         1,
-        null,
         1,
         null,
         14,
@@ -1225,7 +1216,7 @@
         null
       ]
     },
-    "timestamp": 1480658356
+    "timestamp": 1480663140
   },
   "RSpec": {
     "coverage": {
