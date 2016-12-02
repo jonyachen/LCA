@@ -29,7 +29,7 @@
        <tr id="header">
            <td><h4 class="section-title">Library</h4></td>
            <td><div class="assembly-box">
-               <input type="text" placeholder="Assembly Title" id="assembly-title" onkeypress="return searchKeyPress(event);">
+               <input type="text" placeholder="Design Name" id="assembly-title" onkeypress="return searchKeyPress(event);">
            </div></td>
        </tr>
 
@@ -37,14 +37,15 @@
        <tr>
        <td id="library">
        <!-- Library menu -->
-       <ul id="menu" class="collapsible" data-collapsible="accordion">
-
-
+       <ul id="menu" class="collapsible popout" data-collapsible="accordion">
            <!-- Materials -->
            <li id="material-dropdown">
-             <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Materials</font></div>
              <div class="collapsible-body">
-               <input type="text" id="material-search" class="autocomplete">
+               <div class="input-field col s6">
+                    <i class="material-icons prefix">search</i>
+                    <input id="material-search" placeholder="Search materials" type="text" class="autocomplete">
+                </div>
                <ul>
                    <% @material_options.each do |category, materials| %>
                        <ul id="materials" class="collapsible" data-collapsible="expandable">
@@ -65,11 +66,14 @@
            </li>
            <!-- Manufacturing -->
            <li id="manufacturing-dropdown">
-             <div style="background-color: #fb0" class="collapsible-header"><i class="material-icons">expand_more</i>Manufacturing</div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Manufacturing</font></div>
              <div class="collapsible-body">
-                 <input type="text" id="manufacturing-search" class="autocomplete">
-                 <ul>
-                   <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">search</i>
+                    <input id="manufacturing-search" placeholder="Search processes" type="text" class="autocomplete">
+                </div>
+                <ul>
+                    <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
                        <ul id="procedures" class="collapsible" data-collapsible="expandable">
                        <li>
                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
@@ -89,7 +93,7 @@
 
            <!-- Transport -->
            <li id="transport-dropdown">
-             <div style="background-color: #ee3" class="collapsible-header"><i class="material-icons">expand_more</i>Transportation</div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transportation</font></div>
              <div class="collapsible-body">
                  <ul>
                    <% (@procedures['Transportation'] || []).each do |material, procedures| %>
@@ -104,13 +108,13 @@
 
            <!-- Use -->
            <li>
-             <div style="background-color: #3b3" class="collapsible-header"><i class="material-icons">expand_more</i>Use</div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
              <div class="collapsible-body"><p>Add Use Processes Here</p></div>
            </li>
 
            <!-- End of Life -->
            <li id="EoL-dropdown">
-             <div style="background-color: #4E7AFF" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
              <div class="collapsible-body">
                  <ul>
                    <% (@procedures['EoL'] || []).each do |material, procedures| %>
@@ -132,7 +136,7 @@
        <!-- Build -->
       <td id="assembly">
 
-           <ul id="build" style = " height:400px; border:1px solid #D5D5D5;  overflow-y:scroll;" class="collection"></ul>
+           <ul id="build" style = " height:65vh; border:1px solid #D5D5D5;  overflow-y:scroll;" class="collection"></ul>
 
                Drop your materials here!
 
