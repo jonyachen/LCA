@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-12-01T21:11:18-08:00">2016-12-01T21:11:18-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-12-01T21:14:40-08:00">2016-12-01T21:14:40-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -1803,13 +1803,13 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :projects</code>
+          <code class="ruby">   has_many :projects</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :assemblys</code>
+          <code class="ruby">   has_many :assemblys</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
@@ -1818,58 +1818,58 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="6">
           
-          <code class="ruby">    validates_uniqueness_of :username, :on =&gt; :create</code>
+          
+          <code class="ruby">   # validates_uniqueness_of :username, :on =&gt; :create</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="7">
           
-          <code class="ruby">    validates_uniqueness_of :email, :on =&gt; :create</code>
+          
+          <code class="ruby">   # validates_uniqueness_of :email, :on =&gt; :create</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">   validates :email, uniqueness: {message: &quot;Email already taken&quot;}</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">    validates_presence_of :username</code>
+          <code class="ruby">   validates :username, uniqueness: {message: &quot;Username already taken&quot;}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    validates_presence_of :email</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="11">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    validates_presence_of :password</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    validates_presence_of :name</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">   validates_presence_of :username</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">   validates_presence_of :email</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">   validates_presence_of :password</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">    class_attribute :salt</code>
+          <code class="ruby">   validates_presence_of :name</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -1881,55 +1881,55 @@
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">    def self.salt</code>
+          <code class="ruby">   class_attribute :salt</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="17">
-          <span class="hits">20</span>
-          
-          <code class="ruby">       &#39;20ac4d290c2293702c64b3b287ae5ea79b26a5c1&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
-          <code class="ruby">    def self.authenticate(login, pass)</code>
+          <code class="ruby">   def self.salt</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="21">
+        <li class="covered" data-hits="20" data-linenumber="19">
+          <span class="hits">20</span>
+          
+          <code class="ruby">      &#39;20ac4d290c2293702c64b3b287ae5ea79b26a5c1&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">   def self.authenticate(login, pass)</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="23">
           <span class="hits">8</span>
           
-          <code class="ruby">       User.where([&quot;username = ? OR email = ? AND password = ?&quot;, login, login, password_hash(pass)]).first</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby">       # find(:first,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby">       #    :conditions =&gt; [&quot;username = ? OR email = ? AND password = ?&quot;, login, login, password_hash(pass)])</code>
+          <code class="ruby">      User.where([&quot;username = ? OR email = ? AND password = ?&quot;, login, login, password_hash(pass)]).first</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
@@ -1941,25 +1941,25 @@
         <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
-          <code class="ruby">    def self.authenticate?(login, pass)</code>
+          <code class="ruby">   def self.authenticate?(login, pass)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="27">
           
           
-          <code class="ruby">       user = self.authenticate(login, pass)</code>
+          <code class="ruby">      user = self.authenticate(login, pass)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="28">
           
           
-          <code class="ruby">       return false if user.nil?</code>
+          <code class="ruby">      return false if user.nil?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">       return true if user.login == login</code>
+          <code class="ruby">      return true if user.login == login</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
@@ -1971,13 +1971,13 @@
         <li class="missed" data-hits="0" data-linenumber="31">
           
           
-          <code class="ruby">       false</code>
+          <code class="ruby">      false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
@@ -1989,19 +1989,19 @@
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">    def password=(newpass)</code>
+          <code class="ruby">   def password=(newpass)</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="35">
           <span class="hits">12</span>
           
-          <code class="ruby">       @password = newpass</code>
+          <code class="ruby">      @password = newpass</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
@@ -2013,43 +2013,43 @@
         <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
-          <code class="ruby">    def password(cleartext = nil)</code>
+          <code class="ruby">   def password(cleartext = nil)</code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="39">
           <span class="hits">24</span>
           
-          <code class="ruby">       if cleartext</code>
+          <code class="ruby">      if cleartext</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="40">
           <span class="hits">12</span>
           
-          <code class="ruby">          @password.to_s</code>
+          <code class="ruby">         @password.to_s</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="41">
           
           
-          <code class="ruby">       else</code>
+          <code class="ruby">      else</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="42">
           <span class="hits">12</span>
           
-          <code class="ruby">          @password || read_attribute(&quot;password&quot;)</code>
+          <code class="ruby">         @password || read_attribute(&quot;password&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="43">
           
           
-          <code class="ruby">       end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
@@ -2061,7 +2061,7 @@
         <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
-          <code class="ruby">    protected</code>
+          <code class="ruby">   protected</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
@@ -2073,19 +2073,19 @@
         <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
-          <code class="ruby">    def self.password_hash(pass)</code>
+          <code class="ruby">   def self.password_hash(pass)</code>
         </li>
       
         <li class="covered" data-hits="20" data-linenumber="49">
           <span class="hits">20</span>
           
-          <code class="ruby">       Digest::SHA1.hexdigest(&quot;#{salt}--#{pass}--&quot;)</code>
+          <code class="ruby">      Digest::SHA1.hexdigest(&quot;#{salt}--#{pass}--&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="51">
@@ -2097,19 +2097,19 @@
         <li class="covered" data-hits="1" data-linenumber="52">
           <span class="hits">1</span>
           
-          <code class="ruby">    def password_hash(pass)</code>
+          <code class="ruby">   def password_hash(pass)</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="53">
           <span class="hits">12</span>
           
-          <code class="ruby">       self.class.password_hash(pass)</code>
+          <code class="ruby">      self.class.password_hash(pass)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
@@ -2121,7 +2121,7 @@
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">    before_create :crypt_password</code>
+          <code class="ruby">   before_create :crypt_password</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
@@ -2133,25 +2133,25 @@
         <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
-          <code class="ruby">    def crypt_password</code>
+          <code class="ruby">   def crypt_password</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="59">
           <span class="hits">12</span>
           
-          <code class="ruby">       write_attribute &quot;password&quot;, password_hash(password(true))</code>
+          <code class="ruby">      write_attribute &quot;password&quot;, password_hash(password(true))</code>
         </li>
       
         <li class="covered" data-hits="12" data-linenumber="60">
           <span class="hits">12</span>
           
-          <code class="ruby">       @password = nil</code>
+          <code class="ruby">      @password = nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="61">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="62">
@@ -2163,7 +2163,7 @@
         <li class="covered" data-hits="1" data-linenumber="63">
           <span class="hits">1</span>
           
-          <code class="ruby">    before_update :crypt_unless_empty</code>
+          <code class="ruby">   before_update :crypt_unless_empty</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="64">
@@ -2175,49 +2175,49 @@
         <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
-          <code class="ruby">    def crypt_unless_empty</code>
+          <code class="ruby">   def crypt_unless_empty</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby">       if password(true).empty?</code>
+          <code class="ruby">      if password(true).empty?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby">             user = self.class.find(self.id)</code>
+          <code class="ruby">         user = self.class.find(self.id)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">             write_attribute &quot;password&quot;, user.password</code>
+          <code class="ruby">         write_attribute &quot;password&quot;, user.password</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
           
           
-          <code class="ruby">       else</code>
+          <code class="ruby">      else</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="70">
           
           
-          <code class="ruby">          crypt_password</code>
+          <code class="ruby">         crypt_password</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby">       end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="72">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
