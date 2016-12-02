@@ -61,16 +61,20 @@
       //  background-color: #ddd;
        margin: 0;
 
+      .collapsible-header {
+         // border-right-style: solid;
+      }
+
        li:not(.active) > .collapsible-header i {
            -ms-transform: rotate(180deg);
            -webkit-transform: rotate(180deg);
            transform: rotate(-90deg);
-
+           max-height: 150px;
            transition: 0.2s;
        }
 
        > li.active > .collapsible-body {
-           max-height: 250px;
+           max-height: 150px;
            overflow-y: scroll;
            overflow-x: hidden;
 
@@ -157,6 +161,7 @@
    #build {
        margin: 0px;
        font-family: verdana;
+
        .material-section {
            margin-bottom: 15px;
        }
@@ -203,20 +208,6 @@
          }
       }
 
-      // .close{
-      //     float:right;
-      //     cursor:pointer;
-      //     color: #fff;
-      //     border: 1px solid #AEAEAE;
-      //     border-radius: 30px;
-      //     background: #605F61;
-      //     font-size: 31px;
-      //     font-weight: bold;
-      //     display: inline-block;
-      //     line-height: 0px;
-      //     padding: 11px 3px;
-      // }
-
       [class*='close-'] {
          // top: 0;
          font-size: 80%;
@@ -244,9 +235,10 @@
    }
 
    #save {
+       border: 0px;
+       background-color: #A0FF4D;
        float: right;
        margin-right: 5px;
-       background-color: #3b3;
    }
 
    #assembly-title {
@@ -255,7 +247,7 @@
         text-align:center;
         max-width:400px;
         padding: .5em 0px 0px 0px;
-    }
+   }
 
    //
    // Materialize CSS Minimized

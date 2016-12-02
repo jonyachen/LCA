@@ -9,10 +9,6 @@
     <!-- JQuery UI -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 
-    <!-- Materialize -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
-
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -32,16 +28,18 @@
    <table id="workspace">
        <tr id="header">
            <td><h4 class="section-title">Library</h4></td>
-           <td><div class="assembly-box"> 
+           <td><div class="assembly-box">
                <input type="text" placeholder="Assembly Title" id="assembly-title" onkeypress="return searchKeyPress(event);">
            </div></td>
        </tr>
-       
+
 
        <tr>
        <td id="library">
        <!-- Library menu -->
        <ul id="menu" class="collapsible" data-collapsible="accordion">
+
+
            <!-- Materials -->
            <li id="material-dropdown">
              <div style="background-color: #b33" class="collapsible-header active"><i class="material-icons">expand_more</i>Materials</div>
@@ -112,7 +110,7 @@
 
            <!-- End of Life -->
            <li id="EoL-dropdown">
-             <div style="background-color: #33b" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
+             <div style="background-color: #4E7AFF" class="collapsible-header"><i class="material-icons">expand_more</i>End of Life</div>
              <div class="collapsible-body">
                  <ul>
                    <% (@procedures['EoL'] || []).each do |material, procedures| %>
@@ -124,10 +122,10 @@
                  </ul>
              </div>
            </li>
-           
-           
-           
-           
+
+
+
+
        </ul>
        </td>
 
@@ -138,7 +136,7 @@
 
                Drop your materials here!
 
-           <button id="save" class="btn-flat"> Save </button>
+           <button id="save" class="butt js--triggerAnimation">Save</button>
 
        </td>
 

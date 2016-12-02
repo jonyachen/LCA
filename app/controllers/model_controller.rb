@@ -1,5 +1,4 @@
 class ModelController < ApplicationController
-
   def index
    #  before_action :authenticate_user!
     if session[:user_id] == nil
