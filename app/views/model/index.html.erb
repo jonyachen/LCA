@@ -107,9 +107,17 @@
            </li>
 
            <!-- Use -->
-           <li>
+           <li id="use-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
-             <div class="collapsible-body"><p>Add Use Processes Here</p></div>
+             <div class="collapsible-body"><p></p></div>
+                <ul>
+                   <% (@procedures['Use'] || []).each do |material, procedures| %>
+                       <ul class="collection">
+                           <% procedures.each do |procedure, id| %>
+                               <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
+                           <% end %>
+                   <% end %>
+                 </ul>
            </li>
 
            <!-- End of Life -->

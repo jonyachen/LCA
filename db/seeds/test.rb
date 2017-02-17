@@ -19,5 +19,7 @@ Procedure.create!(:title => "Hot Roll", :category => "Manufacturing", :material 
 Procedure.create!(:title => "Cold Roll", :category => "Manufacturing", :material => "Steel") 
 Procedure.create!(:title => "Tempering", :category => "Manufacturing", :material => "Glass") 
 
+Procedure.create!(:title => "Product Use", :material => "Copper", :category => "Use")
+
 Procedure.create!(:title => "Landfill",:material => "Copper",  :category => "EoL")
 Procedure.create!(:title => "Recycle", :material => "Copper", :category => "EoL")

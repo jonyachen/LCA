@@ -178,10 +178,10 @@
 
        .material {
          font-weight: bold;
-         font-size: 150%;
-         border-radius: 7px;
-         padding: 12px;
-         margin: 2px;
+         font-size: 120%;
+         border-radius: 5px;
+         padding: 4px;
+         margin: 1px;
          background-color: white;
          line-height: 36px;
        }
@@ -201,7 +201,7 @@
             width: 800px;
             // right: -10px;
             // height: 66px;
-            border-radius: 7px;
+            border-radius: 5px;
             // line-height: 36px;
          }
          .collection-item:hover {

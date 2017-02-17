@@ -1,6 +1,7 @@
 class ModelController < ApplicationController
   def index
    #  before_action :authenticate_user!
+    #session.clear()
     if session[:user_id] == nil
       puts "USER is NIL"
       # For Testing Purposes
