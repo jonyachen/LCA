@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201090042) do
+ActiveRecord::Schema.define(version: 20170217230136) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "units"
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["parent_type", "parent_id"], name: "index_activities_on_parent_type_and_parent_id"
+  end
 
   create_table "assemblies", force: :cascade do |t|
     t.integer  "user_id"
@@ -18,6 +28,21 @@ ActiveRecord::Schema.define(version: 20161201090042) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "impacts", force: :cascade do |t|
+    t.float    "impact_per_unit"
+    t.float    "uncertainty_lower"
+    t.float    "uncertainty_upper"
+    t.integer  "activity_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "materials", force: :cascade do |t|

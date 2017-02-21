@@ -32,6 +32,10 @@ gem 'devise'
 
 gem 'jquery-turbolinks'
 
+gem 'd3-rails'
+gem 'underscore-rails'
+
+
 group :production do
   gem 'pg'
 
