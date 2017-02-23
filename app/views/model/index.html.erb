@@ -14,7 +14,7 @@
 
     <!-- vars -->
     <script type="text/javascript">
-        var materials = <%= @material_data.to_json.html_safe %>;
+        var materials = <%= @material_data.to_json.html_safe %>; //saved here
         var names = <%= @material_names.to_json.html_safe %>;
         var SAVE_URL = '/model';
         var curr_assembly = <%= @curr_assembly.to_json.html_safe %>;
@@ -48,7 +48,7 @@
                 </div>
                <ul>
                    <% @material_options.each do |category, materials| %>
-                       <ul id="materials" class="collapsible" data-collapsible="expandable">
+                       <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
                        <li>
                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= category %></div>
                            <div class="collapsible-body">
@@ -64,6 +64,7 @@
                </ul>
              </div>
            </li>
+           
            <!-- Manufacturing -->
            <li id="manufacturing-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Manufacturing</font></div>
@@ -74,7 +75,7 @@
                 </div>
                 <ul>
                     <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
-                       <ul id="procedures" class="collapsible" data-collapsible="expandable">
+                       <ul id="procedures" class="collapsible collection-item draggable" data-collapsible="expandable">
                        <li>
                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= material %></div>
                            <div class="collapsible-body">
@@ -90,7 +91,7 @@
                  </ul>
              </div>
            </li>
-
+           
            <!-- Transport -->
            <li id="transport-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transportation</font></div>
@@ -107,17 +108,9 @@
            </li>
 
            <!-- Use -->
-           <li id="use-dropdown">
+           <li>
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
-             <div class="collapsible-body"><p></p></div>
-                <ul>
-                   <% (@procedures['Use'] || []).each do |material, procedures| %>
-                       <ul class="collection">
-                           <% procedures.each do |procedure, id| %>
-                               <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
-                           <% end %>
-                   <% end %>
-                 </ul>
+             <div class="collapsible-body"><p>Add Use Processes Here</p></div>
            </li>
 
            <!-- End of Life -->
@@ -125,10 +118,10 @@
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
              <div class="collapsible-body">
                  <ul>
-                   <% (@procedures['EoL'] || []).each do |material, procedures| %>
+                   <% @material_cat['EoL'].each do |category, materials| %>
                        <ul class="collection">
-                           <% procedures.each do |procedure, id| %>
-                               <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
+                           <% materials.each do |material, id| %>
+                               <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
                            <% end %>
                    <% end %>
                  </ul>

@@ -1,7 +1,6 @@
-// GOOGLE CHARTS
+/* global data, gon */
 function drawChart(params){
 // Load the Visualization API and the corechart package.
-  console.log(params);
       google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
@@ -55,7 +54,6 @@ function drawChart(params){
           row.push("bar{ color: light blue}");
           rows.push(row);
         }
-        console.log(rows);
         data.addRows(rows);
 
         // Set chart options
@@ -83,13 +81,13 @@ function drawChart(params){
 
 
 drawChart({
-  data: data,
+  data: JSON.parse(gon.data),
   type: "candle",
   div: "chart_div"
 });
 
 drawChart({
-  data: data,
+  data: JSON.parse(gon.data),
   type: "bar",
   div: "chart_div2"
 });

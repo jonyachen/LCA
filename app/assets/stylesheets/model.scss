@@ -180,7 +180,7 @@
          font-weight: bold;
          font-size: 120%;
          border-radius: 5px;
-         padding: 4px;
+         padding: 3px;
          margin: 1px;
          background-color: white;
          line-height: 36px;
@@ -193,16 +193,17 @@
       .processes {
          margin: 0px;
          position: relative;
-         // @include descending-z-index(100);
+         //@include descending-z-index(100);
          .collection-item {
             position: relative;
             background: #CCFEFF;
             margin: 0px auto;
+            padding: 0px 0px 20px 0px;
             width: 800px;
             // right: -10px;
-            // height: 66px;
-            border-radius: 5px;
-            // line-height: 36px;
+            height: 60px;
+            border-radius: 1px;
+            //line-height: 50px;
          }
          .collection-item:hover {
             background: #91FCFF;

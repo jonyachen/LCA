@@ -34,7 +34,7 @@ gem 'jquery-turbolinks'
 
 gem 'd3-rails'
 gem 'underscore-rails'
-
+gem 'gon'
 
 group :production do
   gem 'pg'

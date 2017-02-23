@@ -42,16 +42,16 @@ function make_new_material_section(name, id, quantity, measurement) {
 			var from = ui.draggable[0];
 			var id = $(from).data("id");
 			var name = $(from).data("name");
-			if ($(from).data('type') == 'procedure') {
+			//if ($(from).data('type') == 'procedure') {
 				//console.log($(this).processes.offsetparent.childElementCount);
 				console.log($(this).find(".processes").children().length);
 				if ($(this).find(".processes").children().length > 1) {
-					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
+					add_proc_to($li, name, id, 0,$head.find("#measurement").val()); //here's where we drop into model
 				}
 				else {
 					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
 				}
-			}
+			//}
 
 		}
 	});
@@ -170,6 +170,7 @@ $(document).on('turbolinks:load', function() {
 			return $('<div></div>', {
 				"class": "drag-thing",
 				"text": event.currentTarget.innerText
+				//console.log(event.currentTarget)
 			})
 		},
 
@@ -189,13 +190,14 @@ $(document).on('turbolinks:load', function() {
 	$('#assembly').droppable({
 		drop: function (event, ui) {
 			var item = ui.draggable[0]
+			//console.log(ui.draggable[0])
 			var name = item.innerText;
 			var id = $(item).data("id")
 
-			if ($(item).data('type') == 'material') {
+			//if ($(item).data('type') == 'material') { // take this out so anything, not just material, can be draggable
 
 				var $li = make_new_material_section(name, id);
-			}
+			//}
 		}
 	});
 
@@ -257,8 +259,8 @@ $(function(){
 
 	$('#material-search').keyup(function() {
 		var input = $('#material-search').val();
-		var categories = '#material-dropdown .collapsible';
-		var materials = '#material-dropdown .collapsible .draggable';
+		var categories = '#material-dropdown .collapsible .draggable';
+		var materials = '#material-dropdown .collapsible .draggable'; //what makes material draggable - Todo: attach to materials
 		$(categories).hide();
 		$(materials).hide();
 		$(materials + ':Contains('+ input +')').show();
@@ -267,7 +269,7 @@ $(function(){
 
 	$('#manufacturing-search').keyup(function() {
 		var input = $('#manufacturing-search').val();
-		var categories = '#manufacturing-dropdown .collapsible';
+		var categories = '#manufacturing-dropdown .collapsible .draggable';
 		var materials = '#manufacturing-dropdown .collapsible .draggable';
 		$(categories).hide();
 		$(materials).hide();

@@ -1,46 +1,4 @@
-/* global Plotly */
-var data = [
-    {
-       "name": "manufacturing",
-       "value": 20,
-       "uncertain_lower": 5,
-       "uncertain_upper": 2,
-       "children": [
-            {
-              "name": "steel production, electric, chromium steel 18/8", "value": 15, "uncertain_lower": 4, "uncertain_upper": 7,
-              "children": [
-                    {"name": "sheet rolling, steel", "value": 10, "uncertain_lower": 4, "uncertain_upper": 7}
-            ]
-            },{"name": "iron-nickel-chromium alloy production", "value": 5, "uncertain_lower": 4, "uncertain_upper": 7},
-       ]
-    },{
-       "name": "transport",
-       "value": 30,
-       "uncertain_lower": 5,
-       "uncertain_upper": 2,
-       "children": [
-            {"name": "transport, freight, sea, transoceanic ship", "value": 30, "uncertain_lower": 4, "uncertain_upper": 7},
-            {"name": "transport, freight train", "value": 20, "uncertain_lower": 4, "uncertain_upper": 7},
-            {"name": "transport, freight, lorry, all sizes, EURO5 to generic market for transport, freight, lorry, unspecified", "value": 10, "uncertain_lower": 4, "uncertain_upper": 7},
-       ]
-    },{
-        "name": "use",
-        "value": 100,
-       "uncertain_lower": 50,
-       "uncertain_upper": 20,
-        "children": [
-            {"name": "electricity production, oil", "value": 20, "uncertain_lower": 4, "uncertain_upper": 7},
-        ]
-    },{
-        "name": "end of life",
-        "value": 80,
-       "uncertain_lower": 5,
-       "uncertain_upper": 2,
-        "children": [
-            {"name": "treatment of municipal solid waste, sanitary landfill", "value": 10, "uncertain_lower": 4, "uncertain_upper": 7},
-        ]
-    }   
-]
+/* global Plotly, gon */
 
 var flattenChildValues = function(data){
   // Accepts data array containing objects.
@@ -60,20 +18,6 @@ var flattenChildValues = function(data){
         .value();
     return flattened;
 }
-
-var project = flattenChildValues(data);
-
-root = d3.hierarchy(data);
-manu_node = root.data[0];
-transport_node = root.data[1];
-use_node = root.data[2];
-disposal_node = root.data[3];
-
-manu_children_flat = flattenChildValues([manu_node]);
-transport_children_flat = flattenChildValues([transport_node]);
-use_children_flat = flattenChildValues([use_node]);
-disposal_children_flat = flattenChildValues([disposal_node]);
-
 
 function renderChart(options){
   options.error = options.error || null;
@@ -105,7 +49,10 @@ function renderChart(options){
   Plotly.newPlot('myDiv', data);
 }
 
+
+/*
 renderChart({
-  data: data,
+  data: JSON.parse(gon.data),
   error: true
 });
+*/

@@ -39,6 +39,15 @@ class ModelController < ApplicationController
   	@material_options = Material.categories.collect do |category|
   		[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
   	end
+  	
+  	@material_cat = Hash[Material.categories.collect do |category|
+  		#[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
+  		[category, Material.all.collect do |material|
+  		    			[material.title, Material.where(category: category).collect {|material| [material.title, material.id]}]
+  		end
+  		]
+  	end
+  	]
 
   	@procedures = Hash[Procedure.categories.collect do |category|
   		[category, Material.all.collect do |material|
@@ -65,7 +74,7 @@ class ModelController < ApplicationController
         @assembly = Assembly.find(session[:assembly_id])
     end
 
-    @assembly.components = hash
+    @assembly.components = hash #change this to string format to store in json todo
     @assembly.name = params[:assembly_name]
     result = @assembly.save
 
