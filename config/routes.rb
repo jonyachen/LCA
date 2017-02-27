@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :model
+  resources :graph
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -11,6 +12,6 @@ Rails.application.routes.draw do
   match '/logout' => 'users#logout', via: [:get, :post]
   match '/signup' => 'users#signup', via: [:get, :post]
   match '/profile' => 'users#profile', via: [:get, :post]
-  match '/lca' => 'graphs#lca', via: :get
+  match '/lca' => 'graphs#fetch_data', via: :get
 
 end

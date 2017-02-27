@@ -110,7 +110,16 @@
            <!-- Use -->
            <li>
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
-             <div class="collapsible-body"><p>Add Use Processes Here</p></div>
+             <div class="collapsible-body">
+                 <ul>
+                   <% (@procedures['Use'] || []).each do |material, procedures| %>
+                       <ul class="collection">
+                           <% procedures.each do |procedure, id| %>
+                               <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
+                           <% end %>
+                   <% end %>
+                 </ul>
+             </div>
            </li>
 
            <!-- End of Life -->
@@ -118,18 +127,59 @@
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
              <div class="collapsible-body">
                  <ul>
-                   <% @material_cat['EoL'].each do |category, materials| %>
+                   <% (@procedures['EoL'] || []).each do |material, procedures| %>
                        <ul class="collection">
-                           <% materials.each do |material, id| %>
-                               <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
+                           <% procedures.each do |procedure, id| %>
+                               <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
                            <% end %>
                    <% end %>
                  </ul>
              </div>
            </li>
-
-
-
+           
+        <!-- Test 1: Materials-->
+           <li id="new-dropdown">
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Materials</font></div>
+             <div class="collapsible-body">
+                 <ul>
+                   <% @activities.each do |parent_type, activities| %>
+                        <!--<ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= parent_type %></div>
+                            <div class="collapsible-body"> -->
+                               <ul class="collection">
+                                   <% activities.each do |material, id| %>
+                                       <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
+                                   <% end %>
+                        <!--    </div>
+                        </li>
+                        </ul>-->
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
+           
+        <!-- Test 2: Processes-->
+           <li id="new-dropdown">
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Processes</font></div>
+             <div class="collapsible-body">
+                 <ul>
+                   <% (@activities_2['Category'] || []).each do |parent_type, activities| %>
+                        <!--<ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= parent_type %></div>
+                            <div class="collapsible-body"> -->
+                               <ul class="collection">
+                                   <% activities.each do |material, id| %>
+                                       <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
+                                   <% end %>
+                        <!--    </div>
+                        </li>
+                        </ul>-->
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
 
        </ul>
        </td>
