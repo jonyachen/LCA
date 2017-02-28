@@ -66,6 +66,7 @@
            </li>
            
            <!-- Manufacturing -->
+           <!--
            <li id="manufacturing-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Manufacturing</font></div>
              <div class="collapsible-body">
@@ -74,6 +75,7 @@
                     <input id="manufacturing-search" placeholder="Search processes" type="text" class="autocomplete">
                 </div>
                 <ul>
+                <% if false %> //comment out
                     <% (@procedures['Manufacturing'] || []).each do |material, procedures| %>
                        <ul id="procedures" class="collapsible collection-item draggable" data-collapsible="expandable">
                        <li>
@@ -88,56 +90,70 @@
                        </li>
                        </ul>
                    <% end %>
+                   <% end %> //comment out
                  </ul>
              </div>
            </li>
+           -->
            
            <!-- Transport -->
+           <!--
            <li id="transport-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transportation</font></div>
              <div class="collapsible-body">
                  <ul>
+                 <% if false %> //comment out
                    <% (@procedures['Transportation'] || []).each do |material, procedures| %>
                        <ul class="collection">
                            <% procedures.each do |procedure, id| %>
                                <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
                            <% end %>
                    <% end %>
+                   <% end %> //comment out
                  </ul>
              </div>
            </li>
+           -->
 
            <!-- Use -->
+           <!--
            <li>
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
              <div class="collapsible-body">
                  <ul>
+                 <%if false %> //comment out
                    <% (@procedures['Use'] || []).each do |material, procedures| %>
                        <ul class="collection">
                            <% procedures.each do |procedure, id| %>
                                <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
                            <% end %>
                    <% end %>
+                   <% end %> //comment out
                  </ul>
              </div>
            </li>
+           -->
 
            <!-- End of Life -->
+           <!--
            <li id="EoL-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
              <div class="collapsible-body">
                  <ul>
+                 <%if false %> //comment out
                    <% (@procedures['EoL'] || []).each do |material, procedures| %>
                        <ul class="collection">
                            <% procedures.each do |procedure, id| %>
                                <%= content_tag :li, procedure, :class => "collection-item draggable", :data => {:type => 'procedure', :id => id, :name => procedure} %>
                            <% end %>
                    <% end %>
+                   <% end %> //comment out
                  </ul>
              </div>
            </li>
+           -->
            
-        <!-- Test 1: Materials-->
+        <!-- Materials-->
            <li id="new-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Materials</font></div>
              <div class="collapsible-body">
@@ -171,9 +187,9 @@
            
 
            
-        <!-- Test 2: Processes-->
+        <!-- Processes-->
            <li id="new-dropdown">
-             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Processes</font></div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Processes</font></div>
              <div class="collapsible-body">
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "2").each do |activity| %>
@@ -184,9 +200,9 @@
              </div>
            </li>
            
-        <!-- Test 3: Transport-->
+        <!-- Transport-->
            <li id="new-dropdown">
-             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Transport</font></div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transport</font></div>
              <div class="collapsible-body">
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "3").each do |activity| %>
@@ -197,9 +213,9 @@
              </div>
            </li>
            
-        <!-- Test 4: Use-->
+        <!-- Use-->
            <li id="new-dropdown">
-             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Use</font></div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
              <div class="collapsible-body">
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "4").each do |activity| %>
@@ -210,9 +226,9 @@
              </div>
            </li>
                       
-        <!-- Test 5: End of Life-->
+        <!-- End of Life-->
            <li id="new-dropdown">
-             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: End of Life</font></div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
              <div class="collapsible-body">
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "5").each do |activity| %>
