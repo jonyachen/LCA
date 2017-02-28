@@ -39,15 +39,6 @@ class ModelController < ApplicationController
   	@material_options = Material.categories.collect do |category|
   		[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
   	end
-  	
-  	#@material_cat = Hash[Material.categories.collect do |category|
-  		#[category, Material.where(category: category).collect {|material| [material.title, material.id]}]
-  	#	[category, Material.all.collect do |material|
-  	#	    			[material.title, Material.where(category: category).collect {|material| [material.title, material.id]}]
-    #		end
-  	#	]
-  	#end
-  	#]
 
   	@procedures = Hash[Procedure.categories.collect do |category|
   		[category, Material.all.collect do |material|
@@ -57,23 +48,27 @@ class ModelController < ApplicationController
   	end
   	]
   	
+  	###
+  	#New queries below
+  	###
+  	
   	@activities = Activity.categories.collect do |parent_type|
   		  [parent_type, Activity.where(parent_type: "Category").collect {|material| [material.name, material.id]}]
   	end
   	
-  	@activities_2 = Hash[Activity.categories.collect do |parent_type|
-  		[parent_type, Activity.all.collect do |parent_id|
-  			[parent_id, Activity.where(parent_id: "1", parent_type: "Category").collect {|material| [material.name, material.id]}]
-  		end
-	  	]
-  	end
-  	]
+  	@materials = Activity.where(parent_type: "Category", parent_id: "1")
+  	@processes = Activity.where(parent_type: "Category", parent_id: "2")
+  	@transport = Activity.where(parent_type: "Category", parent_id: "3")
+  	@use = Activity.where(parent_type: "Category", parent_id: "4")
+  	@endoflife = Activity.where(parent_type: "Category", parent_id: "5")
+
   	
   end
   
 
   def create
     hash = params[:build]
+    puts hash
     if hash == nil
       result = false
       respond_to do |format|
@@ -90,6 +85,7 @@ class ModelController < ApplicationController
 
     @assembly.components = hash #change this to string format to store in json todo
     @assembly.name = params[:assembly_name]
+    #@assembly.deblob
     result = @assembly.save
 
     respond_to do |format|

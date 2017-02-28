@@ -1,0 +1,75 @@
+class GraphController < ApplicationController
+    def index
+
+        def create_obj_hash(type, activity, children)
+            a_hash = Hash.new
+            if (type == "activity")
+                a_id = activity["activity_id"]
+                a = Activity.find(a_id)
+                a_hash["name"] = a.name
+                a_quantity = activity["quantity"]
+            else
+                a_hash["name"] = activity["name"]
+                a_id = nil
+                a_quantity = nil
+            end
+
+            a_hash["value"] = Impact.get_value(type, a_id, a_quantity, children)
+            uncertainty_lower, uncertainty_upper = Impact.get_uncertainty(type, a_id, a_hash["value"], children)
+            a_hash["uncertain_lower"] = uncertainty_lower
+            a_hash["uncertain_upper"] = uncertainty_upper
+            if children != nil
+                a_hash["children"] = children
+            end
+            return a_hash
+        
+        end
+        
+        model = File.read("app/assets/json/model.json")
+        data = File.read("app/assets/json/data.json")
+        
+        data2 = []
+        
+        model_hash = JSON.parse(model)
+        model_hash.each_with_index { |category, index|
+            #puts category["name"]
+            category_children = []
+            category["children"].each { |top_lvl_activity|
+                if top_lvl_activity.key?("children")
+                    activity_children = []
+                    top_lvl_activity["children"].each { |inner_lvl_activity|
+                        inner_hash = create_obj_hash("activity", inner_lvl_activity, nil)
+                        activity_children << inner_hash
+                    }
+                end
+                top_level_hash = create_obj_hash("activity", top_lvl_activity, activity_children)
+                category_children << top_level_hash
+            }
+            category_hash = create_obj_hash("category", category, category_children)
+            data2 << category_hash
+        }
+        puts data2_json = data2.to_json
+        puts data
+        
+        gon.data = data2_json
+        #gon.data = data
+    end    
+    
+    def create
+    end
+    
+    def new
+    end
+    
+    def edit
+    end
+    
+    def show
+    end
+    
+    def update
+    end
+    
+    def destroy
+    end
+end

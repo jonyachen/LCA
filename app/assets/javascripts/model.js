@@ -46,7 +46,7 @@ function make_new_material_section(name, id, quantity, measurement) {
 				//console.log($(this).processes.offsetparent.childElementCount);
 				console.log($(this).find(".processes").children().length);
 				if ($(this).find(".processes").children().length > 1) {
-					add_proc_to($li, name, id, 0,$head.find("#measurement").val()); //here's where we drop into model
+					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
 				}
 				else {
 					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
@@ -170,7 +170,6 @@ $(document).on('turbolinks:load', function() {
 			return $('<div></div>', {
 				"class": "drag-thing",
 				"text": event.currentTarget.innerText
-				//console.log(event.currentTarget)
 			})
 		},
 
@@ -190,11 +189,11 @@ $(document).on('turbolinks:load', function() {
 	$('#assembly').droppable({
 		drop: function (event, ui) {
 			var item = ui.draggable[0]
-			//console.log(ui.draggable[0])
+			console.log(ui.draggable[0])
 			var name = item.innerText;
 			var id = $(item).data("id")
 
-			//if ($(item).data('type') == 'material') { // take this out so anything, not just material, can be draggable
+			//if ($(item).data('type') == 'material') {
 
 				var $li = make_new_material_section(name, id);
 			//}

@@ -142,40 +142,82 @@
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Materials</font></div>
              <div class="collapsible-body">
                  <ul>
-                   <% @activities.each do |parent_type, activities| %>
-                        <!--<ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= parent_type %></div>
-                            <div class="collapsible-body"> -->
-                               <ul class="collection">
-                                   <% activities.each do |material, id| %>
-                                       <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
-                                   <% end %>
-                        <!--    </div>
-                        </li>
-                        </ul>-->
+                    <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
+                       <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
+                       <li>
+                           <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                           <div class="collapsible-body">
+                                <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                   <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
+                                   <li>
+                                       <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                       <div class="collapsible-body">
+                                           <ul class="collection">
+                                               <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                               <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                               <% end %>
+                                           </ul>
+                                       </div>
+                                   </li>
+                                   </ul>
+                                <% end %>
+                           </div>
+                       </li>
+                       </ul>
                    <% end %>
                  </ul>
              </div>
            </li>
+           
+
            
         <!-- Test 2: Processes-->
            <li id="new-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Processes</font></div>
              <div class="collapsible-body">
                  <ul>
-                   <% (@activities_2['Category'] || []).each do |parent_type, activities| %>
-                        <!--<ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= parent_type %></div>
-                            <div class="collapsible-body"> -->
-                               <ul class="collection">
-                                   <% activities.each do |material, id| %>
-                                       <%= content_tag :li, material, :class => "collection-item draggable", :data => {:type => 'material', :id => id, :name => material} %>
-                                   <% end %>
-                        <!--    </div>
-                        </li>
-                        </ul>-->
+                    <% Activity.where(parent_type: "Category", parent_id: "2").each do |activity| %>
+                       <ul class="collection">
+                           <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
+           
+        <!-- Test 3: Transport-->
+           <li id="new-dropdown">
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Transport</font></div>
+             <div class="collapsible-body">
+                 <ul>
+                    <% Activity.where(parent_type: "Category", parent_id: "3").each do |activity| %>
+                       <ul class="collection">
+                           <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
+           
+        <!-- Test 4: Use-->
+           <li id="new-dropdown">
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Use</font></div>
+             <div class="collapsible-body">
+                 <ul>
+                    <% Activity.where(parent_type: "Category", parent_id: "4").each do |activity| %>
+                       <ul class="collection">
+                           <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                   <% end %>
+                 </ul>
+             </div>
+           </li>
+                      
+        <!-- Test 5: End of Life-->
+           <li id="new-dropdown">
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: End of Life</font></div>
+             <div class="collapsible-body">
+                 <ul>
+                    <% Activity.where(parent_type: "Category", parent_id: "5").each do |activity| %>
+                       <ul class="collection">
+                           <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
                    <% end %>
                  </ul>
              </div>
