@@ -15,8 +15,9 @@ function drawChart(params){
         var chartType = params.type;
         var dataset = params.data;
         var divId = params.div;
-        var threshold_lo = 0.1;
-        var threshold_hi = 0.2; 
+        var threshold_lo = 0.2;
+        var threshold_hi = 0.5; 
+        var errorColor;
         
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -38,15 +39,17 @@ function drawChart(params){
         data.addColumn({type:'string', role:'style'});
         
         var rows = []
+        var colorSeries = []
         for (i = 0; i < dataset.length; i++){
           // Set colors for thresholds
           if (dataset[i].percent_error < threshold_lo){
-            
+            var error_color = "#F4E3B2"
           } else if (dataset[i].percent_error > threshold_hi){
-            var hi_error_color = "#CF5C36"
+            var error_color = "#CF5C36"
           } else {
-            
+            var error_color = "#EFC88B"
           }
+          colorSeries.push("{color: " + errorColor + "}");
           var row = [];
           row.push(dataset[i].name);
           if (chartType == "candle"){ // Averaging error bounds with value for the box.
@@ -54,6 +57,7 @@ function drawChart(params){
             row.push(( 2 * dataset[i].value - dataset[i].uncertain_lower ) / 2 );
             row.push(( 2 * dataset[i].value + dataset[i].uncertain_upper ) / 2 );
             row.push(dataset[i].value + dataset[i].uncertain_upper);
+            row.push("bar{ color: light blue }");
           }
 
           if (chartType == "bar"){
@@ -61,9 +65,11 @@ function drawChart(params){
             row.push(dataset[i].value);
             row.push(dataset[i].value - dataset[i].uncertain_lower);
             row.push(dataset[i].value + dataset[i].uncertain_upper);
+            console.log(error_color);
+            row.push("bar{ color: " + error_color + "}");
           }
           
-          row.push("bar{ color: light blue}");
+          
           rows.push(row);
         }
         data.addRows(rows);
@@ -76,12 +82,11 @@ function drawChart(params){
           var options = {
                       legend: 'none',
                       width:600,
-                      series: [{'color': '#1A8763'}], //color of bars
                       intervals: {
-                        //barWidth: 1,
+                        barWidth: 0.7,
                         lineWidth: 2,
                         style: 'bar',
-                        color: '#ff3232'
+                        color: ['#ff3232', '#00ff00', '#00ff00', '#ff0000']
                       },
                       height:300,
                       linewidth: 10,
@@ -93,7 +98,7 @@ function drawChart(params){
           var options = {
                       legend: 'none',
                       width:600,
-                      series: [{'color': '#1A8763'}], //color of bars
+                      //series: [{'color': '#1A8763'}], //color of bars
                       height:300,
                       candlestick: {
                         fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red

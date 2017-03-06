@@ -67,8 +67,14 @@ class ModelController < ApplicationController
   
 
   def create
+    require 'json'
     hash = params[:build]
-    puts hash
+    File.open("app/assets/json/model_data.json","w") do |f|
+      f.write(hash.to_json)
+    end
+    #puts "START"
+    #puts hash
+    #puts "END"
     if hash == nil
       result = false
       respond_to do |format|
