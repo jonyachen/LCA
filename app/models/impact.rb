@@ -1,77 +1,47 @@
-
 class Impact < ApplicationRecord
     belongs_to :activity
     
     def self.get_value(type, id, quantity, children)
+        # Overall value of categories is the sum of all children activities
         if (type == "category")
-            value = 0
+            @uncertainty_lower = @uncertainty_upper = @value = 0
             children.each { |child|
-                value += child["value"]
+                unless child["children"].nil?
+                    child["children"].each { |innerChild|
+                        @value += innerChild["value"]
+                        @uncertainty_lower += innerChild["quantity"] * innerChild["uncertain_lower"]
+                        @uncertainty_upper += innerChild["quantity"] * innerChild["uncertain_upper"]
+                    }
+                end
+                @value += child["value"]
+                @uncertainty_lower += child["quantity"] * child["uncertain_lower"]
+                @uncertainty_upper += child["quantity"] * child["uncertain_upper"]
             }
         else
             # Still need to do unit conversions
             if !(Impact.where(activity_id: id).present?)
-                # If not a leaf node, estimated value is the avg of children values
-                value = quantity * Impact.calc_avg_values(id)
+                # If not a leaf node, estimated value is the avg of children values and
+                # uncertainty is defined by min of children's lower bound and max of their upper bound
+                @value = quantity * Impact.calc_avg_values(id)
+                absolute_min_error, absolute_max_error = Impact.get_min_max(id)
+                @uncertainty_lower = @value - quantity * absolute_min_error
+                @uncertainty_upper = quantity * absolute_max_error - @value
             else
-                value = quantity * Impact.where(activity_id: id).first.impact_per_unit
+                # If a leaf node, simply return the values stored in DB
+                @value = quantity * Impact.where(activity_id: id).first.impact_per_unit
+                @uncertainty_lower = Impact.where(activity_id: id).first.uncertainty_lower
+                @uncertainty_upper = Impact.where(activity_id: id).first.uncertainty_upper
             end
         end
-        return value
+        return @value, @uncertainty_lower, @uncertainty_upper
     end
+
     
-    def self.get_uncertainty(type, id, value, children)
-        if (type == "category")
-            children.each_with_index { |child, index|
-                puts "Category " + (index+1).to_s
-                if (index == 0)
-                    @cat_error_min = child["value"] - child["uncertain_lower"]
-                    @cat_error_max = child["value"] + child["uncertain_upper"]
-                end
-                puts child["value"]
-                puts child["uncertain_lower"]
-                puts child["uncertain_upper"]
-                puts
-                curr_lower = child["value"] - child["uncertain_lower"]
-                curr_upper = child["value"] + child["uncertain_upper"]
-                if (curr_lower < @cat_error_min)
-                    @cat_error_min = curr_lower
-                end
-                if (curr_upper > @cat_error_max)
-                    @cat_error_max = curr_upper
-                end
-            }
-            @uncertainty_lower = value - @cat_error_min
-            @uncertainty_upper = @cat_error_max - value
-        else
-            if !(Impact.where(activity_id: id).present?)
-                # If not a leaf node, uncertainty is defined by min of children's lower bound and max of their upper bound
-                Impact.set_min_max(id)
-                avg = Impact.calc_avg_values(id)
-                @uncertainty_lower = Impact.calc_uncertain_lower(avg)
-                @uncertainty_upper = Impact.calc_uncertain_upper(avg)
-            else
-                @uncertainty_lower = Impact.get_uncertain_lower(id)
-                @uncertainty_upper = Impact.get_uncertain_upper(id)
-            end
-        end    
-        return @uncertainty_lower, @uncertainty_upper
-    end
-    
-    
-            
-    # If uncertainty values exist, return by querying the active record.
-    def self.get_uncertain_lower(id)
-        return Impact.where(activity_id: id).first.uncertainty_lower
-    end
-    
-    def self.get_uncertain_upper(id)
-        return Impact.where(activity_id: id).first.uncertainty_upper
-    end
-    
-    # If there is no impact in the database, calculate value and uncertainty based on children nodes
-    def self.set_min_max(id)
-        # Sets the minimum/maximum value based on children uncertainty used to calculate lower/upper error bound
+    # If there is no impact in the database, find minimum and maximum of children uncertainty
+    def self.get_min_max(id)
+        @min = nil
+        @max = nil
+        # Returns the minimum/maximum per unit value based on children uncertainty used to calculate lower/upper error bound
         children_activities = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
         Impact.where(activity_id: children_activities).each_with_index { |impact, index|
             if (index == 0)
@@ -87,6 +57,7 @@ class Impact < ApplicationRecord
                 @max = sum
             end
         }
+        return @min, @max
     end
     
     def self.calc_avg_values(id)
@@ -96,17 +67,7 @@ class Impact < ApplicationRecord
         Impact.where(activity_id: children_activities).each { |impact|
             sum += impact.impact_per_unit
         }
-        return sum/children_activities.length
-    end
-    
-    def self.calc_uncertain_lower(avg)
-        # Returns the lower error bound
-        return avg - @min
-    end
-    
-    def self.calc_uncertain_upper(avg)
-        # Returns the upper error bound
-        return @max - avg
+        return sum / children_activities.length
     end
     
 end

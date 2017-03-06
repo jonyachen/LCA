@@ -38,7 +38,9 @@
        <td id="library">
        <!-- Library menu -->
        <ul id="menu" class="collapsible popout" data-collapsible="accordion">
+           
            <!-- Materials -->
+           <!--
            <li id="material-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Materials</font></div>
              <div class="collapsible-body">
@@ -47,6 +49,7 @@
                     <input id="material-search" placeholder="Search materials" type="text" class="autocomplete">
                 </div>
                <ul>
+               <% if false %> //comment out
                    <% @material_options.each do |category, materials| %>
                        <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
                        <li>
@@ -61,9 +64,11 @@
                        </li>
                        </ul>
                    <% end %>
+                   <% end %>//comment out
                </ul>
              </div>
            </li>
+           -->
            
            <!-- Manufacturing -->
            <!--
@@ -155,7 +160,7 @@
            
         <!-- Materials-->
            <li id="new-dropdown">
-             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Test: Materials</font></div>
+             <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Materials</font></div>
              <div class="collapsible-body">
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
@@ -164,18 +169,18 @@
                            <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
                            <div class="collapsible-body">
                                 <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                   <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
-                                   <li>
-                                       <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
-                                       <div class="collapsible-body">
-                                           <ul class="collection">
-                                               <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                               <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                               <% end %>
-                                           </ul>
-                                       </div>
-                                   </li>
-                                   </ul>
+                                <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                    <div class="collapsible-body">
+                                       <ul class="collection">
+                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                        <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                        <% end %>
+                                       </ul>
+                                   </div>
+                                </li>
+                                </ul>
                                 <% end %>
                            </div>
                        </li>
@@ -184,8 +189,6 @@
                  </ul>
              </div>
            </li>
-           
-
            
         <!-- Processes-->
            <li id="new-dropdown">

@@ -10,11 +10,14 @@ function drawChart(params){
       // instantiates the pie chart, passes in the data and
       // draws it.
       function drawChart() {
+        
         // Set chart parameters
         var chartType = params.type;
         var dataset = params.data;
         var divId = params.div;
-
+        var threshold_lo = 0.1;
+        var threshold_hi = 0.2; 
+        
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Item');
@@ -36,6 +39,14 @@ function drawChart(params){
         
         var rows = []
         for (i = 0; i < dataset.length; i++){
+          // Set colors for thresholds
+          if (dataset[i].percent_error < threshold_lo){
+            
+          } else if (dataset[i].percent_error > threshold_hi){
+            var hi_error_color = "#CF5C36"
+          } else {
+            
+          }
           var row = [];
           row.push(dataset[i].name);
           if (chartType == "candle"){ // Averaging error bounds with value for the box.
@@ -46,6 +57,7 @@ function drawChart(params){
           }
 
           if (chartType == "bar"){
+            console.log(dataset[i].percent_error);
             row.push(dataset[i].value);
             row.push(dataset[i].value - dataset[i].uncertain_lower);
             row.push(dataset[i].value + dataset[i].uncertain_upper);
@@ -56,22 +68,38 @@ function drawChart(params){
         }
         data.addRows(rows);
 
-        // Set chart options
-        var options = {
-                      width:600,
-                      height:300,
-                      //intervals: { style: 'bars' },
-                      legend: 'none',
-                     
-                     };
 
+        
         if (chartType == "bar"){
           // Instantiate and draw our chart, passing in some options.
           var chart = new google.visualization.ColumnChart(document.getElementById(divId));
+          var options = {
+                      legend: 'none',
+                      width:600,
+                      series: [{'color': '#1A8763'}], //color of bars
+                      intervals: {
+                        //barWidth: 1,
+                        lineWidth: 2,
+                        style: 'bar',
+                        color: '#ff3232'
+                      },
+                      height:300,
+                      linewidth: 10,
+                     };
           chart.draw(data, options);
         }
         if (chartType == "candle"){
           var chart = new google.visualization.CandlestickChart(document.getElementById(divId));
+          var options = {
+                      legend: 'none',
+                      width:600,
+                      series: [{'color': '#1A8763'}], //color of bars
+                      height:300,
+                      candlestick: {
+                        fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+                        risingColor: { strokeWidth: 2, fill: '#0f9d58' }   // green
+                      }
+                     };
         }
         chart.draw(data, options);
       }
