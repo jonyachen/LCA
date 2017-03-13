@@ -21,6 +21,7 @@ var flattenChildValues = function(data){
 
 function renderChart(options){
   options.error = options.error || null;
+  console.log(gon.data);
   var xLabels = _.pluck(options.data, 'name');
   var yValues = _.pluck(options.data, 'value');
   if (options.error){
@@ -50,9 +51,9 @@ function renderChart(options){
 }
 
 
-/*
+
 renderChart({
   data: JSON.parse(gon.data),
   error: true
 });
-*/
+

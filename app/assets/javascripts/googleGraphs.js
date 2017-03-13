@@ -1,4 +1,37 @@
-/* global data, gon */
+/* global _, data, gon, d3 */
+var flattenChildValues = function(data){
+  // Accepts data array containing objects.
+  // Flattens by remapping children name and value to same tier as parent category and uncertainty.
+    var flattened = _.chain(data)
+          .map(function(parent, index){
+          return _.map(parent.children, function(children){
+            return {
+              'category' : parent.name,
+              'uncertain_lower': children.uncertain_lower,
+              'uncertain_upper': children.uncertain_upper,
+              'name' : children.name,
+              'value' : children.value,
+            };
+          });
+        })
+        .flatten()
+        .value();
+    return flattened;
+}
+
+var project = JSON.parse(gon.data);
+var root = d3.hierarchy(project);
+var manu_node = root.data[0];
+var transport_node = root.data[1];
+var use_node = root.data[2];
+var disposal_node = root.data[3];
+
+var manu_children_flat = flattenChildValues([manu_node]);
+var transport_children_flat = flattenChildValues([transport_node]);
+var use_children_flat = flattenChildValues([use_node]);
+var disposal_children_flat = flattenChildValues([disposal_node]);
+
+
 function drawChart(params){
 // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
@@ -10,15 +43,21 @@ function drawChart(params){
       // instantiates the pie chart, passes in the data and
       // draws it.
       function drawChart() {
-        
+
         // Set chart parameters
         var chartType = params.type;
         var dataset = params.data;
         var divId = params.div;
-        var threshold_lo = 0.2;
-        var threshold_hi = 0.5; 
+        var threshold_lo = 0.1;
+        var threshold_hi = 0.2; 
         var errorColor;
-        
+        var totalImpact = 0;
+
+        // Calculate total impact for error bars
+        for (i = 0; i < dataset.length; i++){
+          console.log(dataset[i]);
+          totalImpact += dataset[i].value;
+        }
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Item');
@@ -39,17 +78,18 @@ function drawChart(params){
         data.addColumn({type:'string', role:'style'});
         
         var rows = []
-        var colorSeries = []
         for (i = 0; i < dataset.length; i++){
+          // Set percent error of total impact value
+          dataset[i]["percent_error"] = 1.0 * (dataset[i]["uncertain_lower"] + dataset[i]["uncertain_upper"]) / totalImpact
+           
           // Set colors for thresholds
           if (dataset[i].percent_error < threshold_lo){
-            var error_color = "#F4E3B2"
+            var error_color = "#eee8d2"
           } else if (dataset[i].percent_error > threshold_hi){
-            var error_color = "#CF5C36"
+            var error_color = "#cc0000"
           } else {
-            var error_color = "#EFC88B"
+            var error_color = "#ffab94"
           }
-          colorSeries.push("{color: " + errorColor + "}");
           var row = [];
           row.push(dataset[i].name);
           if (chartType == "candle"){ // Averaging error bounds with value for the box.
@@ -57,7 +97,7 @@ function drawChart(params){
             row.push(( 2 * dataset[i].value - dataset[i].uncertain_lower ) / 2 );
             row.push(( 2 * dataset[i].value + dataset[i].uncertain_upper ) / 2 );
             row.push(dataset[i].value + dataset[i].uncertain_upper);
-            row.push("bar{ color: light blue }");
+            row.push("bar{ color: " + error_color + "}");
           }
 
           if (chartType == "bar"){
@@ -65,7 +105,6 @@ function drawChart(params){
             row.push(dataset[i].value);
             row.push(dataset[i].value - dataset[i].uncertain_lower);
             row.push(dataset[i].value + dataset[i].uncertain_upper);
-            console.log(error_color);
             row.push("bar{ color: " + error_color + "}");
           }
           
@@ -83,10 +122,9 @@ function drawChart(params){
                       legend: 'none',
                       width:600,
                       intervals: {
-                        barWidth: 0.7,
+                       barWidth: 0.7,
                         lineWidth: 2,
-                        style: 'bar',
-                        color: ['#ff3232', '#00ff00', '#00ff00', '#ff0000']
+                        color: '#998285',
                       },
                       height:300,
                       linewidth: 10,
@@ -98,12 +136,10 @@ function drawChart(params){
           var options = {
                       legend: 'none',
                       width:600,
-                      //series: [{'color': '#1A8763'}], //color of bars
-                      height:300,
-                      candlestick: {
-                        fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
-                        risingColor: { strokeWidth: 2, fill: '#0f9d58' }   // green
-                      }
+                      strokeWidth: 5,
+                      strokewidth: 5,
+                      series: [{'color': '#998285', 'linewidth': 5}], //color of bars
+                      height:300
                      };
         }
         chart.draw(data, options);
@@ -111,17 +147,27 @@ function drawChart(params){
 }
 
 
-
-
 drawChart({
-  data: JSON.parse(gon.data),
-  type: "candle",
-  div: "chart_div"
+  data: project,
+  type: "bar",
+  div: "chart_project_bar"
 });
 
 drawChart({
-  data: JSON.parse(gon.data),
+  data: project,
+  type: "candle",
+  div: "chart_project_candle"
+});
+
+drawChart({
+  data: manu_children_flat,
   type: "bar",
-  div: "chart_div2"
+  div: "chart_manu_bar"
+});
+
+drawChart({
+  data: manu_children_flat,
+  type: "candle",
+  div: "chart_manu_candle"
 });
 

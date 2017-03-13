@@ -69,12 +69,39 @@ class ModelController < ApplicationController
   def create
     require 'json'
     hash = params[:build]
+    #puts "START HASH"
+    #puts hash
+    #puts "END HASH"
+    #hash["0"]["name"] = "test"
+    
+    #get activity id
+    hash.each do |item|
+      puts "material"
+      puts hash[item]["name"]
+      puts hash[item]["id"]
+      puts hash[item]["quantity"]
+      puts hash[item]["measurement"]
+      hash[item]["procedures"].each do |procedure|
+        puts "children"
+        puts hash[item]["procedures"][procedure]["name"]
+        puts hash[item]["procedures"][procedure]["id"]
+        puts hash[item]["procedures"][procedure]["quantity"]
+        puts hash[item]["procedures"][procedure]["measurement"]
+      end
+    end
+    
     File.open("app/assets/json/model_data.json","w") do |f|
       f.write(hash.to_json)
     end
+    
+    #to parse
+    #file = File.read("app/assets/json/model_data.json")
+    #data_hash = JSON.parse(file)
+    #data_hash["0"]["name"] = "test"
     #puts "START"
-    #puts hash
+    #puts data_hash
     #puts "END"
+
     if hash == nil
       result = false
       respond_to do |format|

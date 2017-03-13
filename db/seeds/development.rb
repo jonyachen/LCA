@@ -68,16 +68,16 @@ Activity.create!(:name=>"steel", :parent_type=>"Activity", :parent_id=>23)
 Activity.create!(:name=>"steel production, chromium steel 18/8", :units=>"kg", :parent_type=>"Activity", :parent_id=>27)
 
 Activity.create!(:name=>"wood", :parent_type=>"Activity", :parent_id=>3)
-Activity.create!(:name=>"door production, inner, glass-wood", :units=>"m2", :parent_type=>"Activity", :parent_id=>29)
+Activity.create!(:name=>"door production, inner, glass-wood", :units=>"m^2", :parent_type=>"Activity", :parent_id=>29)
 Activity.create!(:name=>"fibreboard production, hard, from virgin wood", :units=>"m3", :parent_type=>"Activity", :parent_id=>29)
 
 
 # Process activities
-Activity.create!(:name=>"anodising, aluminium sheet", :units=>"m2", :parent_type=>"Category", :parent_id=>2)
+Activity.create!(:name=>"anodising, aluminium sheet", :units=>"m^2", :parent_type=>"Category", :parent_id=>2)
 Activity.create!(:name=>"section bar extrusion, aluminium", :units=>"kg", :parent_type=>"Category", :parent_id=>2)
 Activity.create!(:name=>"drawing of pipe, steel", :units=>"kg", :parent_type=>"Category", :parent_id=>2)
 Activity.create!(:name=>"hot rolling, steel", :units=>"kg", :parent_type=>"Category", :parent_id=>2)
-Activity.create!(:name=>"powder coating, steel", :units=>"m2", :parent_type=>"Category", :parent_id=>2)
+Activity.create!(:name=>"powder coating, steel", :units=>"m^2", :parent_type=>"Category", :parent_id=>2)
 
 
 # Transport activities
@@ -142,12 +142,14 @@ Impact.create!(:impact_per_unit=>138.0, :uncertainty_lower=>17.0, :uncertainty_u
 Impact.create!(:impact_per_unit=>159.0, :uncertainty_lower=>48.0, :uncertainty_upper=>18.0, :activity_id=>49)
 Impact.create!(:impact_per_unit=>61.0, :uncertainty_lower=>44.0, :uncertainty_upper=>30.0, :activity_id=>50)
 
+# Can add :type if it makes querying easier for model building drop-down display
 Unit.create!(:unit=> "oz", :conversion_to_si=>0.0283)
 Unit.create!(:unit=> "lb", :conversion_to_si=>0.4536)
-Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000)
+Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000.0)
 Unit.create!(:unit=> "in^2", :conversion_to_si=>6.452E-04)
 Unit.create!(:unit=> "ft^2", :conversion_to_si=>0.0929)
 Unit.create!(:unit=> "in", :conversion_to_si=>0.0254)
 Unit.create!(:unit=> "ft", :conversion_to_si=>0.3048)
 Unit.create!(:unit=> "mile", :conversion_to_si=>1609.34)
+
 

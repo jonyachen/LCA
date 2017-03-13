@@ -1,22 +1,22 @@
 class GraphController < ApplicationController
     def index
         def create_obj_hash(type, activity, children)
-            a_hash = Hash.new
-            a_hash["quantity"] = activity["quantity"]
+            a_hash = activity
             if (type == "activity")
                 a_id = activity["activity_id"]
                 a = Activity.find(a_id)
                 a_hash["name"] = a.name
             else
-                a_id = nil
+                # For category objects
+                a_hash["activity_id"] = nil
                 a_hash["name"] = activity["name"]
             end
-            
-            value, uncertainty_lower, uncertainty_upper = Impact.get_value(type, a_id, a_hash["quantity"], children)
+        
+            value, uncertainty_lower, uncertainty_upper = Impact.get_value(type, a_hash)
             a_hash["value"] = value
             a_hash["uncertain_lower"] = uncertainty_lower
             a_hash["uncertain_upper"] = uncertainty_upper
-            a_hash["percent_error"] = 1.0 * (uncertainty_lower + uncertainty_upper) / value
+           
             unless children.nil?
                 a_hash["children"] = children
             end
@@ -29,10 +29,17 @@ class GraphController < ApplicationController
         data2 = []
         
         model_hash = JSON.parse(model)
+        puts model_hash
         
         model_hash.each_with_index { |category, index|
+            if category["children"].nil?
+                activities = category
+            else
+                activities = category["children"]
+            end
             category_children = []
-            category["children"].each { |top_lvl_activity|
+            activities.each { |top_lvl_activity|
+                puts top_lvl_activity
                 if top_lvl_activity.key?("children")
                     activity_children = []
                     top_lvl_activity["children"].each { |inner_lvl_activity|
@@ -47,7 +54,7 @@ class GraphController < ApplicationController
             data2 << category_hash
         }
         data2_json = data2.to_json
-        #puts data
+        puts data2_json
         
         gon.data = data2_json
         #gon.data = data

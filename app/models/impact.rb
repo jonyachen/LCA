@@ -1,7 +1,12 @@
 class Impact < ApplicationRecord
     belongs_to :activity
     
-    def self.get_value(type, id, quantity, children)
+    def self.get_value(type, activity)
+        id = activity["activity_id"]
+        quantity = activity["quantity"]
+        units = activity["units"]
+        children = activity["children"]
+        
         # Overall value of categories is the sum of all children activities
         if (type == "category")
             @uncertainty_lower = @uncertainty_upper = @value = 0
@@ -18,19 +23,20 @@ class Impact < ApplicationRecord
                 @uncertainty_upper += child["quantity"] * child["uncertain_upper"]
             }
         else
-            # Still need to do unit conversions
+            # Conversion factor converts units to the units that are stored in the database for that activity
+            unit_conv_factor = Unit.unit_conversion(id, units)
             if !(Impact.where(activity_id: id).present?)
                 # If not a leaf node, estimated value is the avg of children values and
                 # uncertainty is defined by min of children's lower bound and max of their upper bound
-                @value = quantity * Impact.calc_avg_values(id)
-                absolute_min_error, absolute_max_error = Impact.get_min_max(id)
+                @value = quantity * Impact.calc_avg_values(id) * unit_conv_factor
+                absolute_min_error, absolute_max_error = Impact.get_min_max(id) * unit_conv_factor
                 @uncertainty_lower = @value - quantity * absolute_min_error
                 @uncertainty_upper = quantity * absolute_max_error - @value
             else
                 # If a leaf node, simply return the values stored in DB
-                @value = quantity * Impact.where(activity_id: id).first.impact_per_unit
-                @uncertainty_lower = Impact.where(activity_id: id).first.uncertainty_lower
-                @uncertainty_upper = Impact.where(activity_id: id).first.uncertainty_upper
+                @value = quantity * Impact.where(activity_id: id).first.impact_per_unit * unit_conv_factor
+                @uncertainty_lower = Impact.where(activity_id: id).first.uncertainty_lower * unit_conv_factor
+                @uncertainty_upper = Impact.where(activity_id: id).first.uncertainty_upper * unit_conv_factor
             end
         end
         return @value, @uncertainty_lower, @uncertainty_upper

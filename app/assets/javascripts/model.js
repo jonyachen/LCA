@@ -71,6 +71,7 @@ function add_inputs($obj, obj_type, css_type) {
 		$measure.appendTo($obj);
 	}
 }
+//var $test = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}">');
 
 function add_proc_to($mat, name, id, quantity, measurement) {
 	quantity = typeof quantity !== 'undefined' ? quantity : 0;
@@ -129,10 +130,10 @@ function fill_build(data, name) {
 	$("#assembly-title").val(name);
 	for (var key in data){
 		var material = data[key];
-		var $mat = make_new_material_section(material["name"], material["id"], material["quantity"], material["measurement"]);
+		var $mat = make_new_material_section(material["name"], material["id"], material["quantity"], material["units"]);
 		for (var key in material["procedures"]) {
 			var proc = material["procedures"][key];
-			add_proc_to($mat, proc["name"], proc["id"], proc["quantity"], proc["measurement"]);
+			add_proc_to($mat, proc["name"], proc["id"], proc["quantity"], proc["units"]);
 		}
 	}
 }

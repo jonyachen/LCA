@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170227154042) do
   create_table "units", force: :cascade do |t|
     t.string   "unit"
     t.float    "conversion_to_si"
+    t.string   "type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

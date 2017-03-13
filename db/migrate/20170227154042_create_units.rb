@@ -3,6 +3,7 @@ class CreateUnits < ActiveRecord::Migration[5.0]
     create_table :units do |t|
       t.string :unit
       t.float :conversion_to_si
+      t.string :type
 
       t.timestamps
     end

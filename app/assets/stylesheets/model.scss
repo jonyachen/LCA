@@ -182,12 +182,12 @@
          border-radius: 5px;
          padding: 3px;
          margin: 1px;
-         background-color: white;
+         background-color: #99d6ff;
          line-height: 36px;
        }
 
        .material:hover {
-         background: #A5FEFF;
+         background: #e6f5ff;
        }
 
       .processes {
@@ -196,7 +196,7 @@
          //@include descending-z-index(100);
          .collection-item {
             position: relative;
-            background: #CCFEFF;
+            background: #ccebff;
             margin: 0px auto;
             padding: 0px 0px 20px 0px;
             width: 800px;
@@ -206,7 +206,7 @@
             //line-height: 50px;
          }
          .collection-item:hover {
-            background: #91FCFF;
+            background: #e6f5ff;
          }
       }
 
