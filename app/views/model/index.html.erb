@@ -179,11 +179,35 @@
                                 <li>
                                     <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
                                     <div class="collapsible-body">
-                                       <ul class="collection">
-                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                        <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                       
+                                        <% puts "HELLO!" %>
+                                        <% puts activity.name %>
+                                        <% puts activity.id %>
+                                        <!--temp hack for another layer-->
+                                        <% if (activity.id == 12 || activity.id == 23) %>
+                                        
+                                            <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                            <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                            <li>
+                                                <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                                <div class="collapsible-body">
+                                                    <ul class="collection">
+                                                    <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                                    <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                                    <% end %>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            </ul>
+                                            <% end %>
+                                        <% else %>
+                                            <ul class="collection">
+                                            <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                            <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                            <% end %>
+                                            </ul>
                                         <% end %>
-                                       </ul>
+                                       
                                    </div>
                                 </li>
                                 </ul>
