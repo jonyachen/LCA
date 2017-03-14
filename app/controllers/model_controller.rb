@@ -87,13 +87,13 @@ class ModelController < ApplicationController
     
     manufacturing = []
     hash.each do |item|
-      new_hash = Hash.new
+      new_hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
       new_hash["activity_id"] = hash[item]["id"]
       new_hash["quantity"] = hash[item]["quantity"]
       new_hash["units"] = hash[item]["measurement"]
       children = []
       hash[item]["procedures"].each do |procedure|
-        new_hash2 = Hash.new
+        new_hash2 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
         new_hash2["activity_id"] = hash[item]["procedures"][procedure]["id"]
         new_hash2["quantity"] = hash[item]["procedures"][procedure]["quantity"]
         new_hash2["units"] = hash[item]["procedures"][procedure]["measurement"]
