@@ -68,30 +68,47 @@ class ModelController < ApplicationController
 
   def create
     require 'json'
+    hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
     hash = params[:build]
     #puts "START HASH"
     #puts hash
     #puts "END HASH"
     #hash["0"]["name"] = "test"
     
-    #get activity id
+    #children = []
+    #test_hash = Hash.new
+    #test_hash["activity_id"] = 12
+    #test_hash2 = Hash.new
+    #test_hash2["activity_id"] = 15
+    #children << test_hash
+    #children << test_hash2
+    #top_tier = Hash.new
+    #top_tier["children"] = children
+    
+    manufacturing = []
     hash.each do |item|
-      puts "material"
-      puts hash[item]["name"]
-      puts hash[item]["id"]
-      puts hash[item]["quantity"]
-      puts hash[item]["measurement"]
+      new_hash = Hash.new
+      new_hash["activity_id"] = hash[item]["id"]
+      new_hash["quantity"] = hash[item]["quantity"]
+      new_hash["units"] = hash[item]["measurement"]
+      children = []
       hash[item]["procedures"].each do |procedure|
-        puts "children"
-        puts hash[item]["procedures"][procedure]["name"]
-        puts hash[item]["procedures"][procedure]["id"]
-        puts hash[item]["procedures"][procedure]["quantity"]
-        puts hash[item]["procedures"][procedure]["measurement"]
+        new_hash2 = Hash.new
+        new_hash2["activity_id"] = hash[item]["procedures"][procedure]["id"]
+        new_hash2["quantity"] = hash[item]["procedures"][procedure]["quantity"]
+        new_hash2["units"] = hash[item]["procedures"][procedure]["measurement"]
+        children << new_hash2
+        #manufacturing << new_hash2
       end
+      new_hash["children"] = children
+      manufacturing << new_hash
     end
     
     File.open("app/assets/json/model_data.json","w") do |f|
       f.write(hash.to_json)
+    end
+    File.open("app/assets/json/model_data_new.json","w") do |f|
+      f.write(manufacturing.to_json)
     end
     
     #to parse
