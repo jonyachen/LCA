@@ -70,9 +70,6 @@ class ModelController < ApplicationController
     require 'json'
     hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
     hash = params[:build]
-    #puts "START HASH"
-    #puts hash
-    #puts "END HASH"
     #hash["0"]["name"] = "test"
     
     #children = []
@@ -85,30 +82,37 @@ class ModelController < ApplicationController
     #top_tier = Hash.new
     #top_tier["children"] = children
     
-    manufacturing = []
-    hash.each do |item|
-      new_hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
-      new_hash["activity_id"] = hash[item]["id"]
-      new_hash["quantity"] = hash[item]["quantity"]
-      new_hash["units"] = hash[item]["measurement"]
-      children = []
-      hash[item]["procedures"].each do |procedure|
-        new_hash2 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
-        new_hash2["activity_id"] = hash[item]["procedures"][procedure]["id"]
-        new_hash2["quantity"] = hash[item]["procedures"][procedure]["quantity"]
-        new_hash2["units"] = hash[item]["procedures"][procedure]["measurement"]
-        children << new_hash2
-        #manufacturing << new_hash2
-      end
-      new_hash["children"] = children
-      manufacturing << new_hash
+    final_hash = []
+    new_hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
+    new_hash["name"] = "manufacturing"
+      children1 = []
+      hash.each do |item|
+        new_hash1 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
+        new_hash1["activity_id"] = hash[item]["id"]
+        new_hash1["quantity"] = hash[item]["quantity"]
+        new_hash1["units"] = hash[item]["measurement"]
+          children2 = []
+          hash[item]["procedures"].each do |procedure|
+            new_hash2 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
+            new_hash2["activity_id"] = hash[item]["procedures"][procedure]["id"]
+            new_hash2["quantity"] = hash[item]["procedures"][procedure]["quantity"]
+            new_hash2["units"] = hash[item]["procedures"][procedure]["measurement"]
+            children2 << new_hash2
+            #manufacturing << new_hash2
+          end
+        new_hash1["children"] = children2
+        children1 << new_hash1
     end
+    new_hash["children"] = children1
+    final_hash << new_hash
     
     File.open("app/assets/json/model_data.json","w") do |f|
       f.write(hash.to_json)
     end
+    
+    #to see the new hash - this is the one to pass to back-end
     File.open("app/assets/json/model_data_new.json","w") do |f|
-      f.write(manufacturing.to_json)
+      f.write(final_hash.to_json)
     end
     
     #to parse
