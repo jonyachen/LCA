@@ -236,7 +236,7 @@ $(document).on('turbolinks:load', function() {
 			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
 			success: function(response, status, xhr) {
 				//console.log(response);
-				location.href = "/graph"
+				window.location.href = "/graph"
 			},
 
 			error: function(xhr, status, errorThrown) {
