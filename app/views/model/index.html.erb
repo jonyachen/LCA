@@ -278,8 +278,10 @@
            <ul id="build" style = " height:75vh; border:1px solid #D5D5D5;  overflow-y:scroll;" class="collection"></ul>
 
                Drop your materials here!
-
+            
+            <%= button_to 'Analyze', {:controller => "graph", :action => "create", :build => @curr_assembly }, form: { "data-type" => "json" }, :method=>:post  %>
            <button id="save" class="butt js--triggerAnimation">Save</button>
+           
 
        </td>
 

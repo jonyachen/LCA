@@ -39,7 +39,7 @@ class GraphController < ApplicationController
             end
             category_children = []
             activities.each { |top_lvl_activity|
-                puts top_lvl_activity
+                #puts top_lvl_activity
                 if top_lvl_activity.key?("children")
                     activity_children = []
                     top_lvl_activity["children"].each { |inner_lvl_activity|
@@ -54,13 +54,24 @@ class GraphController < ApplicationController
             data2 << category_hash
         }
         data2_json = data2.to_json
-        puts data2_json
+        #puts data2_json
         
         gon.data = data2_json
         #gon.data = data
+        puts "Build"
+        puts params[:build]
+        
+        puts "Test"
+        puts params
+        
+        puts "test2"
+        puts :params
     end    
     
     def create
+        require 'json'
+        puts params[:build]
+        #redirect_to action: "index"
     end
     
     def new

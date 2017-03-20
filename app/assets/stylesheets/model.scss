@@ -178,12 +178,13 @@
 
        .material {
          font-weight: bold;
-         font-size: 120%;
-         border-radius: 5px;
-         padding: 3px;
-         margin: 1px;
+         font-size: 100%;
+         border-radius: 5px; //rounding
+         padding: 0px; //inner space
+         margin: 1px; //outer space
          background-color: #99d6ff;
-         line-height: 36px;
+         line-height: 40px;
+         //height: 60px;
        }
 
        .material:hover {
@@ -193,17 +194,18 @@
       .processes {
          margin: 0px;
          position: relative;
+         font-size: 90%;
          //@include descending-z-index(100);
          .collection-item {
             position: relative;
             background: #ccebff;
             margin: 0px auto;
-            padding: 0px 0px 20px 0px;
+            padding: 0px 0px 10px 0px; //top right bottom left
             width: 800px;
             // right: -10px;
-            height: 60px;
-            border-radius: 1px;
-            //line-height: 50px;
+            height: 50px;
+            border-radius: 5px;
+            line-height: 50px;
          }
          .collection-item:hover {
             background: #e6f5ff;
@@ -237,6 +239,13 @@
    }
 
    #save {
+       border: 0px;
+       background-color: #A0FF4D;
+       float: right;
+       margin-right: 5px;
+   }
+   
+    #analyze {
        border: 0px;
        background-color: #A0FF4D;
        float: right;

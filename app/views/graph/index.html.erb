@@ -4,8 +4,7 @@
 		<meta charset="utf-8">
     	<% stylesheet_link_tag "graph", media: "all" %>
     	<%= include_gon %>
-    	<%= javascript_include_tag "d3-hierarchy.v1.min.js" %>
-    	<%= javascript_include_tag "plotly-latest.min.js" %>
+    	<%= javascript_include_tag "materialize.min.js" %>
     	<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     	<%= javascript_include_tag "googleGraphs.js" %>
     	
@@ -13,15 +12,23 @@
 
 	<body>
 
-			
+			<br><br>
+			<%= link_to 'Return to model building', root_path, method: 'GET', class: 'button' %>
+			<h1>Environmental Impact Assessment</h1>
 			<!--<div class="graph" id="myDiv" style="width: 480px; height: 400px;"></div>-->
-			<%= javascript_include_tag "graph.js" %>
-			<div class="graph" id="chart_project_bar" style="width: 480px; height: 400px;" ></div>
-			<div class="graph" id="chart_project_candle" style="width: 480px; height: 400px;" ></div>
-			<div class="graph" id="chart_manu_bar" style="width: 480px; height: 400px;" ></div>
-			<div class="graph" id="chart_manu_candle" style="width: 480px; height: 400px;" ></div>
 			
-			<img src="http://i.imgur.com/HAqIxMJ.jpg"/>
+			<div class="graph" id="chart_project_bar"></div><p style="display: inline"> <span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #e1bea8 "></span>	< 10% of total uncertainty
+			<span class ="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #ff8080 "></span> 10% - 20% of total uncertainty   
+  			<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #ff3d3d "></span> > 20% of total uncertainty</p>
+			<br><br>
+			<button class="butt" id = "rewind-bar">Rewind a tier</button>
+			<button class="butt" id="reset-bar">Reset tiers</button>
+		
+			<h1>Uncertainty Assessment</h1>
+			<div class="graph" id="chart_project_candle"></div>
+			<button class="butt" id = "rewind-candle">Rewind a tier</button>
+			<button class="butt" id="reset-candle">Reset tiers</button>
+			<!-- <img src="http://i.imgur.com/HAqIxMJ.jpg"/> -->
 		
 		
 	</body>

@@ -1,5 +1,6 @@
 /* global $, materials, SAVE_URL */
 
+
 function make_new_material_section(name, id, quantity, measurement) {
 	quantity = typeof quantity !== 'undefined' ? quantity : 0;
 	measurement = typeof measurement !== 'undefined' ? measurement : "kg";
@@ -214,7 +215,7 @@ $(document).on('turbolinks:load', function() {
 			url: SAVE_URL,
 			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
 			success: function(response, status, xhr) {
-				//console.log(response);
+				// console.log(response);
 				Materialize.toast('Saved', 2000);
 			},
 
@@ -227,28 +228,6 @@ $(document).on('turbolinks:load', function() {
 			}
 		});
 	})
-	
-	$('#analyze').click(function() {
-		$.ajax({
-			dataType: "json",
-			type: "POST",
-			url: "/graph",
-			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
-			success: function(response, status, xhr) {
-				//console.log(response);
-				window.location = "/graph"
-			},
-
-			error: function(xhr, status, errorThrown) {
-				// console.log(errorThrown);
-			},
-
-			complete: function (xhr, status) {
-				// console.log(status);
-			}
-		});
-	})
-	
 
 	$.ajaxSetup({
 		headers: {

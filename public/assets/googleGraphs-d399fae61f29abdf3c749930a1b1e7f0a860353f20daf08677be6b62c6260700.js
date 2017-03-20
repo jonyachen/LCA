@@ -1,11 +1,6 @@
 /* global _, data, gon, d3 */
-var project = JSON.parse(gon.data);
-var chartHeight = 340;
-var chartWidth = 800;
-var currViewBar = [{name: "Life cycle stages", data: project}];
-var currViewCandle = [{name: "Life cycle stages", data: project}];
 
-function flattenChildValues(data){
+var flattenChildValues = function(data){
   // Accepts data array containing objects.
   // Flattens by remapping children name and value to same tier as parent category and uncertainty.
     var flattened = _.chain(data)
@@ -26,31 +21,32 @@ function flattenChildValues(data){
     return flattened;
 }
 
+var project = JSON.parse(gon.data);
+
 function drawChart(params){
   // Set chart parameters
   var chartType = params.type;
+  var prev_dataset = params.data;
+  var divId = params.div;
   var threshold_lo = 0.1;
   var threshold_hi = 0.2; 
   var errorColor;
   var totalImpact = 0;
-  
+      
   // Load the Visualization API and the corechart package.
   google.charts.load('current', {'packages':['corechart']});
 
   // Set a callback to run when the Google Visualization API is loaded.
   if (chartType == "bar"){
-    google.charts.setOnLoadCallback(function() { drawBar(params) });
+    google.charts.setOnLoadCallback(function() { drawBar(params.data) });
   } else if (chartType == "candle") {
-    google.charts.setOnLoadCallback(function() { drawCandle(params) });
+    google.charts.setOnLoadCallback(function() { drawCandle(params.data) });
   }
 
   // Callbacks that creates and populates a data table,
   // instantiates the charts, passes in the data and
   // draws it.
-  function drawBar(params) {
-    var dataset = params.data;
-    var divId = params.div;
-    var title = params.title;
+  function drawBar(dataset) {
     totalImpact = 0;
     // Calculate total impact for error bars
     for (i = 0; i < dataset.length; i++){
@@ -91,24 +87,14 @@ function drawChart(params){
     // Chart instantiation and draw
     var chart = new google.visualization.ColumnChart(document.getElementById(divId));
     var options = {
-                    title: title,
-                    titleTextStyle: {
-                      color: 'black',    
-                      fontName: 'Roboto', 
-                      fontSize: 14, 
-                      //bold: false,
-                    },
-                    vAxis: {
-                      title: 'ReCiPe Endpoint H Score'
-                    },
                     legend: 'none',
-                    width: chartWidth,
+                    width:600,
                     intervals: {
                       barWidth: 0.7,
                       lineWidth: 2,
                       color: '#998285',
                     },
-                    height: chartHeight,
+                    height:300,
                     linewidth: 10,
                   };
     chart.draw(data, options);
@@ -116,24 +102,24 @@ function drawChart(params){
     
     // Redraws chart with selected column if it has children
     function selectHandler() {
-      var selection = chart.getSelection();
+      var selection = chart.getSelection()
       if (selection.length != 0){
         selection = dataset[chart.getSelection()[0].row];
       }
       if (selection.children != null){
         var child_tier = flattenChildValues([selection]);
-        var selection_name = selection.name.replace(/\b\w/g, l => l.toUpperCase());
-        title = selection_name + " breakdown";
-        drawBar({data: child_tier, div: divId, title: title});
-        currViewBar.push({name: selection_name, data: child_tier});
+        drawBar(child_tier);
       }
+    }
+    
+  this.prototype.onclick = function(rowIndex) {
+      alert("hello")
+      // Trigger a select event.
+      //google.visualization.events.trigger(this, 'select', null);
     }
   }
   
-  function drawCandle(params){
-    var dataset = params.data;
-    var divId = params.div;
-    var title = params.title;
+  function drawCandle(dataset){
     // Calculate total impact for error bars
     totalImpact = 0;
     for (i = 0; i < dataset.length; i++){
@@ -178,89 +164,44 @@ function drawChart(params){
     // Chart instantiation and draw
     var chart = new google.visualization.CandlestickChart(document.getElementById(divId));
     var options = {
-                    title: title,
-                    titleTextStyle: {
-                        color: 'black',    
-                        fontName: 'Roboto', 
-                        fontSize: 14, 
-                        //bold: false,
-                    },
-                    vAxis: {
-                      title: 'ReCiPe Endpoint H Score',
-                    },
                     legend: 'none',
-                    width: chartWidth,
+                    width:600,
                     strokeWidth: 5,
                     strokewidth: 5,
                     series: [{'color': '#998285', 'linewidth': 5}], //color of bars
-                    height: chartHeight
+                    height:300
                   };
     chart.draw(data, options);  
     google.visualization.events.addListener(chart, 'select', selectHandler);
     
     // Redraws chart with selected column if it has children
     function selectHandler() {
-      var selection = chart.getSelection();
+      var selection = chart.getSelection()
       if (selection.length != 0){
         selection = dataset[chart.getSelection()[0].row];
       }
       if (selection.children != null){
         var child_tier = flattenChildValues([selection]);
-        var selection_name = selection.name.replace(/\b\w/g, l => l.toUpperCase());
-        title = selection_name + " breakdown";
-        drawCandle({data: child_tier, div: divId, title: title});
-        currViewCandle.push({name: selection_name, data: child_tier});
+        prev_dataset = dataset;
+        dataset = child_tier;
+        drawCandle(dataset);
       }
-    
+      else {
+        //drawCandle(prev_dataset);
+      }
     }
   }
-  drawChart.drawBar = drawBar;
-  drawChart.drawCandle = drawCandle;
+  
 }
 
 drawChart({
   data: project,
-  title: "Life cycle stages breakdown",
   type: "bar",
   div: "chart_project_bar"
 });
 
 drawChart({
   data: project,
-  title: "Life cycle stages breakdown",
   type: "candle",
   div: "chart_project_candle"
-});
-
-
-$(document).ready( function() {
-  $('#rewind-bar').click(function () {
-    if (currViewBar.length != 1) {
-      currViewBar.pop();
-      var data = currViewBar[currViewBar.length - 1].data;
-      var title = currViewBar[currViewBar.length - 1].name + " breakdown";
-      drawChart.drawBar({data: data, div: "chart_project_bar", title: title});
-    }
-	});
-	
-	$('#rewind-candle').click(function () {
-	  if (currViewCandle.length != 1) {
-      currViewCandle.pop();
-      var data = currViewCandle[currViewCandle.length - 1].data;
-      var title = currViewBar[currViewBar.length - 1].name + " breakdown";
-      drawChart.drawCandle({data: data, div: "chart_project_candle", title: title});
-    }
-	});
-	
-	$('#reset-bar').click(function () {
-	  currViewBar = [{name: "Life cycle stages", data: project}];
-	  var title = currViewBar[0].name + " breakdown";
-    drawChart.drawBar({data: project, div: "chart_project_bar", title: title});
-	});
-	
-	$('#reset-candle').click(function () {
-	  currViewCandle = [{name: "Life cycle stages", data: project}];
-	  var title = currViewBar[0].name + " breakdown";
-    drawChart.drawCandle({data: project, div: "chart_project_candle", title: title});
-	});
 });
