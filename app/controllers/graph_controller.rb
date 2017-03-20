@@ -71,7 +71,7 @@ class GraphController < ApplicationController
     def create
         require 'json'
         puts params[:build]
-        #redirect_to action: "index"
+        redirect_to action: "index", :build => params[:build]
     end
     
     def new
