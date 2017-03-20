@@ -180,10 +180,10 @@
          font-weight: bold;
          font-size: 100%;
          border-radius: 5px; //rounding
-         padding: 0px; //inner space
-         margin: 1px; //outer space
+         padding: 10px 0px 5px 0px; //inner space
+         margin: 0px; //outer space
          background-color: #99d6ff;
-         line-height: 40px;
+         //line-height: 40px;
          //height: 60px;
        }
 
@@ -200,7 +200,7 @@
             position: relative;
             background: #ccebff;
             margin: 0px auto;
-            padding: 0px 0px 10px 0px; //top right bottom left
+            padding: 10px 0px 10px 0px; //top right bottom left
             width: 800px;
             // right: -10px;
             height: 50px;

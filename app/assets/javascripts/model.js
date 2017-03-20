@@ -66,9 +66,9 @@ function make_new_material_section(name, id, quantity, measurement) {
 
 function add_inputs($obj, obj_type, css_type) {
 	if (obj_type == "material" || obj_type == "process") {
-		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}">');
+		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height: 20px; width: 40px;">');
 		$quant.appendTo($obj);
-		var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}">');
+		var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height: 20px; width: 40px;">');
 		$measure.appendTo($obj);
 	}
 }
@@ -236,7 +236,6 @@ $(document).on('turbolinks:load', function() {
 			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
 			success: function(response, status, xhr) {
 				//console.log(response);
-				window.location.href = "/graph"
 			},
 
 			error: function(xhr, status, errorThrown) {
