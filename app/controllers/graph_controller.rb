@@ -1,5 +1,12 @@
 class GraphController < ApplicationController
     def index
+        data_json = params[:data]
+        gon.data = data_json
+    end    
+    
+    def create
+        require 'json'
+
         def create_obj_hash(type, activity, children)
             a_hash = activity
             if (type == "activity")
@@ -20,15 +27,18 @@ class GraphController < ApplicationController
             unless children.nil?
                 a_hash["children"] = children
             end
-        return a_hash
+            return a_hash
         end
         
-        model = File.read("app/assets/json/model.json")
-        data = File.read("app/assets/json/data.json")
+        # Old read-in data from json file
+        #model = File.read("app/assets/json/model.json")
+        #model_hash = JSON.parse(model)
         
-        data2 = []
+        data = []
         
-        model_hash = JSON.parse(model)
+        # New data from model_controller
+        model_hash = JSON.parse(params[:build])
+        puts "MODEL HASH"
         puts model_hash
         
         model_hash.each_with_index { |category, index|
@@ -51,42 +61,12 @@ class GraphController < ApplicationController
                 category_children << top_level_hash
             }
             category_hash = create_obj_hash("category", category, category_children)
-            data2 << category_hash
+            data << category_hash
         }
-        data2_json = data2.to_json
-        #puts data2_json
         
-        gon.data = data2_json
-        #gon.data = data
-        puts "Build"
-        puts params[:build]
-        
-        puts "Test"
-        puts params
-        
-        puts "test2"
-        puts :params
-    end    
-    
-    def create
-        require 'json'
-        puts params[:build]
-        redirect_to :action => "index", :build => params[:build]
-        
-    end
-    
-    def new
-    end
-    
-    def edit
-    end
-    
-    def show
-    end
-    
-    def update
-    end
-    
-    def destroy
+        data_json = data.to_json
+        puts "DATA JSON"
+        puts data_json
+        redirect_to :action => "index", :data => data_json
     end
 end

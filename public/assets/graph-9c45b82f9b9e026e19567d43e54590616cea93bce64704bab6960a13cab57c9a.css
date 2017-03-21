@@ -1,0 +1,12 @@
+/* line 4, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+div.graph {
+  margin: 0 auto;
+  text-align: center;
+  width: 800px;
+}
+
+/* line 12, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+button {
+  border: 0px;
+  background-color: #FFFFFF;
+}

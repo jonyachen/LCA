@@ -35,8 +35,8 @@ class Impact < ApplicationRecord
             else
                 # If a leaf node, simply return the values stored in DB
                 @value = quantity * Impact.where(activity_id: id).first.impact_per_unit * unit_conv_factor
-                @uncertainty_lower = Impact.where(activity_id: id).first.uncertainty_lower * unit_conv_factor
-                @uncertainty_upper = Impact.where(activity_id: id).first.uncertainty_upper * unit_conv_factor
+                @uncertainty_lower = quantity * Impact.where(activity_id: id).first.uncertainty_lower * unit_conv_factor
+                @uncertainty_upper = quantity * Impact.where(activity_id: id).first.uncertainty_upper * unit_conv_factor
             end
         end
         return @value, @uncertainty_lower, @uncertainty_upper

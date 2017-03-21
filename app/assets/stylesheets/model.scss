@@ -180,7 +180,7 @@
          font-weight: bold;
          font-size: 100%;
          border-radius: 5px; //rounding
-         padding: 10px 0px 5px 0px; //inner space
+         padding: 15px 0px 5px 0px; //inner space
          margin: 0px; //outer space
          background-color: #99d6ff;
          //line-height: 40px;
@@ -239,14 +239,7 @@
 
    }
 
-   #save {
-       border: 0px;
-       background-color: #A0FF4D;
-       float: right;
-       margin-right: 5px;
-   }
-   
-    #analyze {
+   .butt {
        border: 0px;
        background-color: #A0FF4D;
        float: right;

@@ -8,4 +8,15 @@ class Activity < ApplicationRecord
     def self.categories
         return Activity.all.select(:parent_type).map(&:parent_type).uniq
     end
+    
+    def self.get_category(id)
+        while Activity.find(id).parent_type != "Category" do
+            # Continue searching parent activities iteratively until the parent is a category
+            id = Activity.find(id).parent_id
+        end
+        # Then return the id of the category
+        return Activity.find(id).parent_id
+    end
+
+    
 end

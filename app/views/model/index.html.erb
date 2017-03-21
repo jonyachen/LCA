@@ -170,14 +170,23 @@
                 -->
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
-                       <ul id="materials" class="collapsible collection-item draggable" data-collapsible="expandable">
+                       <ul id="materials" class="collapsible collection-item" data-collapsible="expandable">
+                           
                        <li>
-                           <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                           <div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">
+                                     <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                    </ul></div>
                            <div class="collapsible-body">
                                 <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
                                 <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                    
                                 <li>
-                                    <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                    <div class="collapsible-header"><i class="material-icons">expand_more</i>
+                                    <ul class="collection">
+                                     <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                    </ul>
+                                   
+                                    </div>
                                     <div class="collapsible-body">
                                         
                                         <!--temp hack for another layer-->
@@ -275,13 +284,15 @@
        <!-- Build -->
       <td id="assembly">
 
-           <ul id="build" style = " height:80vh; border:1px solid #D5D5D5; padding: 0px 0px 160px 0px;  overflow-y:scroll;" class="collection"></ul>
+           <ul id="build" style = " height:70vh; border:1px solid #D5D5D5; padding: 0px 0px 160px 0px;  overflow-y:scroll;" class="collection"></ul>
 
                Drop your materials here!
-            <button id="analyze" class="butt js-triggerAnimation">Analyze</button>
+            
+            
             
            <button id="save" class="butt js--triggerAnimation">Save</button>
-           
+           <br><br><br>
+           <%= button_to 'Analyze', {:controller => "graph", :action => "create"},  class: "butt js--triggerAnimation", params: { build: @model }  %>
 
        </td>
 

@@ -13,13 +13,16 @@ class ModelController < ApplicationController
     end
 
     if session[:assembly_id] == nil or params[:new] == "true"
+      puts "no assembly id"
       params[:new] = nil
       session[:assembly_id] = nil
       @curr_assembly = nil
       @curr_name = nil
+      @model = nil
     else
       @curr_assembly = Assembly.find(session[:assembly_id]).components
       @curr_name = Assembly.find(session[:assembly_id]).name
+      @model = Assembly.find(session[:assembly_id]).components_json
     end
 
     if params[:id] != nil
@@ -61,67 +64,62 @@ class ModelController < ApplicationController
   	@transport = Activity.where(parent_type: "Category", parent_id: "3")
   	@use = Activity.where(parent_type: "Category", parent_id: "4")
   	@endoflife = Activity.where(parent_type: "Category", parent_id: "5")
-
   	
   end
   
 
   def create
     require 'json'
-    hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
     hash = params[:build]
-    #hash["0"]["name"] = "test"
     
-    #children = []
-    #test_hash = Hash.new
-    #test_hash["activity_id"] = 12
-    #test_hash2 = Hash.new
-    #test_hash2["activity_id"] = 15
-    #children << test_hash
-    #children << test_hash2
-    #top_tier = Hash.new
-    #top_tier["children"] = children
-    
-    final_hash = []
-    new_hash = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
-    new_hash["name"] = "manufacturing"
-      children1 = []
-      hash.each do |item|
-        new_hash1 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
-        new_hash1["activity_id"] = hash[item]["id"]
-        new_hash1["quantity"] = hash[item]["quantity"]
-        new_hash1["units"] = hash[item]["measurement"]
-          children2 = []
-          hash[item]["procedures"].each do |procedure|
-            new_hash2 = Hash.new{|h,k| h[k]=Hash.new(&h.default_proc)}
-            new_hash2["activity_id"] = hash[item]["procedures"][procedure]["id"]
-            new_hash2["quantity"] = hash[item]["procedures"][procedure]["quantity"]
-            new_hash2["units"] = hash[item]["procedures"][procedure]["measurement"]
-            children2 << new_hash2
-            #manufacturing << new_hash2
-          end
-        new_hash1["children"] = children2
-        children1 << new_hash1
-    end
-    new_hash["children"] = children1
-    final_hash << new_hash
-    
-    File.open("app/assets/json/model_data.json","w") do |f|
-      f.write(hash.to_json)
-    end
+    manu = {"name" => "manufacturing", "children" => []}
+    transport = {"name" => "transport", "children" => []}
+    use = {"name" => "use", "children" => []}
+    end_of_life = {"name" => "end of life", "children" => []}
+
+    hash.each { |index, activity|
+      activity_hash = Hash.new
+      activity["id"]
+      activity["quantity"]
+      activity["measurement"]
+      activity["procedures"]
+      activity_hash["activity_id"] = activity["id"]
+      activity_hash["quantity"] = activity["quantity"]
+      activity_hash["units"] = activity["measurement"]
+      unless activity["procedures"].nil?
+        children = []
+        activity["procedures"].each { |child_index, child|
+          child_hash = Hash.new
+          child_hash["activity_id"] = child["id"]
+          child_hash["quantity"] = child["quantity"]
+          child_hash["units"] = child["measurement"]
+          children << child_hash
+        }
+        activity_hash["children"] = children
+      end
+      
+      category_id = Activity.get_category(activity["id"])
+      if category_id == 1 or category_id == 2
+        manu["children"] << activity_hash
+      elsif category_id == 3
+        transport["children"] << activity_hash
+      elsif category_id == 4
+        use["children"] << activity_hash
+      elsif category_id == 5
+        end_of_life["children"] << activity_hash
+      end
+    }
+
+    @model = [manu, transport, use, end_of_life]
     
     #to see the new hash - this is the one to pass to back-end
     File.open("app/assets/json/model_data_new.json","w") do |f|
-      f.write(final_hash.to_json)
+      f.write(@model.to_json)
     end
     
-    #to parse
-    #file = File.read("app/assets/json/model_data.json")
-    #data_hash = JSON.parse(file)
-    #data_hash["0"]["name"] = "test"
-    #puts "START"
-    #puts data_hash
-    #puts "END"
+    puts "FINAL JSON:"
+    puts @model
+
 
     if hash == nil
       result = false
@@ -131,6 +129,7 @@ class ModelController < ApplicationController
     end
 
     if session[:assembly_id] == nil
+      puts "creating assembly for user"
       @assembly = Assembly.create(:user_id => session[:user_id])
       session[:assembly_id] = @assembly.id
     else
@@ -138,6 +137,7 @@ class ModelController < ApplicationController
     end
 
     @assembly.components = hash #change this to string format to store in json todo
+    @assembly.components_json = @model.to_json
     @assembly.name = params[:assembly_name]
     #@assembly.deblob
     result = @assembly.save
@@ -145,6 +145,11 @@ class ModelController < ApplicationController
     respond_to do |format|
     	format.json { nil.to_json }
     end
-
+    
   end
+  
+  private
+    def model_params
+      params.permit(@model)
+    end
 end

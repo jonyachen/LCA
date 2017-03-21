@@ -1,5 +1,6 @@
 /* global $, materials, SAVE_URL */
 
+
 function make_new_material_section(name, id, quantity, measurement) {
 	quantity = typeof quantity !== 'undefined' ? quantity : 0;
 	measurement = typeof measurement !== 'undefined' ? measurement : "kg";
