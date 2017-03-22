@@ -10,7 +10,7 @@ class GraphController < ApplicationController
         def create_obj_hash(type, activity, children)
             a_hash = activity
             if (type == "activity")
-                a_id = activity["activity_id"]
+                a_id = activity["activity_id"].to_i
                 a = Activity.find(a_id)
                 a_hash["name"] = a.name
             else
@@ -31,17 +31,19 @@ class GraphController < ApplicationController
         end
         
         # Old read-in data from json file
-        #model = File.read("app/assets/json/model.json")
-        #model_hash = JSON.parse(model)
+        #model_json = File.read("app/assets/json/model.json")
+        #model = JSON.parse(model_json)
         
         data = []
         
         # New data from model_controller
-        model_hash = JSON.parse(params[:build])
-        puts "MODEL HASH"
-        puts model_hash
+        #model = JSON.parse(params[:build])
+        puts "MODEL"
+        model = JSON.parse(params[:build].gsub(/"(\d)"/, '\1'))
         
-        model_hash.each_with_index { |category, index|
+        puts model
+        
+        model.each_with_index { |category, index|
             if category["children"].nil?
                 activities = category
             else

@@ -1,5 +1,5 @@
 /* global _, data, gon, d3 */
-var project = JSON.parse(gon.data);
+var project = flattenChildValues(JSON.parse(gon.data));
 var chartHeight = 340;
 var chartWidth = 800;
 var currViewBar = [{name: "Life cycle stages", data: project}];

@@ -25,7 +25,7 @@ function make_new_material_section(name, id, quantity, measurement) {
 		"text": "Drop your " + name + " processes here."
 	});
 
-	 //console.log("Creating a new Material..");
+	 console.log("Creating a new Material..");
 
 	$procdrop.appendTo($body);
 	$head.appendTo($li);

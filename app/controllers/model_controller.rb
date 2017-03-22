@@ -72,17 +72,10 @@ class ModelController < ApplicationController
     require 'json'
     hash = params[:build]
     
-    manu = {"name" => "manufacturing", "children" => []}
-    transport = {"name" => "transport", "children" => []}
-    use = {"name" => "use", "children" => []}
-    end_of_life = {"name" => "end of life", "children" => []}
+    assembly = {"name" => params[:assembly_name], "children" => []}
 
     hash.each { |index, activity|
       activity_hash = Hash.new
-      activity["id"]
-      activity["quantity"]
-      activity["measurement"]
-      activity["procedures"]
       activity_hash["activity_id"] = activity["id"]
       activity_hash["quantity"] = activity["quantity"]
       activity_hash["units"] = activity["measurement"]
@@ -97,20 +90,10 @@ class ModelController < ApplicationController
         }
         activity_hash["children"] = children
       end
-      
-      category_id = Activity.get_category(activity["id"])
-      if category_id == 1 or category_id == 2
-        manu["children"] << activity_hash
-      elsif category_id == 3
-        transport["children"] << activity_hash
-      elsif category_id == 4
-        use["children"] << activity_hash
-      elsif category_id == 5
-        end_of_life["children"] << activity_hash
-      end
+      assembly["children"] << activity_hash
     }
 
-    @model = [manu, transport, use, end_of_life]
+    @model = [assembly]
     
     #to see the new hash - this is the one to pass to back-end
     File.open("app/assets/json/model_data_new.json","w") do |f|
@@ -136,7 +119,7 @@ class ModelController < ApplicationController
         @assembly = Assembly.find(session[:assembly_id])
     end
 
-    @assembly.components = hash #change this to string format to store in json todo
+    @assembly.components = hash
     @assembly.components_json = @model.to_json
     @assembly.name = params[:assembly_name]
     #@assembly.deblob

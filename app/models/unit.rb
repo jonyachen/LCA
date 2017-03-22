@@ -3,13 +3,16 @@ class Unit < ApplicationRecord
         # If the unit doesn't already match the activity's stored units, apply conversion
         activity_units = Activity.find(id).units
         if (units != activity_units and activity_units.present?)
-            return Unit.conversion_factor_SI(units) * Units.conversion_factor_from_SI(activity_units)
+            puts units
+            puts activity_units
+            return Unit.conversion_factor_SI(units) * Unit.conversion_factor_from_SI(activity_units)
         else
             return 1.0
         end
     end
     
     def self.conversion_factor_SI(units)
+
         return Unit.where("unit = ?", units).first.conversion_to_si
     end
     
