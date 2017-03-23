@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- vars -->
+  <!-- Makes controller variables available to JS, should switch to GON gem -->
   <script type="text/javascript">
     var materials = <%= @material_data.to_json.html_safe %>; //saved here
     var names = <%= @material_names.to_json.html_safe %>;
@@ -24,5 +25,161 @@
   <% stylesheet_link_tag "model", media: "all" %>
 
 
+<!-- Page Body -->
+<div class="projects-page">
+  <table id="workspace">
+      <tr id="header">
+          <td><h4 class="section-title">Library</h4></td>
+          <td><div class="assembly-box">
+              <input type="text" placeholder="Design Name" id="assembly-title" onkeypress="return searchKeyPress(event);">
+          </div></td>
+      </tr>
+
+      <tr>
+        <td id="library">
+          <!-- Library menu -->
+          <ul id="menu" class="collapsible popout" data-collapsible="accordion">
+              
+              <!-- Materials-->
+              <li id="new-dropdown">
+                  <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Materials</font></div>
+                  <div class="collapsible-body">
+                      
+                      <!-- Materials Search Bar-->
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">search</i>
+                        <input id="manufacturing-search" placeholder="Search materials" type="text" class="autocomplete">
+                      </div>
+                      
+                      <ul>
+                          <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
+                            <ul id="materials" class="collapsible collection-item" data-collapsible="expandable">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">
+                                            <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                    </ul></div>
+                                    
+                                    <div class="collapsible-body">
+                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                          <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                              <li>
+                                                  <div class="collapsible-header"><i class="material-icons">expand_more</i>
+                                                  <ul class="collection">
+                                                    <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                                  </ul></div>
+                                                  
+                                                  <div class="collapsible-body"> 
+                                                      <!--temp hack for another layer-->
+                                                      <% if (activity.id == 12 || activity.id == 23) %>
+                                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                                          <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                                              <li>
+                                                                  <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                                                  <div class="collapsible-body">
+                                                                      <ul class="collection">
+                                                                          <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                                                            <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                                                          <% end %>
+                                                                      </ul>
+                                                                  </div>
+                                                              </li>
+                                                          </ul>
+                                                        <% end %>
+                                                      
+                                                      <% else %>
+                                                        <ul class="collection">
+                                                            <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
+                                                              <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                                            <% end %>
+                                                        </ul>
+                                                      <% end %>
+                                                  </div>
+                                                  
+
+                                              </li>
+                                          </ul>
+                                        <% end %>
+                                    </div>
+
+                                </li>
+                            </ul>
+                          <% end %>
+                      </ul>
+                  </div>
+              </li>
+              
+              <!-- Processes-->
+              <li id="new-dropdown">
+                  <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Processes</font></div>
+                  <div class="collapsible-body">
+                      <ul>
+                          <% Activity.where(parent_type: "Category", parent_id: "2").each do |activity| %>
+                            <ul class="collection">
+                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                          <% end %>
+                          </ul>
+                      </ul>
+                  </div>
+              </li>
+              
+              <!-- Transport-->
+              <li id="new-dropdown">
+                  <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transport</font></div>
+                  <div class="collapsible-body">
+                      <ul>
+                          <% Activity.where(parent_type: "Category", parent_id: "3").each do |activity| %>
+                            <ul class="collection">
+                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                          <% end %>
+                            </ul>
+                      </ul>
+                  </div>
+              </li>
+              
+              <!-- Use-->
+              <li id="new-dropdown">
+                  <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
+                  <div class="collapsible-body">
+                      <ul>
+                          <% Activity.where(parent_type: "Category", parent_id: "4").each do |activity| %>
+                            <ul class="collection">
+                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                          <% end %>
+                            </ul>
+                      </ul>
+                  </div>
+              </li>
+              
+              <!-- End of Life-->
+              <li id="new-dropdown">
+                  <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
+                  <div class="collapsible-body">
+                      <ul>
+                          <% Activity.where(parent_type: "Category", parent_id: "5").each do |activity| %>
+                            <ul class="collection">
+                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                          <% end %>
+                            </ul>
+                      </ul>
+                  </div>
+              </li>
+              
+          </ul>
+        </td>
+        
+        <!-- Drag area and Buttons -->
+        <td id="assembly">
+            <ul id="build" style = " height:70vh; border:1px solid #D5D5D5; padding: 0px 0px 160px 0px;  overflow-y:scroll;" class="collection"></ul>
+                Drop your materials here!
+            <button id="save" class="butt js--triggerAnimation">Save</button>
+            <br><br><br>
+            <%= button_to 'Analyze', {:controller => "graph", :action => "create"},  class: "butt js--triggerAnimation", params: { build: @model }  %>
+        </td>
+            
+      </tr>
+  </table>
+</div>
+    
+    
 </body>
 </html>
