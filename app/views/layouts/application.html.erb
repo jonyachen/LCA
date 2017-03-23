@@ -1,21 +1,28 @@
-
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title><%= content_for?(:title) ? yield(:title) : "LCA App" %></title>
- <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "LCA App" %>">
- <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
- <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
- <%= csrf_meta_tags %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "LCA App" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "LCA App" %>">
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+    
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    
+    
+    
 </head>
+
 <body>
-  <% unless controller_name == "users" %>
-    <header>
-        <%= render 'users/navigation' %>
-    </header>
-  <% end %>
- <main role="main">
-    <%= render 'layouts/messages' %>
-    <%= yield %>
- </main>
+    <% unless controller_name == "users" %>
+        <header>
+            <%= render 'users/navigation' %>
+        </header>
+    <% end %>
+    
+    <main role="main">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+    </main>
+    
 </body>
