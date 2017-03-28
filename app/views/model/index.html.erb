@@ -48,12 +48,12 @@
                       <!-- Materials Search Bar-->
                       <div class="input-field col s6">
                         <i class="material-icons prefix">search</i>
-                        <input id="manufacturing-search" placeholder="Search materials" type="text" class="autocomplete">
+                        <input id="materials-search" placeholder="Search materials" type="text" class="autocomplete">
                       </div>
                       
                       <ul>
                           <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
-                            <ul id="materials" class="collapsible collection-item" data-collapsible="expandable">
+                            <ul id="materials" class="collapsible" data-collapsible="expandable">
                                 <li>
                                     <div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">
                                             <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
@@ -72,7 +72,7 @@
                                                       <!--temp hack for another layer-->
                                                       <% if (activity.id == 12 || activity.id == 23) %>
                                                         <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                                          <ul class="collapsible collection-item draggable" data-collapsible="expandable">
+                                                          <ul class="collection" data-collapsible="expandable">
                                                               <li>
                                                                   <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
                                                                   <div class="collapsible-body">
@@ -112,6 +112,14 @@
               <li id="processes-dropdown">
                   <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Processes</font></div>
                   <div class="collapsible-body">
+                    
+                      <!-- Process Search Bar-->
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">search</i>
+                        <input id="processes-search" placeholder="Search processes" type="text" class="autocomplete">
+                      </div>
+                      
+                      
                       <ul>
                           <% Activity.where(parent_type: "Category", parent_id: "2").each do |activity| %>
                             <ul class="collection">
@@ -126,6 +134,13 @@
               <li id="transport-dropdown">
                   <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Transport</font></div>
                   <div class="collapsible-body">
+                    
+                      <!-- Transport Search Bar-->
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">search</i>
+                        <input id="transport-search" placeholder="Search transportation" type="text" class="autocomplete">
+                      </div>
+                      
                       <ul>
                           <% Activity.where(parent_type: "Category", parent_id: "3").each do |activity| %>
                             <ul class="collection">
@@ -140,6 +155,13 @@
               <li id="use-dropdown">
                   <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Use</font></div>
                   <div class="collapsible-body">
+                    
+                      <!-- Use Search Bar-->
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">search</i>
+                        <input id="use-search" placeholder="Search usage" type="text" class="autocomplete">
+                      </div>
+                      
                       <ul>
                           <% Activity.where(parent_type: "Category", parent_id: "4").each do |activity| %>
                             <ul class="collection">
@@ -154,6 +176,13 @@
               <li id="eol-dropdown">
                   <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">End of Life</font></div>
                   <div class="collapsible-body">
+                    
+                      <!-- EoL Search Bar-->
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">search</i>
+                        <input id="eol-search" placeholder="Search end of life" type="text" class="autocomplete">
+                      </div>
+                      
                       <ul>
                           <% Activity.where(parent_type: "Category", parent_id: "5").each do |activity| %>
                             <ul class="collection">
