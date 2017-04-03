@@ -58,7 +58,7 @@ class ModelController < ApplicationController
   	@activities = Activity.categories.collect do |parent_type|
   		  [parent_type, Activity.where(parent_type: "Category").collect {|material| [material.name, material.id]}]
   	end
-  	
+
   	@materials = Activity.where(parent_type: "Category", parent_id: "1")
   	@processes = Activity.where(parent_type: "Category", parent_id: "2")
   	@transport = Activity.where(parent_type: "Category", parent_id: "3")

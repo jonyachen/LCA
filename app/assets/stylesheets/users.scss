@@ -44,7 +44,7 @@ html, body, main {
    li a {
       display: block;
       text-align: center;
-      padding: 14px 16px;
+      padding: 15px 16px;
       text-decoration: none;
    }
 
@@ -190,7 +190,7 @@ input, select, button, textarea {
 
 h1, .alpha {
   margin-bottom: 1.5rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 100;
   line-height: 1;
   letter-spacing: -.05em;
@@ -326,6 +326,7 @@ html {
 }
 
   .site__title {
+    margin-top: -1px;
     color: #f35626;
     background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
     -webkit-background-clip: text;

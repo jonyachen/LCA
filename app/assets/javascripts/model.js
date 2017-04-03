@@ -193,10 +193,11 @@ $(document).on('turbolinks:load', function() {
 			var name = item.innerText;
 			var id = $(item).data("id")
 
-			//if ($(item).data('type') == 'material') {
+			var type = $(item).data('type')
+			if (type == 'material') {
 
 				var $li = make_new_material_section(name, id);
-			//}
+			}
 		}
 	});
 
@@ -253,29 +254,68 @@ $(document).on('turbolinks:load', function() {
 
 /* Material search feature: updates drop-down list every time material search text box is updated */
 $(function(){
-
+	
 	$.expr[':'].Contains = function(a,i,m){
      return $(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
 
-	$('#material-search').keyup(function() {
-		var input = $('#material-search').val();
-		var categories = '#material-dropdown .collapsible .draggable';
-		var materials = '#material-dropdown .collapsible .draggable'; //what makes material draggable - Todo: attach to materials
+	//Can be merged into one function, but this allows for unique implementations while testing
+	
+	$('#materials-search').keyup(function() {
+		var input = $('#materials-search').val();
+		var categories = '#materials-dropdown .collapsible';
+		var materials = '#materials-dropdown .collapsible'; //what makes material draggable - Todo: attach to materials
 		$(categories).hide();
 		$(materials).hide();
 		$(materials + ':Contains('+ input +')').show();
 		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
 	});
+
 
 	$('#manufacturing-search').keyup(function() {
 		var input = $('#manufacturing-search').val();
 		var categories = '#new-dropdown .collapsible .draggable';
 		var materials = '#new-dropdown .collapsible .draggable';
-		$(categories).hide();
-		$(materials).hide();
-		$(materials + ':Contains('+ input +')').show();
-		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
 	});
 	
+	$('#processes-search').keyup(function() {
+		var input = $('#processes-search').val();
+		var categories = '#processes-dropdown .draggable';
+		var processes = '#processes-dropdown .draggable'; //what makes material draggable - Todo: attach to materials
+
+		$(categories).hide();
+		$(processes).hide();
+		$(processes + ':Contains('+ input +')').show();
+		$(processes + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+	
+	$('#transport-search').keyup(function() {
+		var input = $('#transport-search').val();
+		var categories = '#transport-dropdown .draggable';
+		var transport = '#transport-dropdown .draggable'; //what makes material draggable - Todo: attach to materials
+		$(categories).hide();
+		$(transport).hide();
+		$(transport + ':Contains('+ input +')').show();
+		$(transport + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+	
+	$('#use-search').keyup(function() {
+		var input = $('#use-search').val();
+		var categories = '#use-dropdown .draggable';
+		var use = '#use-dropdown .draggable'; //what makes material draggable - Todo: attach to materials
+		$(categories).hide();
+		$(use).hide();
+		$(use + ':Contains('+ input +')').show();
+		$(use + ':Contains('+ input +')').closest('.collapsible').show();
+	});
+	
+	$('#eol-search').keyup(function() {
+		var input = $('#eol-search').val();
+		var categories = '#eol-dropdown .draggable';
+		var eol = '#eol-dropdown .draggable'; //what makes material draggable - Todo: attach to materials
+		$(categories).hide();
+		$(eol).hide();
+		$(eol + ':Contains('+ input +')').show();
+		$(eol + ':Contains('+ input +')').closest('.collapsible').show();
+	});
 });
