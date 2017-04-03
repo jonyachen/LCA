@@ -1,1 +1,1 @@
-[{"name":"Test 1","children":[{"activity_id":"5","quantity":"3","units":"kg","children":[{"activity_id":"32","quantity":"3","units":"m^2"}]},{"activity_id":"41","quantity":"2","units":"kg"},{"activity_id":"48","quantity":"1","units":"kg","children":[{"activity_id":"5","quantity":"3","units":"kg"}]}]}]
+[{"name":"Test1","children":[{"activity_id":"33","quantity":"1","units":"kg"}]}]

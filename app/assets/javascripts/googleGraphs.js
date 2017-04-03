@@ -1,5 +1,6 @@
 /* global _, data, gon, d3 */
 var project = flattenChildValues(JSON.parse(gon.data));
+var projectTitle = JSON.parse(gon.data)[0].name;
 var chartHeight = 340;
 var chartWidth = 800;
 var currViewBar = [{name: "Life cycle stages", data: project}];
@@ -220,14 +221,14 @@ function drawChart(params){
 
 drawChart({
   data: project,
-  title: "Life cycle stages breakdown",
+  title: projectTitle +  " breakdown",
   type: "bar",
   div: "chart_project_bar"
 });
 
 drawChart({
   data: project,
-  title: "Life cycle stages breakdown",
+  title: projectTitle + " breakdown",
   type: "candle",
   div: "chart_project_candle"
 });
@@ -253,13 +254,13 @@ $(document).ready( function() {
 	});
 	
 	$('#reset-bar').click(function () {
-	  currViewBar = [{name: "Life cycle stages", data: project}];
+	  currViewBar = [{name: projectTitle, data: project}];
 	  var title = currViewBar[0].name + " breakdown";
     drawChart.drawBar({data: project, div: "chart_project_bar", title: title});
 	});
 	
 	$('#reset-candle').click(function () {
-	  currViewCandle = [{name: "Life cycle stages", data: project}];
+	  currViewCandle = [{name: projectTitle, data: project}];
 	  var title = currViewBar[0].name + " breakdown";
     drawChart.drawCandle({data: project, div: "chart_project_candle", title: title});
 	});

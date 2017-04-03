@@ -10,7 +10,7 @@ class GraphController < ApplicationController
         def create_obj_hash(type, activity, children)
             a_hash = activity
             if (type == "activity")
-                a_id = activity["activity_id"].to_i
+                a_id = activity["activity_id"]
                 a = Activity.find(a_id)
                 a_hash["name"] = a.name
             else
@@ -39,7 +39,7 @@ class GraphController < ApplicationController
         # New data from model_controller
         #model = JSON.parse(params[:build])
         puts "MODEL"
-        model = JSON.parse(params[:build].gsub(/"(\d)"/, '\1'))
+        model = JSON.parse(params[:build].gsub(/"(\d+)"/, '\1'))
         
         puts model
         

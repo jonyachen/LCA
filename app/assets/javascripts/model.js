@@ -59,7 +59,7 @@ function make_new_material_section(name, id, quantity, measurement) {
 	var $delButton = make_delete_button($li, 'material');
 	$delButton.appendTo($head);
 
-	$li.appendTo($('#build'));
+	$li.appendTo($('#build')); //appends material to bottom of build
 	return $li;
 }
 
@@ -270,8 +270,8 @@ $(function(){
 
 	$('#manufacturing-search').keyup(function() {
 		var input = $('#manufacturing-search').val();
-		var categories = '#manufacturing-dropdown .collapsible .draggable';
-		var materials = '#manufacturing-dropdown .collapsible .draggable';
+		var categories = '#new-dropdown .collapsible .draggable';
+		var materials = '#new-dropdown .collapsible .draggable';
 		$(categories).hide();
 		$(materials).hide();
 		$(materials + ':Contains('+ input +')').show();

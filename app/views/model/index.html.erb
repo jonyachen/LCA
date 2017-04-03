@@ -158,25 +158,28 @@
            </li>
            -->
            
+           <!-- NEWWWWWWWW STUFFFFFFFFFFF -->
         <!-- Materials-->
            <li id="new-dropdown">
              <div style="background-color: #000000" class="collapsible-header"><i class="material-icons">expand_more</i><font color="white">Materials</font></div>
              <div class="collapsible-body">
-                 <!--
+                 
                 <div class="input-field col s6">
                     <i class="material-icons prefix">search</i>
                     <input id="manufacturing-search" placeholder="Search processes" type="text" class="autocomplete">
                 </div>
-                -->
+                
                  <ul>
                     <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
                        <ul id="materials" class="collapsible collection-item" data-collapsible="expandable">
                            
                        <li>
-                           <div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">
-                                     <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                    </ul></div>
-                           <div class="collapsible-body">
+                            <div class="collapsible-header"><i class="material-icons">expand_more</i>
+                               <ul class="collection">
+                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                </ul>
+                            </div>
+                            <div class="collapsible-body">
                                 <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
                                 <ul class="collapsible collection-item draggable" data-collapsible="expandable">
                                     
@@ -185,7 +188,6 @@
                                     <ul class="collection">
                                      <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
                                     </ul>
-                                   
                                     </div>
                                     <div class="collapsible-body">
                                         
@@ -195,7 +197,11 @@
                                             <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
                                             <ul class="collapsible collection-item draggable" data-collapsible="expandable">
                                             <li>
-                                                <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
+                                                <div class="collapsible-header"><i class="material-icons">expand_more</i>
+                                                <ul class="collection">
+                                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
+                                                </ul>
+                                                </div>
                                                 <div class="collapsible-body">
                                                     <ul class="collection">
                                                     <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
@@ -285,8 +291,8 @@
       <td id="assembly">
 
            <ul id="build" style = " height:70vh; border:1px solid #D5D5D5; padding: 0px 0px 160px 0px;  overflow-y:scroll;" class="collection"></ul>
-
-               Drop your materials here!
+           
+           <a class="waves-effect waves-light btn">Add Subassembly</a>
             
             
             
