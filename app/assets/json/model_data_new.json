@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"name":"Test1","children":[{"activity_id":"33","quantity":"1","units":"kg"}]}]
-=======
-[{"name":"manufacturing","children":[{"activity_id":"4","quantity":"0","units":"kg","children":[{"activity_id":"32","quantity":"0","units":"kg"},{"activity_id":"34","quantity":"0","units":"kg"},{"activity_id":"35","quantity":"0","units":"kg"}]}]},{"name":"transport","children":[]},{"name":"use","children":[]},{"name":"end of life","children":[]}]
->>>>>>> searchbar
+[{"name":"Metal Comparison","children":[{"activity_id":"5","quantity":"5","units":"kg","children":[{"activity_id":"35","quantity":"5","units":"kg"}]}]}]

@@ -126,7 +126,7 @@ html, body, main {
           box-sizing: border-box;
 }
 
-input, select, button, textarea {
+input, button, textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -153,16 +153,16 @@ input, select, button, textarea {
 
 .butt {
   border: 2px solid #f35626;
-  line-height: 1.375;
+  line-height: 1;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 
-  font-weight: 700;
+  font-weight: 600;
 
-  color: #f35626;
+  color: #ffffff;
 
   cursor: pointer;
-  -webkit-animation: hue 60s infinite linear;
+//  -webkit-animation: hue 60s infinite linear;
 }
 
   .butt--primary {

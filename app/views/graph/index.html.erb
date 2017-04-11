@@ -5,13 +5,13 @@
     	<% stylesheet_link_tag "graph", media: "all" %>
     	<%= include_gon %>
     	<%= javascript_include_tag "materialize.min.js" %>
+    	<% stylesheet_link_tag "materialize.min.cs", media: "all" %>
     	<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     	<%= javascript_include_tag "googleGraphs.js" %>
     	
 	</head>
 
 	<body>
-
 			<br><br>
 			<%= link_to 'Return to model building', root_path, method: 'GET', class: 'button' %>
 			<h1>Environmental Impact Assessment</h1>

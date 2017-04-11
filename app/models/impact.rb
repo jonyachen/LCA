@@ -5,9 +5,7 @@ class Impact < ApplicationRecord
         id = activity["activity_id"]
         quantity = activity["quantity"]
         units = activity["units"]
-        puts "UNITS IN GET_VALUE"
-        puts units
-        puts id
+        
         children = activity["children"]
         
         # Overall value of categories is the sum of all children activities
@@ -21,6 +19,8 @@ class Impact < ApplicationRecord
                         @uncertainty_upper += innerChild["quantity"] * innerChild["uncertain_upper"]
                     }
                 end
+                puts "CHILD"
+                puts child
                 @value += child["value"]
                 @uncertainty_lower += child["quantity"] * child["uncertain_lower"]
                 @uncertainty_upper += child["quantity"] * child["uncertain_upper"]

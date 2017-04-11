@@ -43,10 +43,9 @@ function make_new_material_section(name, id, quantity, measurement) {
 			var id = $(from).data("id");
 			var name = $(from).data("name");
 			//if ($(from).data('type') == 'procedure') {
-				//console.log($(this).processes.offsetparent.childElementCount);
-				console.log($(this).find(".processes").children().length);
+				//console.log($(this).find(".processes").children().length);
 				if ($(this).find(".processes").children().length > 1) {
-					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
+					add_proc_to($li, name, id, 0,$head.find("#measurement").val()); //if already one child
 				}
 				else {
 					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
@@ -63,11 +62,93 @@ function make_new_material_section(name, id, quantity, measurement) {
 	return $li;
 }
 
+function make_new_subassembly(){
+	//quantity = typeof quantity !== 'undefined' ? quantity : 0;
+	//measurement = typeof measurement !== 'undefined' ? measurement : "kg";
+	var $li = $('<li></li>', {
+		"class": 'material-section'
+	});
+
+	var $head = $('<div></div>', {
+		"class": 'subassembly',
+		"text":"\uD83D\uDCC2  " + "Subassembly A",
+		//"data-id": id,
+		//"data-name": name,
+		//"quantity": quantity,
+		//"measurement": measurement
+	});
+	
+	var $delButton = make_delete_button($li, 'material');
+	$delButton.appendTo($head);
+
+	var $body = $('<ul></ul>', {
+		"class": 'collection processes'
+	});
+
+	var $procdrop = $('<li></li>', {
+		"class": 'subassembly-item',
+		"text": "Drop items into subassembly here."
+	});
+
+	//console.log("Creating a new Material..");
+
+	$procdrop.appendTo($body);
+	$head.appendTo($li);
+	$body.appendTo($li);
+	//add_inputs($head, 'material');
+	//$head.find("#quantity").val(quantity);
+	//$head.find("#measurement").val(measurement);
+
+
+	$li.droppable({
+		greedy: true,
+
+		drop: function(event, ui) {
+			/*
+			var from = ui.draggable[0];
+			var id = $(from).data("id");
+			var name = $(from).data("name");
+			//if ($(from).data('type') == 'procedure') {
+				//console.log($(this).processes.offsetparent.childElementCount);
+				console.log($(this).find(".processes").children().length);
+				if ($(this).find(".processes").children().length > 1) {
+					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
+				}
+				else {
+					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
+				}
+				*/
+				add_proc_to($li, "test", "2", 0,"test2");
+			//}
+		}
+		
+		/*
+		drop: function (event, ui) {
+			var item = ui.draggable[0]
+			var name = item.innerText;
+			var id = $(item).data("id")
+
+			var type = $(item).data('type')
+			if (type == 'material') {
+
+				var $li = make_new_material_section(name, id);
+			}
+		}
+		*/
+	});
+
+
+
+	$li.appendTo($('#build')); //appends material to bottom of build
+	return $li;
+}
+
 function add_inputs($obj, obj_type, css_type) {
 	if (obj_type == "material" || obj_type == "process") {
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
 		$quant.appendTo($obj);
-		var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
+		//var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
+		var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="foo">foo</option><option value="bar">bar</option></select>')
 		$measure.appendTo($obj);
 	}
 }
@@ -163,6 +244,8 @@ Pretty hack-ey. document.ready doesn't seem to work here. This also causes probl
 
     
 $(document).on('turbolinks:load', function() {
+
+  
 	$('.draggable').draggable({
 		containment: 'window',
 		appendTo: 'body',
@@ -186,7 +269,7 @@ $(document).on('turbolinks:load', function() {
 	$('.dropdown-content').css({'position': 'absolute', 'width': '350px'});
 
 
-	$('#assembly').droppable({
+	$('#assembly').droppable({ //lets you drop things into main build
 		drop: function (event, ui) {
 			var item = ui.draggable[0]
 			//console.log(ui.draggable[0])
@@ -204,6 +287,11 @@ $(document).on('turbolinks:load', function() {
 	$('#build').sortable({
 		containment: "window",
 		appendTo: 'body'
+	})
+	
+	$('#add_subassembly').click(function() {
+		//var id = "test";
+		var $li = make_new_subassembly();
 	})
 	
 	$('#save').click(function() {
@@ -249,7 +337,7 @@ $(document).on('turbolinks:load', function() {
 	// $('<style></style>', {
 	// 	innerHTML: '#menu > li.active > .collapsible-body { max-height: ' + menu_height - library_height + ';}'
 	// }).appendTo($('head'));
-});
+	});
 
 
 /* Material search feature: updates drop-down list every time material search text box is updated */
