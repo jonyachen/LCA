@@ -1,5 +1,7 @@
 class GraphController < ApplicationController
     def index
+        puts "Graphing this data: "
+        puts params[:data]
         data_json = params[:data]
         gon.data = data_json
     end    
@@ -39,7 +41,8 @@ class GraphController < ApplicationController
         # New data from model_controller
         #model = JSON.parse(params[:build])
         puts "MODEL"
-        model = JSON.parse(params[:build].gsub(/"(\d+)"/, '\1'))
+        model = Assembly.find(session[:assembly_id]).components_json
+        model = JSON.parse(model.gsub(/"(\d+)"/, '\1'))
         
         puts model
         

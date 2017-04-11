@@ -143,13 +143,16 @@ Impact.create!(:impact_per_unit=>159.0, :uncertainty_lower=>48.0, :uncertainty_u
 Impact.create!(:impact_per_unit=>61.0, :uncertainty_lower=>44.0, :uncertainty_upper=>30.0, :activity_id=>50)
 
 # Can add :type if it makes querying easier for model building drop-down display
+Unit.create!(:unit=> "kg", :conversion_to_si=>1.0, :type=> "mass")
 Unit.create!(:unit=> "oz", :conversion_to_si=>0.0283, :type=> "mass")
 Unit.create!(:unit=> "lb", :conversion_to_si=>0.4536, :type=> "mass")
 Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000.0, :type=> "mass")
+Unit.create!(:unit=> "m^2", :conversion_to_si=>1.0, :type=> "SA")
 Unit.create!(:unit=> "in^2", :conversion_to_si=>6.452E-04, :type=> "SA")
 Unit.create!(:unit=> "ft^2", :conversion_to_si=>0.0929, :type=> "SA")
 Unit.create!(:unit=> "in", :conversion_to_si=>0.0254, :type=> "length")
 Unit.create!(:unit=> "ft", :conversion_to_si=>0.3048, :type=> "length")
-Unit.create!(:unit=> "mile", :conversion_to_si=>1609.34, :type=> "distance")
+Unit.create!(:unit=> "m", :conversion_to_si=>1.0, :type=> "length")
+Unit.create!(:unit=> "mi", :conversion_to_si=>1609.34, :type=> "length")
 
 

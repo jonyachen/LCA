@@ -1,5 +1,6 @@
 class ModelController < ApplicationController
   def index
+    puts "RUNNING INDEX"
    #  before_action :authenticate_user!
     #session.clear()
     if session[:user_id] == nil
@@ -122,7 +123,9 @@ class ModelController < ApplicationController
     @assembly.components = hash
     @assembly.components_json = @model.to_json
     @assembly.name = params[:assembly_name]
-    #@assembly.deblob
+    puts "PARAMS"
+    puts @assembly.components_json
+    #@assembly.deblobf
     result = @assembly.save
 
     respond_to do |format|

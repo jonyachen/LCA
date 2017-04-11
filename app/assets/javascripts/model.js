@@ -147,8 +147,12 @@ function add_inputs($obj, obj_type, css_type) {
 	if (obj_type == "material" || obj_type == "process") {
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
 		$quant.appendTo($obj);
-		//var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
-		var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="foo">foo</option><option value="bar">bar</option></select>')
+		var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
+		//var measurement_text = '<label for="measurement" class="label">Measure</label>'
+		//for 
+		
+		//measurement_text += '<select id="measurement"><option value="foo">foo</option><option value="bar">bar</option></select>'
+		//var $measure = $(measurement_text)
 		$measure.appendTo($obj);
 	}
 }
