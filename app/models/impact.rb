@@ -19,8 +19,8 @@ class Impact < ApplicationRecord
                         @uncertainty_upper += innerChild["quantity"] * innerChild["uncertain_upper"]
                     }
                 end
-                puts "CHILD"
-                puts child
+                #puts "CHILD"
+                #puts child
                 @value += child["value"]
                 @uncertainty_lower += child["quantity"] * child["uncertain_lower"]
                 @uncertainty_upper += child["quantity"] * child["uncertain_upper"]
@@ -31,8 +31,13 @@ class Impact < ApplicationRecord
             if !(Impact.where(activity_id: id).present?)
                 # If not a leaf node, estimated value is the avg of children values and
                 # uncertainty is defined by min of children's lower bound and max of their upper bound
+                
                 @value = quantity * Impact.calc_avg_values(id) * unit_conv_factor
                 absolute_min_error, absolute_max_error = Impact.get_min_max(id) * unit_conv_factor
+                #puts "ABS MIN"
+                #puts absolute_min_error
+                #puts "ABS MAX"
+                #puts absolute_max_error
                 @uncertainty_lower = @value - quantity * absolute_min_error
                 @uncertainty_upper = quantity * absolute_max_error - @value
             else
@@ -48,35 +53,98 @@ class Impact < ApplicationRecord
     
     # If there is no impact in the database, find minimum and maximum of children uncertainty
     def self.get_min_max(id)
+        def self.recursive_min_max(id)
+            children = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
+            children.each_with_index { |child, index|
+                impact = Impact.where(activity_id: child.id)
+                
+                if !(impact.present?)
+                    min, max = self.recursive_min_max(child.id)
+                    if (index == 0)
+                        @min = min
+                        @max = max
+                    end
+                else
+                    impact = impact.first
+                    if (index == 0)
+                        @min = impact.impact_per_unit - impact.uncertainty_lower
+                        @max = impact.impact_per_unit + impact.uncertainty_upper
+                    end
+                    min = impact.impact_per_unit - impact.uncertainty_lower
+                    max = impact.impact_per_unit + impact.uncertainty_upper
+                end
+                #puts "MIN"
+                #puts min
+                if (min < @min)
+                    @min = min
+                end
+                if (max > @max)
+                    @max = max
+                end
+            }
+            return @min, @max
+        end
+        
         @min = nil
         @max = nil
+        self.recursive_min_max(id)
+        
         # Returns the minimum/maximum per unit value based on children uncertainty used to calculate lower/upper error bound
-        children_activities = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
-        Impact.where(activity_id: children_activities).each_with_index { |impact, index|
-            if (index == 0)
-                @min = impact.impact_per_unit - impact.uncertainty_lower
-                @max = impact.impact_per_unit + impact.uncertainty_upper
-            end
-            diff = impact.impact_per_unit - impact.uncertainty_lower
-            sum = impact.impact_per_unit + impact.uncertainty_upper
-            if (diff < @min)
-                @min = diff
-            end
-            if (sum > @max)
-                @max = sum
-            end
-        }
+        
+     
+     #   Impact.where(activity_id: children_activities).each_with_index { |impact, index|
+     #       if (index == 0)
+     #           @min = impact.impact_per_unit - impact.uncertainty_lower
+     #           @max = impact.impact_per_unit + impact.uncertainty_upper
+     #       end
+     #       diff = impact.impact_per_unit - impact.uncertainty_lower
+     #       sum = impact.impact_per_unit + impact.uncertainty_upper
+     #       if (diff < @min)
+     #           @min = diff
+     #       end
+     #       if (sum > @max)
+     #           @max = sum
+     #       end
+     #   }
         return @min, @max
     end
     
     def self.calc_avg_values(id)
+        def self.recursive_sum(id, sum)
+            children = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
+            value = 0
+            children.each { |child|
+                if !(Impact.where(activity_id: child.id).present?)
+                    puts child.id
+                    #value = self.recursive_sum(child.id, sum)
+                    #sum += value
+                    #puts value
+                    return sum + self.recursive_sum(child.id, sum)
+                else
+                    puts child.id
+                    value += Impact.where(activity_id: child.id).first.impact_per_unit
+                    #sum += value
+                    #puts value
+                    #return value
+                end
+                
+            }
+            puts value
+            return value
+        end
+        
         # Returns the average value of children values
-        children_activities = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
         sum = 0
-        Impact.where(activity_id: children_activities).each { |impact|
-            sum += impact.impact_per_unit
-        }
-        return sum / children_activities.length
+        @sum = self.recursive_sum(id, sum)
+        children = Activity.where("parent_type = ? AND parent_id = ?", "Activity", id)
+        
+        #Impact.where(activity_id: children_activities).each { |impact|
+        #    puts "adding sum"
+        #    puts sum
+        #    sum += impact.impact_per_unit
+        #}
+        #return @sum / children.length
+        return @sum
     end
     
 end

@@ -53,61 +53,41 @@
                         <i class="material-icons prefix">search</i>
                         <input id="materials-search" placeholder="Search materials" type="text" class="autocomplete">
                       </div>
+
+                      <!-- Material library -->    
                       
-                      <ul>
-                          <% Activity.where(parent_type: "Category", parent_id: "1").each do |activity| %>
-                            <ul id="materials" class="collapsible" data-collapsible="expandable">
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">
-                                            <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                    </ul></div>
-                                    
-                                    <div class="collapsible-body">
-                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                          <ul class="collapsible collection-item draggable" data-collapsible="expandable">
-                                              <li>
-                                                  <div class="collapsible-header"><i class="material-icons">expand_more</i>
-                                                  <ul class="collection">
-                                                    <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                                  </ul></div>
-                                                  
-                                                  <div class="collapsible-body"> 
-                                                      <!--temp hack for another layer-->
-                                                      <% if (activity.id == 12 || activity.id == 23) %>
-                                                        <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                                          <ul class="collection" data-collapsible="expandable">
-                                                              <li>
-                                                                  <div class="collapsible-header"><i class="material-icons">expand_more</i><%= activity.name %></div>
-                                                                  <div class="collapsible-body">
-                                                                      <ul class="collection">
-                                                                          <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                                                            <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                                                          <% end %>
-                                                                      </ul>
-                                                                  </div>
-                                                              </li>
-                                                          </ul>
-                                                        <% end %>
-                                                      
-                                                      <% else %>
-                                                        <ul class="collection">
-                                                            <% Activity.where(parent_type: "Activity", parent_id: activity.id).each do |activity| %>
-                                                              <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                                                            <% end %>
-                                                        </ul>
-                                                      <% end %>
-                                                  </div>
-                                                  
-
-                                              </li>
-                                          </ul>
-                                        <% end %>
-                                    </div>
-
-                                </li>
-                            </ul>
-                          <% end %>
+                      <%= @materials_html %>
+<!--
+                      <ul id="materials" class="collapsible" data-collapsible="expandable">
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">expand_more</i>ferrous</div>
+                          <div class="collapsible-body"><ul class="collection">
+                            
+                            <ul class="collapsible" data-collapsible="expandable">
+                            <li>
+                            <div class="collapsible-header"><i class="material-icons">expand_more</i>iron alloy</div>
+                            <div class="collapsible-body"><ul class="collection">
+                               <li class="collection-item draggable">cast iron milling</li>
+                               <li class="collection-item draggable"> test2</li>
+                            </ul></div>
+                            </li>
+                            
+                            <li>
+                            <div class="collapsible-header"><i class="material-icons">expand_more</i>iron alloy</div>
+                            <div class="collapsible-body"><ul class="collection">
+                               <li class="collection-item draggable">cast iron milling</li>
+                               <li class="collection-item draggable"> test2</li>
+                            </ul></div>
+                            </li>
+                          </ul>
+                            
+                          </ul></div>
+                        </li>
                       </ul>
+-->
+
+
+
                   </div>
               </li>
               

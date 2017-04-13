@@ -118,7 +118,33 @@ function make_new_subassembly(){
 					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
 				}
 				*/
-				add_proc_to($li, "test", "2", 0,"test2");
+				var from = ui.draggable[0];
+				var id = "4";
+				var name = from.innerText;
+				add_subassembly_to($li, name, id, 0, 0);
+				
+				/*
+				var $new_li = $('<li></li>', {
+					"class": 'material-section'
+				});
+				var $new_head = $('<div></div>', {
+					"class": 'material',
+					"text":"TEST",
+				});
+				var $new_delButton = make_delete_button($new_li, 'material');
+				$new_delButton.appendTo($new_head);
+				var $new_body = $('<ul></ul>', {
+					"class": 'collection processes'
+				});
+				var $new_procdrop = $('<li></li>', {
+					"class": 'collection-item',
+					"text": "Drop items into material here."
+				});
+				$new_procdrop.appendTo($new_body);
+				$new_head.appendTo($new_li);
+				$new_body.appendTo($new_li);
+				$new_li.insertAfter(".subassembly");
+				*/
 			//}
 		}
 		
@@ -151,8 +177,8 @@ function add_inputs($obj, obj_type, css_type) {
 		//var measurement_text = '<label for="measurement" class="label">Measure</label>'
 		//for 
 		
-		//measurement_text += '<select id="measurement"><option value="foo">foo</option><option value="bar">bar</option></select>'
-		//var $measure = $(measurement_text)
+		//measurement_text += '<select id="measurement"><option value="foo">kg</option><option value="bar">m^2</option></select>'
+		//var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="foo">kg</option><option value="bar">m^2</option></select>')
 		$measure.appendTo($obj);
 	}
 }
@@ -163,6 +189,29 @@ function add_proc_to($mat, name, id, quantity, measurement) {
 	var $proc = $('<li></li>', {
 		"class": 'collection-item process',
 		"text": name,
+		"data-id": id,
+		"data-name": name,
+		"quantity": quantity,
+		"measurement": measurement
+	});
+	var $delButton = make_delete_button($proc, 'process');
+	$delButton.appendTo($proc);
+	add_inputs($proc, 'process');
+
+	$proc.find("#quantity").val(quantity);
+	$proc.find("#measurement").val(measurement);
+
+	// $mat.find('.processes :last-child').before($proc);
+	$mat.find('.processes :last').before($proc);
+}
+
+function add_subassembly_to($mat, name, id, quantity, measurement) {
+	quantity = typeof quantity !== 'undefined' ? quantity : 0;
+	measurement = typeof measurement !== 'undefined' ? measurement : "";
+	var $proc = $('<li></li>', {
+		//"class": 'collection-item process',
+		"class": 'material', //change to block?
+		"text": "metals", //hack
 		"data-id": id,
 		"data-name": name,
 		"quantity": quantity,

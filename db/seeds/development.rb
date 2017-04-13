@@ -1,30 +1,4 @@
-Material.delete_all
-Material.create!(:title => "Steel", :category => "Metal")
-Material.create!(:title => "Copper", :category => "Metal")
-Material.create!(:title => "Aluminum", :category => "Metal")
-Material.create!(:title => "Concrete", :category => "Ceramic")
-Material.create!(:title => "Glass", :category => "Ceramic")
-Material.create!(:title => "Clay", :category => "Ceramic")
-Material.create!(:title => "Wood", :category => "Wood")
-Material.create!(:title => "Acids", :category => "Chemicals")
-Material.create!(:title => "Epoxy", :category => "Polymers")
-
-Procedure.delete_all
-Procedure.create!(:title => "Rail", :material => "Copper", :category => "Transportation")
-Procedure.create!(:title => "Truck",:material => "Copper",  :category => "Transportation")
-Procedure.create!(:title => "Boat",:material => "Copper",  :category => "Transportation") 
-Procedure.create!(:title => "Plane", :material => "Copper", :category => "Transportation") 
-
-Procedure.create!(:title => "Hot Roll", :category => "Manufacturing", :material => "Steel") 
-Procedure.create!(:title => "Cold Roll", :category => "Manufacturing", :material => "Steel") 
-Procedure.create!(:title => "Tempering", :category => "Manufacturing", :material => "Glass") 
-
-Procedure.create!(:title => "Landfill",:material => "Copper",  :category => "EoL")
-Procedure.create!(:title => "Recycle", :material => "Copper", :category => "EoL")
-
-Procedure.create!(:title => "Product Use",:material => "Copper",  :category => "Use")
-
-# NEW STRUCTURED SEED DATA STARTS HERE
+# Life cycle categories
 Category.delete_all
 Category.create!(:name=>"Material")
 Category.create!(:name=>"Process")
@@ -105,12 +79,14 @@ Activity.create!(:name=>"recycling", :units=>"kg", :parent_type=>"Category", :pa
 
 
 # IMPACTS FOR LEAF NODES
+Impact.delete_all
 Impact.create!(:impact_per_unit=>281.0, :uncertainty_lower=>11.0, :uncertainty_upper=>15.0, :activity_id=>5)
 Impact.create!(:impact_per_unit=>165.0, :uncertainty_lower=>17.0, :uncertainty_upper=>18.0, :activity_id=>6)
 Impact.create!(:impact_per_unit=>152.0, :uncertainty_lower=>25.0, :uncertainty_upper=>29.0, :activity_id=>7)
 Impact.create!(:impact_per_unit=>347.0, :uncertainty_lower=>22.0, :uncertainty_upper=>12.0, :activity_id=>9)
 Impact.create!(:impact_per_unit=>187.0, :uncertainty_lower=>28.0, :uncertainty_upper=>5.0, :activity_id=>10)
 Impact.create!(:impact_per_unit=>480.0, :uncertainty_lower=>6.0, :uncertainty_upper=>24.0, :activity_id=>11)
+# Metals
 Impact.create!(:impact_per_unit=>217.0, :uncertainty_lower=>6.0, :uncertainty_upper=>11.0, :activity_id=>14)
 Impact.create!(:impact_per_unit=>373.0, :uncertainty_lower=>12.0, :uncertainty_upper=>22.0, :activity_id=>15)
 Impact.create!(:impact_per_unit=>13.0, :uncertainty_lower=>2.0, :uncertainty_upper=>28.0, :activity_id=>17)
@@ -122,6 +98,9 @@ Impact.create!(:impact_per_unit=>218.0, :uncertainty_lower=>31.0, :uncertainty_u
 Impact.create!(:impact_per_unit=>462.0, :uncertainty_lower=>11.0, :uncertainty_upper=>48.0, :activity_id=>25)
 Impact.create!(:impact_per_unit=>162.0, :uncertainty_lower=>18.0, :uncertainty_upper=>42.0, :activity_id=>26)
 Impact.create!(:impact_per_unit=>481.0, :uncertainty_lower=>35.0, :uncertainty_upper=>44.0, :activity_id=>28)
+
+Impact.create!(:impact_per_unit=>407.0, :uncertainty_lower=>8.0, :uncertainty_upper=>58.0, :activity_id=>30)
+Impact.create!(:impact_per_unit=>358.0, :uncertainty_lower=>33.0, :uncertainty_upper=>40.0, :activity_id=>31)
 Impact.create!(:impact_per_unit=>221.0, :uncertainty_lower=>34.0, :uncertainty_upper=>10.0, :activity_id=>32)
 Impact.create!(:impact_per_unit=>20.0, :uncertainty_lower=>12.0, :uncertainty_upper=>8.0, :activity_id=>33)
 Impact.create!(:impact_per_unit=>366.0, :uncertainty_lower=>33.0, :uncertainty_upper=>40.0, :activity_id=>34)
@@ -143,16 +122,18 @@ Impact.create!(:impact_per_unit=>159.0, :uncertainty_lower=>48.0, :uncertainty_u
 Impact.create!(:impact_per_unit=>61.0, :uncertainty_lower=>44.0, :uncertainty_upper=>30.0, :activity_id=>50)
 
 # Can add :type if it makes querying easier for model building drop-down display
-Unit.create!(:unit=> "kg", :conversion_to_si=>1.0, :type=> "mass")
-Unit.create!(:unit=> "oz", :conversion_to_si=>0.0283, :type=> "mass")
-Unit.create!(:unit=> "lb", :conversion_to_si=>0.4536, :type=> "mass")
-Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000.0, :type=> "mass")
-Unit.create!(:unit=> "m^2", :conversion_to_si=>1.0, :type=> "SA")
-Unit.create!(:unit=> "in^2", :conversion_to_si=>6.452E-04, :type=> "SA")
-Unit.create!(:unit=> "ft^2", :conversion_to_si=>0.0929, :type=> "SA")
-Unit.create!(:unit=> "in", :conversion_to_si=>0.0254, :type=> "length")
-Unit.create!(:unit=> "ft", :conversion_to_si=>0.3048, :type=> "length")
-Unit.create!(:unit=> "m", :conversion_to_si=>1.0, :type=> "length")
-Unit.create!(:unit=> "mi", :conversion_to_si=>1609.34, :type=> "length")
+Unit.delete_all
+Unit.create!(:unit=> "kg", :conversion_to_si=>1.0, :category=> "mass")
+Unit.create!(:unit=> "oz", :conversion_to_si=>0.0283, :category=> "mass")
+Unit.create!(:unit=> "lb", :conversion_to_si=>0.4536, :category=> "mass")
+Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000.0, :category=> "mass")
+Unit.create!(:unit=> "m^2", :conversion_to_si=>1.0, :category=> "SA")
+Unit.create!(:unit=> "in^2", :conversion_to_si=>6.452E-04, :category=> "SA")
+Unit.create!(:unit=> "ft^2", :conversion_to_si=>0.0929, :category=> "SA")
+Unit.create!(:unit=> "in", :conversion_to_si=>0.0254, :category=> "length")
+Unit.create!(:unit=> "ft", :conversion_to_si=>0.3048, :category=> "length")
+Unit.create!(:unit=> "m", :conversion_to_si=>1.0, :category=> "length")
+Unit.create!(:unit=> "mi", :conversion_to_si=>1609.34, :category=> "length")
+Unit.create!(:unit=> "m^3", :conversion_to_si=>1.0, :category=> "volume")
 
 

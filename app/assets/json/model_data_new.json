@@ -1,1 +1,1 @@
-[{"name":"Metal Comparison","children":[{"activity_id":"32","quantity":"2","units":"kg"},{"activity_id":"5","quantity":"1","units":"kg"},{"activity_id":"37","quantity":"1","units":"kg"},{"activity_id":"41","quantity":"2","units":"kg"}]}]
+[{"name":"test blah","children":[{"activity_id":"2","quantity":"6","units":"kg","children":[{"activity_id":"33","quantity":"6","units":"kg"},{"activity_id":"34","quantity":"2","units":"kg"}]},{"activity_id":"29","quantity":"2","units":"kg"}]}]

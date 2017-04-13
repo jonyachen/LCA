@@ -1,6 +1,49 @@
 class ModelController < ApplicationController
+  helper_method :generate_materials
+  def generate_materials
+    materials_html = '<ul id="materials" class="collapsible" data-collapsible="expandable">'
+    materials = Activity.where(parent_type: "Category", parent_id: "1")
+    materials.each{ |material|
+      materials_html += '<li>'
+      materials_html += generate_mat_tiers(material)
+      materials_html += '</li>'
+    }
+    return materials_html
+  end
+  
+  def generate_mat_tiers(activity)
+    if !(Activity.where(parent_type: "Activity", parent_id: activity.id).present?)
+      # Base - If the activity has no children
+      
+      leaf_html = '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li>'
+      return leaf_html
+    else
+      # If activity has children, create a header for the activity and collection for children
+      parent_html = '<div class="collapsible-header draggable"><i class="material-icons">expand_more</i><ul class="collection">'
+      parent_html += '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li></ul></div>'
+      parent_html += '<div class="collapsible-body"><ul class="collection">'
+      parent_html += '<ul class="collapsible" data-collapsible="expandable">'
+      
+    
+                                                  
+      #parent_html = '<div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">'
+      #parent_html += '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li></ul></div>'
+
+      children = Activity.where(parent_type: "Activity", parent_id: activity.id)
+      children.each { |child|
+        parent_html += '<li>'
+        
+        recur = generate_mat_tiers(child)
+        unless recur.kind_of?(Array)
+          parent_html += recur
+        end
+      }
+      parent_html += "</ul></ul></div>"
+      return parent_html
+    end
+  end
+  
   def index
-    puts "RUNNING INDEX"
    #  before_action :authenticate_user!
     #session.clear()
     if session[:user_id] == nil
@@ -37,6 +80,7 @@ class ModelController < ApplicationController
       end
     end
 
+    @materials_html = generate_materials.html_safe
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
   	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]
 
@@ -138,4 +182,6 @@ class ModelController < ApplicationController
     def model_params
       params.permit(@model)
     end
+    
+  
 end

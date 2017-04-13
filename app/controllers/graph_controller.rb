@@ -1,7 +1,6 @@
 class GraphController < ApplicationController
     def index
-        puts "Graphing this data: "
-        puts params[:data]
+        #Graphing this data (params from create method)
         data_json = params[:data]
         gon.data = data_json
     end    
