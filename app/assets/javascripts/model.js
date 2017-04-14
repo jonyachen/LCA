@@ -409,7 +409,9 @@ $(function(){
 		$(categories).hide();
 		$(materials).hide();
 		$(materials + ':Contains('+ input +')').show();
+		// $(materials + ':Contains('+ input +')').trigger('expand'); Why does this do nothing?
 		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+		$(materials + ':Contains('+ input +')').closest('.collapsible').closest('.collapsible').show();
 	});
 
 
