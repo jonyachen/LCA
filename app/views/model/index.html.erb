@@ -55,39 +55,7 @@
                       </div>
 
                       <!-- Material library -->    
-                      
                       <%= @materials_html %>
-<!--
-                      <ul id="materials" class="collapsible" data-collapsible="expandable">
-                        <li>
-                          <div class="collapsible-header"><i class="material-icons">expand_more</i>ferrous</div>
-                          <div class="collapsible-body"><ul class="collection">
-                            
-                            <ul class="collapsible" data-collapsible="expandable">
-                            <li>
-                            <div class="collapsible-header"><i class="material-icons">expand_more</i>iron alloy</div>
-                            <div class="collapsible-body"><ul class="collection">
-                               <li class="collection-item draggable">cast iron milling</li>
-                               <li class="collection-item draggable"> test2</li>
-                            </ul></div>
-                            </li>
-                            
-                            <li>
-                            <div class="collapsible-header"><i class="material-icons">expand_more</i>iron alloy</div>
-                            <div class="collapsible-body"><ul class="collection">
-                               <li class="collection-item draggable">cast iron milling</li>
-                               <li class="collection-item draggable"> test2</li>
-                            </ul></div>
-                            </li>
-                          </ul>
-                            
-                          </ul></div>
-                        </li>
-                      </ul>
--->
-
-
-
                   </div>
               </li>
               
@@ -102,14 +70,8 @@
                         <input id="processes-search" placeholder="Search processes" type="text" class="autocomplete">
                       </div>
                       
-                      
-                      <ul>
-                          <% Activity.where(parent_type: "Category", parent_id: "2").each do |activity| %>
-                            <ul class="collection">
-                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                          <% end %>
-                          </ul>
-                      </ul>
+                      <!-- Processes library -->   
+                      <%= @processes_html %>
                   </div>
               </li>
               
@@ -124,13 +86,8 @@
                         <input id="transport-search" placeholder="Search transportation" type="text" class="autocomplete">
                       </div>
                       
-                      <ul>
-                          <% Activity.where(parent_type: "Category", parent_id: "3").each do |activity| %>
-                            <ul class="collection">
-                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                          <% end %>
-                            </ul>
-                      </ul>
+                      <!-- Transport library -->   
+                      <%= @transport_html %>
                   </div>
               </li>
               
@@ -145,13 +102,8 @@
                         <input id="use-search" placeholder="Search usage" type="text" class="autocomplete">
                       </div>
                       
-                      <ul>
-                          <% Activity.where(parent_type: "Category", parent_id: "4").each do |activity| %>
-                            <ul class="collection">
-                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                          <% end %>
-                            </ul>
-                      </ul>
+                      <!-- Use library -->   
+                      <%= @use_html %>
                   </div>
               </li>
               
@@ -166,13 +118,8 @@
                         <input id="eol-search" placeholder="Search end of life" type="text" class="autocomplete">
                       </div>
                       
-                      <ul>
-                          <% Activity.where(parent_type: "Category", parent_id: "5").each do |activity| %>
-                            <ul class="collection">
-                                <%= content_tag :li, activity.name, :class => "collection-item draggable", :data => {:type => 'material', :id => activity.id, :name => activity.name} %>
-                          <% end %>
-                            </ul>
-                      </ul>
+                     <!-- EoL library -->   
+                      <%= @endoflife_html %>
                   </div>
               </li>
               

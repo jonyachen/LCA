@@ -39,7 +39,20 @@ select {
 
 .projects-page {
    @import 'model_mixins';
-
+   #materials {
+       font-size: 13px;
+       
+       li {
+           
+           line-height: 15px;
+       }
+       
+       .collapsible-header, .material-icons {
+           min-height: 1.5rem;
+           line-height: 1.5rem;
+       }
+   }
+   
    #workspace {
        height: 60vh;
        width: 100%;
@@ -73,9 +86,6 @@ select {
       max-height: inherit;
       margin: 0;
 
-      .collapsible-header {
-          
-      }
 
        li:not(.active) > .collapsible-header i {
            -ms-transform: rotate(180deg);

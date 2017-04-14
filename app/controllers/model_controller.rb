@@ -1,40 +1,37 @@
 class ModelController < ApplicationController
-  helper_method :generate_materials
-  def generate_materials
-    materials_html = '<ul id="materials" class="collapsible" data-collapsible="expandable">'
-    materials = Activity.where(parent_type: "Category", parent_id: "1")
-    materials.each{ |material|
-      materials_html += '<li>'
-      materials_html += generate_mat_tiers(material)
-      materials_html += '</li>'
+  
+  def generate_library(category_id)
+    @only_leaves = true
+    lib_html = '<ul id="materials" class="collapsible library" data-collapsible="expandable">'
+    activities = Activity.where(parent_type: "Category", parent_id: category_id)
+    activities.each{ |activity|
+      lib_html += '<li>' 
+      lib_html += generate_lib_tiers(activity)
+      lib_html += '</li>'
     }
-    return materials_html
+    if @only_leaves
+      lib_html = '<ul class="collection">' + lib_html + '</ul>'
+    end
+    return lib_html
   end
   
-  def generate_mat_tiers(activity)
+  def generate_lib_tiers(activity)
     if !(Activity.where(parent_type: "Activity", parent_id: activity.id).present?)
       # Base - If the activity has no children
-      
       leaf_html = '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li>'
       return leaf_html
     else
+      @only_leaves = false
       # If activity has children, create a header for the activity and collection for children
-      parent_html = '<div class="collapsible-header draggable"><i class="material-icons">expand_more</i><ul class="collection">'
+      parent_html = '<div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">'
       parent_html += '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li></ul></div>'
       parent_html += '<div class="collapsible-body"><ul class="collection">'
       parent_html += '<ul class="collapsible" data-collapsible="expandable">'
-      
-    
-                                                  
-      #parent_html = '<div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">'
-      #parent_html += '<li class="collection-item draggable" data-type="material" data-id="' + activity.id.to_s + '" data-name="' + activity.name + '">' + activity.name + '</li></ul></div>'
-
       children = Activity.where(parent_type: "Activity", parent_id: activity.id)
       children.each { |child|
-        parent_html += '<li>'
-        
-        recur = generate_mat_tiers(child)
+        recur = generate_lib_tiers(child)
         unless recur.kind_of?(Array)
+          parent_html += '<li>'
           parent_html += recur
         end
       }
@@ -80,7 +77,8 @@ class ModelController < ApplicationController
       end
     end
 
-    @materials_html = generate_materials.html_safe
+    
+    
   	@material_data = Hash[Material.all.collect {|material| [material.title, material.id]}]
   	@material_names = Hash[Material.all.collect {|material| [material.id, material.title]}]
 
@@ -99,6 +97,11 @@ class ModelController < ApplicationController
   	###
   	#New queries below
   	###
+  	@materials_html = generate_library(1).html_safe
+  	@processes_html = generate_library(2).html_safe
+  	@transport_html = generate_library(3).html_safe
+  	@use_html = generate_library(4).html_safe
+  	@endoflife_html = generate_library(5).html_safe
   	
   	@activities = Activity.categories.collect do |parent_type|
   		  [parent_type, Activity.where(parent_type: "Category").collect {|material| [material.name, material.id]}]
