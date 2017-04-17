@@ -1,8 +1,9 @@
-/* global $, materials, SAVE_URL */
+/* global _, $, materials, SAVE_URL */
+
 
 function make_new_material_section(name, id, quantity, measurement) {
-	quantity = typeof quantity !== 'undefined' ? quantity : 0;
-	measurement = typeof measurement !== 'undefined' ? measurement : "kg";
+	quantity = typeof quantity !=='undefined'? quantity : 1;
+	measurement = typeof measurement !=='undefined'? measurement : "kg";
 	var $li = $('<li></li>', {
 		"class": 'material-section'
 	});
@@ -31,9 +32,9 @@ function make_new_material_section(name, id, quantity, measurement) {
 	$head.appendTo($li);
 	$body.appendTo($li);
 	add_inputs($head, 'material');
+	
 	$head.find("#quantity").val(quantity);
 	$head.find("#measurement").val(measurement);
-
 
 	$li.droppable({
 		greedy: true,
@@ -42,13 +43,15 @@ function make_new_material_section(name, id, quantity, measurement) {
 			var from = ui.draggable[0];
 			var id = $(from).data("id");
 			var name = $(from).data("name");
+			var units = $(from).data("units")
+			if (units == ""){ units = undefined }
 			//if ($(from).data('type') == 'procedure') {
 				//console.log($(this).find(".processes").children().length);
 				if ($(this).find(".processes").children().length > 1) {
-					add_proc_to($li, name, id, 0,$head.find("#measurement").val()); //if already one child
+					add_proc_to($li, name, id, $head.find("#quantity").val(),units); //if already one child
 				}
 				else {
-					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
+					add_proc_to($li, name, id, $head.find("#quantity").val(),units);
 				}
 			//}
 
@@ -170,15 +173,42 @@ function make_new_subassembly(){
 }
 
 function add_inputs($obj, obj_type, css_type) {
+	console.log($obj);
+	// Need to remove hardcode - grab from DB Unit table based on type attribute instead
+	unit_types = {
+		"mass": ["kg","oz","lb","metric ton"], 
+		"SA": ["m^2","in^2","ft^2"], 
+		"length": ["in","ft","m","mi"], 
+		"volume": ["m^3"],
+		"energy": ["kWh"],
+		"payload": ["metric ton*km"]
+	}
 	if (obj_type == "material" || obj_type == "process") {
+		console.log($obj)
+		var unit_re = /measurement="(.*?)"/i;
+		var default_unit = $obj[0].outerHTML.match(unit_re)[1]
+		var unit_type = _.findKey(unit_types, function(list) { return _.contains(list, default_unit); });
+		
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
 		$quant.appendTo($obj);
-		var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
-		//var measurement_text = '<label for="measurement" class="label">Measure</label>'
-		//for 
+		
+		
+		
+		//var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
+		var measurement_text = '<label for="measurement" class="label">Measure</label><select id="measurement">'
+		var available_units = unit_types[unit_type];
+		for (var i in available_units){
+			measurement_text += '<option value="'
+			measurement_text += available_units[i]
+			measurement_text += '">'
+			measurement_text += available_units[i]
+			measurement_text += '</option>'
+		} 
+		measurement_text += '</select>'
 		
 		//measurement_text += '<select id="measurement"><option value="foo">kg</option><option value="bar">m^2</option></select>'
-		//var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="foo">kg</option><option value="bar">m^2</option></select>')
+		//var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="kg">kg</option><option value="m^2">m^2</option><option value="kWh">kWh</option></select>')
+		var $measure = $(measurement_text)
 		$measure.appendTo($obj);
 	}
 }
@@ -243,11 +273,11 @@ function build_data() {
 		material["name"] = $(this).find(".material").data("name");
 		material["id"] = $(this).find(".material").data("id");
 		material["quantity"] = $(this).find("input#quantity").val()
-		material["measurement"] = $(this).find("input#measurement").val()
-
+		material["measurement"] = $(this).find("select#measurement :selected").val();
+		
 		var procedures = [];
 		$(this).find(".process").each(function (index) {
-			procedures.push({"name": $(this).data("name"), "id": $(this).data("id"), "quantity": $(this).find("input#quantity").val(), "measurement": $(this).find("input#measurement").val()});
+			procedures.push({"name": $(this).data("name"), "id": $(this).data("id"), "quantity": $(this).find("input#quantity").val(), "measurement": $(this).find("select#measurement :selected").val()});
 		});
 		material["procedures"] = procedures;
 
@@ -263,6 +293,7 @@ function fill_build(data, name) {
 	$("#assembly-title").val(name);
 	for (var key in data){
 		var material = data[key];
+
 		var $mat = make_new_material_section(material["name"], material["id"], material["quantity"], material["measurement"]);
 		for (var key in material["procedures"]) {
 			var proc = material["procedures"][key];
@@ -328,11 +359,11 @@ $(document).on('turbolinks:load', function() {
 			//console.log(ui.draggable[0])
 			var name = item.innerText;
 			var id = $(item).data("id")
-
+			var units = $(item).data("units")
+			if (units == ""){ units = undefined }
 			var type = $(item).data('type')
 			if (type == 'material') {
-
-				var $li = make_new_material_section(name, id);
+				var $li = make_new_material_section(name, id, undefined, units);
 			}
 		}
 	});

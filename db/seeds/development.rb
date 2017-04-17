@@ -135,5 +135,6 @@ Unit.create!(:unit=> "ft", :conversion_to_si=>0.3048, :category=> "length")
 Unit.create!(:unit=> "m", :conversion_to_si=>1.0, :category=> "length")
 Unit.create!(:unit=> "mi", :conversion_to_si=>1609.34, :category=> "length")
 Unit.create!(:unit=> "m^3", :conversion_to_si=>1.0, :category=> "volume")
+Unit.create!(:unit=> "kWh", :conversion_to_si=>1.0, :category=> "energy")
 
 

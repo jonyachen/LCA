@@ -12,10 +12,23 @@ class GraphController < ApplicationController
             a_hash = activity
             if (type == "activity")
                 a_id = activity["activity_id"]
+                temp_id = a_id
+                temp_a = Activity.find(temp_id)
                 a = Activity.find(a_id)
                 a_hash["name"] = a.name
+                while temp_id > 5
+                    temp_a = Activity.find(temp_id)
+                    temp_id = temp_a.parent_id
+                end
+                puts "TEMP ACTIVITY"
+               puts a_id
+               
+               puts temp_a
+               puts Category.find(temp_a.parent_id).name
+                a_hash["category"] = Category.find(temp_a.parent_id).name
             else
                 # For category objects
+                puts "its a category?"
                 a_hash["activity_id"] = nil
                 a_hash["name"] = activity["name"]
             end
@@ -24,10 +37,13 @@ class GraphController < ApplicationController
             a_hash["value"] = value
             a_hash["uncertain_lower"] = uncertainty_lower
             a_hash["uncertain_upper"] = uncertainty_upper
+            
            
             unless children.nil?
                 a_hash["children"] = children
             end
+            puts "A HASH"
+            puts a_hash
             return a_hash
         end
         
@@ -59,9 +75,13 @@ class GraphController < ApplicationController
                     top_lvl_activity["children"].each { |inner_lvl_activity|
                         inner_hash = create_obj_hash("activity", inner_lvl_activity, nil)
                         activity_children << inner_hash
+                        puts "INNER HASH"
+                        puts inner_hash
                     }
                 end
                 top_level_hash = create_obj_hash("activity", top_lvl_activity, activity_children)
+                puts "TOP LEVEL HASH"
+                puts top_level_hash
                 category_children << top_level_hash
             }
             category_hash = create_obj_hash("category", category, category_children)

@@ -13,7 +13,7 @@ function flattenChildValues(data){
           .map(function(parent, index){
           return _.map(parent.children, function(children){
             return {
-              'category' : parent.name,
+              'category' : children.category,
               'uncertain_lower': children.uncertain_lower,
               'uncertain_upper': children.uncertain_upper,
               'name' : children.name,
@@ -28,6 +28,8 @@ function flattenChildValues(data){
 }
 
 function drawChart(params){
+  console.log("DATA IS:")
+  console.log(params.data);
   // Set chart parameters
   var chartType = params.type;
   var threshold_lo = 0.1;
@@ -50,6 +52,7 @@ function drawChart(params){
   // draws it.
   function drawBar(params) {
     var dataset = params.data;
+    console.log(dataset);
     var divId = params.div;
     var title = params.title;
     totalImpact = 0;
@@ -69,14 +72,23 @@ function drawChart(params){
     for (i = 0; i < dataset.length; i++){
       // Set percent error of total impact value
       dataset[i]["percent_error"] = 1.0 * (dataset[i]["uncertain_lower"] + dataset[i]["uncertain_upper"]) / totalImpact
-           
+      console.log(dataset[i]);
       // Set colors for thresholds
-      if (dataset[i].percent_error < threshold_lo){
-        var error_color = "#e1bea8"
-      } else if (dataset[i].percent_error > threshold_hi){
-        var error_color = "#ff3d3d"
-      } else {
-        var error_color = "#ff8080"
+      if (dataset[i].category == "Material"){
+        console.log("adding material color");
+        var bar_color = "#64AFC2"
+      } else if (dataset[i].category == "Process"){
+        console.log("adding process color");
+        var bar_color = "#91C1AA"
+      } else if (dataset[i].category == "Transport"){
+        console.log("adding transport color");
+        var bar_color = "#1C3144"
+      } else if (dataset[i].category == "Use"){
+        console.log("adding use color")
+        var bar_color = "#F9E191"
+      } else if (dataset[i].category == "End of Life"){
+        console.log("adding eol color")
+        var bar_color = "#654F6F"
       }
       
       var row = [];
@@ -84,7 +96,7 @@ function drawChart(params){
       row.push(dataset[i].value);
       row.push(dataset[i].value - dataset[i].uncertain_lower);
       row.push(dataset[i].value + dataset[i].uncertain_upper);
-      row.push("bar{ color: " + error_color + "}");
+      row.push("bar{ color: " + bar_color + "}");
       rows.push(row);
     }
     data.addRows(rows);

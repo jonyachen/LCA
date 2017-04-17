@@ -2,6 +2,10 @@ class Unit < ApplicationRecord
     def self.unit_conversion(id, units)
         # If the unit doesn't already match the activity's stored units, apply conversion
         activity_units = Activity.find(id).units
+        puts "UNITS:"
+        puts units
+        puts "ACTIVITY UNITS:"
+        puts activity_units
         if (units != activity_units and activity_units.present?)
             puts id
             puts units
