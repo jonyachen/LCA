@@ -130,7 +130,17 @@ Impact.create!(:impact_per_unit=>61.0, :uncertainty_lower=>44.0, :uncertainty_up
 Impact.create!(:impact_per_unit=>268.67, :uncertainty_lower=>28.0, :uncertainty_upper=>29.0, :activity_id=>1)
 Impact.create!(:impact_per_unit=>199.33, :uncertainty_lower=>25.0, :uncertainty_upper=>29.0, :activity_id=>4)
 Impact.create!(:impact_per_unit=>338.0, :uncertainty_lower=>28.0, :uncertainty_upper=>24.0, :activity_id=>8)
-Impact.create!(:impact_per_unit=>281.0, :uncertainty_lower=>11.0, :uncertainty_upper=>15.0, :activity_id=>5)
+Impact.create!(:impact_per_unit=>272.0, :uncertainty_lower=>40.0, :uncertainty_upper=>48.0, :activity_id=>2)
+Impact.create!(:impact_per_unit=>235.875, :uncertainty_lower=>40.0, :uncertainty_upper=>42.0, :activity_id=>12)
+Impact.create!(:impact_per_unit=>295.0, :uncertainty_lower=>12.0, :uncertainty_upper=>22.0, :activity_id=>13)
+Impact.create!(:impact_per_unit=>216.17, :uncertainty_lower=>40.0, :uncertainty_upper=>42.0, :activity_id=>16)
+Impact.create!(:impact_per_unit=>368.33, :uncertainty_lower=>35.0, :uncertainty_upper=>48.0, :activity_id=>23)
+Impact.create!(:impact_per_unit=>312.0, :uncertainty_lower=>18.0, :uncertainty_upper=>48.0, :activity_id=>24)
+Impact.create!(:impact_per_unit=>481.0, :uncertainty_lower=>35.0, :uncertainty_upper=>44.0, :activity_id=>27)
+Impact.create!(:impact_per_unit=>382.5, :uncertainty_lower=>33.0, :uncertainty_upper=>58.0, :activity_id=>3)
+Impact.create!(:impact_per_unit=>382.5, :uncertainty_lower=>33.0, :uncertainty_upper=>58.0, :activity_id=>29)
+
+
 
 # Can add :type if it makes querying easier for model building drop-down display
 Unit.delete_all

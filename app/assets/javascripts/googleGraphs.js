@@ -3,8 +3,8 @@ var project = flattenChildValues(JSON.parse(gon.data));
 var projectTitle = JSON.parse(gon.data)[0].name;
 var chartHeight = 340;
 var chartWidth = 800;
-var currViewBar = [{name: "Life cycle stages", data: project}];
-var currViewCandle = [{name: "Life cycle stages", data: project}];
+var currViewBar = [{name: projectTitle, data: project}];
+var currViewCandle = [{name: projectTitle, data: project}];
 
 function flattenChildValues(data){
   // Accepts data array containing objects.
@@ -28,8 +28,6 @@ function flattenChildValues(data){
 }
 
 function drawChart(params){
-  console.log("DATA IS:")
-  console.log(params.data);
   // Set chart parameters
   var chartType = params.type;
   var threshold_lo = 0.1;
@@ -52,7 +50,6 @@ function drawChart(params){
   // draws it.
   function drawBar(params) {
     var dataset = params.data;
-    console.log(dataset);
     var divId = params.div;
     var title = params.title;
     totalImpact = 0;
@@ -72,22 +69,17 @@ function drawChart(params){
     for (i = 0; i < dataset.length; i++){
       // Set percent error of total impact value
       dataset[i]["percent_error"] = 1.0 * (dataset[i]["uncertain_lower"] + dataset[i]["uncertain_upper"]) / totalImpact
-      console.log(dataset[i]);
+      
       // Set colors for thresholds
       if (dataset[i].category == "Material"){
-        console.log("adding material color");
         var bar_color = "#64AFC2"
       } else if (dataset[i].category == "Process"){
-        console.log("adding process color");
         var bar_color = "#91C1AA"
       } else if (dataset[i].category == "Transport"){
-        console.log("adding transport color");
         var bar_color = "#1C3144"
       } else if (dataset[i].category == "Use"){
-        console.log("adding use color")
         var bar_color = "#F9E191"
       } else if (dataset[i].category == "End of Life"){
-        console.log("adding eol color")
         var bar_color = "#654F6F"
       }
       

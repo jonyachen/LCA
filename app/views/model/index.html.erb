@@ -133,7 +133,7 @@
                 
             <button id="save" class="butt js--triggerAnimation">Save</button>
             <br><br><br>
-            <%= button_to 'Analyze', {:controller => "graph", :action => "create"},  class: "butt js--triggerAnimation", params: { build: @model }  %>
+            <%= button_to 'Analyze', {:controller => "graph", :action => "create"},  class: "butt js--triggerAnimation", id:"analyze", params: { build: @model }  %>
         </td>
             
       </tr>

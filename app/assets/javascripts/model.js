@@ -73,7 +73,7 @@ function make_new_subassembly(){
 	});
 
 	var $head = $('<div></div>', {
-		"class": 'subassembly',
+		"class": 'material subassembly',
 		"text":"\uD83D\uDCC2  " + "Subassembly A",
 		//"data-id": id,
 		//"data-name": name,
@@ -93,14 +93,10 @@ function make_new_subassembly(){
 		"text": "Drop items into subassembly here."
 	});
 
-	//console.log("Creating a new Material..");
-
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
 	$body.appendTo($li);
 	//add_inputs($head, 'material');
-	//$head.find("#quantity").val(quantity);
-	//$head.find("#measurement").val(measurement);
 
 
 	$li.droppable({
@@ -111,43 +107,13 @@ function make_new_subassembly(){
 			var from = ui.draggable[0];
 			var id = $(from).data("id");
 			var name = $(from).data("name");
-			//if ($(from).data('type') == 'procedure') {
-				//console.log($(this).processes.offsetparent.childElementCount);
-				console.log($(this).find(".processes").children().length);
-				if ($(this).find(".processes").children().length > 1) {
-					add_proc_to($li, name, id, 0,$head.find("#measurement").val());
-				}
-				else {
-					add_proc_to($li, name, id, $head.find("#quantity").val(),$head.find("#measurement").val());
-				}
 				*/
 				var from = ui.draggable[0];
 				var id = "4";
-				var name = from.innerText;
+				//var name = from.innerText;
+				//var name = $(from).data("name");
+				var name = "test";
 				add_subassembly_to($li, name, id, 0, 0);
-				
-				/*
-				var $new_li = $('<li></li>', {
-					"class": 'material-section'
-				});
-				var $new_head = $('<div></div>', {
-					"class": 'material',
-					"text":"TEST",
-				});
-				var $new_delButton = make_delete_button($new_li, 'material');
-				$new_delButton.appendTo($new_head);
-				var $new_body = $('<ul></ul>', {
-					"class": 'collection processes'
-				});
-				var $new_procdrop = $('<li></li>', {
-					"class": 'collection-item',
-					"text": "Drop items into material here."
-				});
-				$new_procdrop.appendTo($new_body);
-				$new_head.appendTo($new_li);
-				$new_body.appendTo($new_li);
-				$new_li.insertAfter(".subassembly");
-				*/
 			//}
 		}
 		
@@ -184,9 +150,10 @@ function add_inputs($obj, obj_type, css_type) {
 		"payload": ["metric ton*km"]
 	}
 	if (obj_type == "material" || obj_type == "process") {
-		console.log($obj)
+		console.log($obj[0].outerHTML)
 		var unit_re = /measurement="(.*?)"/i;
 		var default_unit = $obj[0].outerHTML.match(unit_re)[1]
+		if (default_unit == "") { default_unit = "kg" }
 		var unit_type = _.findKey(unit_types, function(list) { return _.contains(list, default_unit); });
 		
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
@@ -241,7 +208,7 @@ function add_subassembly_to($mat, name, id, quantity, measurement) {
 	var $proc = $('<li></li>', {
 		//"class": 'collection-item process',
 		"class": 'material', //change to block?
-		"text": "metals", //hack
+		"text": name,
 		"data-id": id,
 		"data-name": name,
 		"quantity": quantity,
@@ -283,7 +250,7 @@ function build_data() {
 
 		result.push(material);
 	})
-	//console.log(result)
+	console.log(result)
 	
 	return result;
 }
@@ -388,6 +355,27 @@ $(document).on('turbolinks:load', function() {
 			success: function(response, status, xhr) {
 				//console.log(response);
 				Materialize.toast('Saved', 2000);
+			},
+
+			error: function(xhr, status, errorThrown) {
+				 console.log(errorThrown);
+			},
+
+			complete: function (xhr, status) {
+				// console.log(status);
+			}
+		});
+	})
+	
+	$('#analyze').click(function() {
+		$.ajax({
+			dataType: "json",
+			type: "POST",
+			url: SAVE_URL,
+			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
+			success: function(response, status, xhr) {
+				//console.log(response);
+				console.log("analyze was clicked");
 			},
 
 			error: function(xhr, status, errorThrown) {
