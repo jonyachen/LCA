@@ -152,7 +152,9 @@ input, button, textarea {
   }
 
 .butt {
-  border: 2px solid #f35626;
+  //border: 2px solid #f35626;
+  border: 0px;
+  background-color: #595959;
   line-height: 1;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -166,7 +168,7 @@ input, button, textarea {
 }
 
   .butt--primary {
-    background-color: #f35626;
+    //background-color: #f35626;
     color: #fff;
   }
 
