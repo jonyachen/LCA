@@ -1,1 +1,1 @@
-[{"name":"","children":[{"activity_id":"1","quantity":"1","units":"kg","children":[{"activity_id":"32","quantity":"1","units":"m^2"}]},{"activity_id":"38","quantity":"1","units":"metric ton*km"},{"activity_id":"32","quantity":"1","units":"m^2"},{"activity_id":"41","quantity":"1","units":"kg"}]}]
+[{"name":"","children":[{"activity_id":"32","quantity":"1","units":"m^2"}]}]

@@ -72,15 +72,15 @@ function drawChart(params){
       
       // Set colors for thresholds
       if (dataset[i].category == "Material"){
-        var bar_color = "#64AFC2"
+        var bar_color = "#7099C5"
       } else if (dataset[i].category == "Process"){
-        var bar_color = "#91C1AA"
+        var bar_color = "#BBD9D9"
       } else if (dataset[i].category == "Transport"){
-        var bar_color = "#1C3144"
+        var bar_color = "#FAC6B0"
       } else if (dataset[i].category == "Use"){
-        var bar_color = "#F9E191"
+        var bar_color = "#EEE52B"
       } else if (dataset[i].category == "End of Life"){
-        var bar_color = "#654F6F"
+        var bar_color = "#784022"
       }
       
       var row = [];

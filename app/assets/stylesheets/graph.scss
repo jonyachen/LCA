@@ -1,6 +1,9 @@
 // Place all the styles related to the Graph controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#content {
+    text-align: center;
+}
 div.graph {
     margin: 0 auto;
     text-align: center;
@@ -15,6 +18,15 @@ button {
     
 }
 
-.button {
-// add link button styling here
+h1 {
+    display: inline-block;
 }
+
+.link {
+// add link button styling here
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding-left: 50;
+}
+

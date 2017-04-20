@@ -16,14 +16,19 @@ class GraphController < ApplicationController
                 temp_a = Activity.find(temp_id)
                 a = Activity.find(a_id)
                 a_hash["name"] = a.name
-                while temp_id > 5
+                parent_type = a.parent_type
+                while parent_type != "Category"
                     temp_a = Activity.find(temp_id)
                     temp_id = temp_a.parent_id
+                    parent_type = temp_a.parent_type
                 end
+                puts a.name
+                puts a_id
                 puts "TEMP ACTIVITY"
-               puts a_id
                
+               puts temp_id
                puts temp_a
+               puts temp_a.name
                puts Category.find(temp_a.parent_id).name
                 a_hash["category"] = Category.find(temp_a.parent_id).name
             else
@@ -46,15 +51,9 @@ class GraphController < ApplicationController
             puts a_hash
             return a_hash
         end
-        
-        # Old read-in data from json file
-        #model_json = File.read("app/assets/json/model.json")
-        #model = JSON.parse(model_json)
+      
         
         data = []
-        
-        # New data from model_controller
-        #model = JSON.parse(params[:build])
         puts "MODEL"
         model = Assembly.find(session[:assembly_id]).components_json
         model = JSON.parse(model.gsub(/"(\d+)"/, '\1'))

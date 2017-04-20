@@ -26,12 +26,14 @@ function make_new_material_section(name, id, quantity, measurement) {
 		"text": "Drop your " + name + " processes here."
 	});
 
-	 console.log("Creating a new Material..");
+	 //console.log("Creating a new Material..");
 
 	$procdrop.appendTo($body);
 	$head.appendTo($li);
 	$body.appendTo($li);
 	add_inputs($head, 'material');
+	console.log("material");
+	console.log($li[0]);
 	
 	$head.find("#quantity").val(quantity);
 	$head.find("#measurement").val(measurement);
@@ -73,7 +75,7 @@ function make_new_subassembly(){
 	});
 
 	var $head = $('<div></div>', {
-		"class": 'material subassembly',
+		"class": 'subassembly',
 		"text":"\uD83D\uDCC2  " + "Subassembly A",
 		//"data-id": id,
 		//"data-name": name,
@@ -104,17 +106,26 @@ function make_new_subassembly(){
 
 		drop: function(event, ui) {
 			/*
-			var from = ui.draggable[0];
-			var id = $(from).data("id");
-			var name = $(from).data("name");
-				*/
 				var from = ui.draggable[0];
-				var id = "4";
-				//var name = from.innerText;
-				//var name = $(from).data("name");
-				var name = "test";
+				var id = $(from).data("id");
+				var name = $(from).data("name");
+				var name = $(from).data-name;
 				add_subassembly_to($li, name, id, 0, 0);
-			//}
+			*/
+			var from = ui.draggable[0].outerHTML; // ui.draggable[0] is HTML obj. outerHTML grabs the string version
+			$from = $('<div/>').html(from).contents(); // trick to convert string to jquery object
+			// this needs reworking to select for the right object to insert it before. 
+			// see what's printed from dragging a process to a regular material as an example of what needs to be selected (it's already printing to console)
+			//console.log("before");
+			//console.log($body[0]);
+			$from.appendTo($body);
+			//console.log("after");
+			//console.log($body[0]);
+			//$body.find('.processes :last').prevObject.before($from);
+			console.log("after");
+			console.log($body[0]);
+			
+
 		}
 		
 		/*
@@ -139,8 +150,7 @@ function make_new_subassembly(){
 }
 
 function add_inputs($obj, obj_type, css_type) {
-	console.log($obj);
-	// Need to remove hardcode - grab from DB Unit table based on type attribute instead
+	// Temp fix - Need to remove hardcode: grab from DB Unit table based on type attribute instead
 	unit_types = {
 		"mass": ["kg","oz","lb","metric ton"], 
 		"SA": ["m^2","in^2","ft^2"], 
@@ -150,7 +160,7 @@ function add_inputs($obj, obj_type, css_type) {
 		"payload": ["metric ton*km"]
 	}
 	if (obj_type == "material" || obj_type == "process") {
-		console.log($obj[0].outerHTML)
+		//console.log($obj[0].outerHTML)
 		var unit_re = /measurement="(.*?)"/i;
 		var default_unit = $obj[0].outerHTML.match(unit_re)[1]
 		if (default_unit == "") { default_unit = "kg" }
@@ -159,9 +169,6 @@ function add_inputs($obj, obj_type, css_type) {
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
 		$quant.appendTo($obj);
 		
-		
-		
-		//var $measure = $('<label for="measurement" class="label">Measure</label> <input id="measurement" type="text" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;">');
 		var measurement_text = '<label for="measurement" class="label">Measure</label><select id="measurement">'
 		var available_units = unit_types[unit_type];
 		for (var i in available_units){
@@ -172,9 +179,6 @@ function add_inputs($obj, obj_type, css_type) {
 			measurement_text += '</option>'
 		} 
 		measurement_text += '</select>'
-		
-		//measurement_text += '<select id="measurement"><option value="foo">kg</option><option value="bar">m^2</option></select>'
-		//var $measure = $('<label for="measurement" class="label">Measure</label><select id="measurement"><option value="kg">kg</option><option value="m^2">m^2</option><option value="kWh">kWh</option></select>')
 		var $measure = $(measurement_text)
 		$measure.appendTo($obj);
 	}
@@ -200,6 +204,9 @@ function add_proc_to($mat, name, id, quantity, measurement) {
 
 	// $mat.find('.processes :last-child').before($proc);
 	$mat.find('.processes :last').before($proc);
+	console.log("$proc:");
+	console.log($proc);
+	console.log($mat.find('.processes :last'));
 }
 
 function add_subassembly_to($mat, name, id, quantity, measurement) {
@@ -250,7 +257,7 @@ function build_data() {
 
 		result.push(material);
 	})
-	console.log(result)
+	//console.log(result)
 	
 	return result;
 }
@@ -293,9 +300,21 @@ Pretty hack-ey. document.ready doesn't seem to work here. This also causes probl
 //
 // });
 
-    
-$(document).on('turbolinks:load', function() {
+// Each <li> in library instantiated with tooltip. This removes the associated 
+// tooltip div if there is no overflow detected.
+$(document).on('mouseenter', "li", function () {
+    var $this = $(this);
+    if (this.offsetWidth >= this.scrollWidth && $this.hasClass("tooltipped")) {
+    	$(this).removeClass('tooltipped')
+        console.log("no overflow")
+        tooltip_id = $this.data("tooltip-id")
+        $("[id=" + tooltip_id + "]").remove();
+    }
+});
 
+
+$(document).on('turbolinks:load', function() {
+	//$('.tooltipped').tooltip({delay: 10});
   
 	$('.draggable').draggable({
 		containment: 'window',
@@ -341,7 +360,6 @@ $(document).on('turbolinks:load', function() {
 	})
 	
 	$('#add_subassembly').click(function() {
-		//var id = "test";
 		var $li = make_new_subassembly();
 	})
 	
@@ -368,6 +386,7 @@ $(document).on('turbolinks:load', function() {
 	})
 	
 	$('#analyze').click(function() {
+		Materialize.toast('Saving...', 2000);
 		$.ajax({
 			dataType: "json",
 			type: "POST",
@@ -375,7 +394,7 @@ $(document).on('turbolinks:load', function() {
 			data: { build: build_data(), assembly_name: $("#assembly-title").val() },
 			success: function(response, status, xhr) {
 				//console.log(response);
-				console.log("analyze was clicked");
+				Materialize.toast('Saved', 2000);
 			},
 
 			error: function(xhr, status, errorThrown) {
@@ -401,7 +420,7 @@ $(document).on('turbolinks:load', function() {
 		fill_build(curr_assembly, curr_name);
 	}
 
-	var menu_height = $('#menu .collapsible-header').first().height() * 5;
+	var menu_height = $('#menu .collapsible-header').first().height() * 4;
 	var library_height = $('#library').height();
 
 

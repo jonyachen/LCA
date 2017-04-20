@@ -16,20 +16,23 @@ class ModelController < ApplicationController
     return lib_html
   end
   
+  
   def generate_lib_tiers(activity)
     if !(Activity.where(parent_type: "Activity", parent_id: activity.id).present?)
       # Base - If the activity has no children
-      leaf_html = '<li class="collection-item draggable" data-type="material" '
+      leaf_html = '<li class="collection-item draggable tooltipped" data-type="material" '
       leaf_html += 'data-id="' + activity.id.to_s + '" data-name="' + activity.name + '" data-units="' + activity.units.to_s
-      leaf_html += '">' + activity.name + '</li>'
+      leaf_html += '" data-position="right" data-delay="10" data-tooltip="' + activity.name + '">'
+      leaf_html += activity.name + '</li>'
       return leaf_html
     else
       @only_leaves = false
       # If activity has children, create a header for the activity and collection for children
       parent_html = '<div class="collapsible-header"><i class="material-icons">expand_more</i><ul class="collection">'
-      parent_html += '<li class="collection-item draggable" data-type="material" '
+      parent_html += '<li class="collection-item draggable tooltipped" data-type="material" '
       parent_html += 'data-id="' + activity.id.to_s + '" data-name="' + activity.name + '" data-units="' + activity.units.to_s
-      parent_html += '">' + activity.name + '</li></ul></div>'
+      parent_html += '" data-position="right" data-delay="10" data-tooltip="' + activity.name + '">'
+      parent_html += activity.name + '</li></ul></div>'
       parent_html += '<div class="collapsible-body"><ul class="collection">'
       parent_html += '<ul class="collapsible" data-collapsible="expandable">'
       children = Activity.where(parent_type: "Activity", parent_id: activity.id)

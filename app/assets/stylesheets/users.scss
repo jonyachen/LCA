@@ -20,7 +20,7 @@ html, body, main {
 
 #navigation-bar {
   background-color: black;
-  height: 55px;
+  height: 52px;
   width: 100%;
   text-align: center;
   // border-style: groove;
@@ -192,10 +192,11 @@ input, button, textarea {
 
 h1, .alpha {
   margin-bottom: 1.5rem;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 100;
   line-height: 1;
   letter-spacing: -.05em;
+  margin: 1.0rem;
 }
 
 h2, .beta {
@@ -276,7 +277,7 @@ html {
   width: 100%;
 
   /* Centering in The Unknown */
-  text-align: center;
+  //text-align: center;
 }
 
 @media (min-width: 200px) {
@@ -328,6 +329,7 @@ html {
 }
 
   .site__title {
+    font-size: 3.0rem;
     margin-top: -1px;
     color: #f35626;
     background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
