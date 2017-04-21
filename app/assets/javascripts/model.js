@@ -306,7 +306,6 @@ $(document).on('mouseenter', "li", function () {
     var $this = $(this);
     if (this.offsetWidth >= this.scrollWidth && $this.hasClass("tooltipped")) {
     	$(this).removeClass('tooltipped')
-        console.log("no overflow")
         tooltip_id = $this.data("tooltip-id")
         $("[id=" + tooltip_id + "]").remove();
     }

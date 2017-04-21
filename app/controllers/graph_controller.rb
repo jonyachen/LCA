@@ -32,16 +32,18 @@ class GraphController < ApplicationController
                puts Category.find(temp_a.parent_id).name
                 a_hash["category"] = Category.find(temp_a.parent_id).name
             else
-                # For category objects
+                # For subassembly objects
                 puts "its a category?"
                 a_hash["activity_id"] = nil
                 a_hash["name"] = activity["name"]
             end
         
-            value, uncertainty_lower, uncertainty_upper = Impact.get_value(type, a_hash)
-            a_hash["value"] = value
-            a_hash["uncertain_lower"] = uncertainty_lower
-            a_hash["uncertain_upper"] = uncertainty_upper
+            #value, uncertainty_lower, uncertainty_upper = Impact.get_value(type, a_hash)
+            total_impact = Impact.calc_impact(type, a_hash)
+            total_uncertainty_l, total_uncertainty_u = Impact.calc_uncertainties(type, a_hash)
+            a_hash["value"] = total_impact
+            a_hash["uncertain_lower"] = total_uncertainty_l
+            a_hash["uncertain_upper"] = total_uncertainty_u
             
            
             unless children.nil?
@@ -51,7 +53,9 @@ class GraphController < ApplicationController
             puts a_hash
             return a_hash
         end
-      
+        
+        
+        
         
         data = []
         puts "MODEL"

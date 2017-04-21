@@ -3,12 +3,14 @@ var project = flattenChildValues(JSON.parse(gon.data));
 var projectTitle = JSON.parse(gon.data)[0].name;
 var chartHeight = 340;
 var chartWidth = 800;
+
+// Stacks to keep track of current views for drilldown functionality
 var currViewBar = [{name: projectTitle, data: project}];
 var currViewCandle = [{name: projectTitle, data: project}];
 
 function flattenChildValues(data){
-  // Accepts data array containing objects.
-  // Flattens by remapping children name and value to same tier as parent category and uncertainty.
+  // Accepts data array containing objects. Flattens data to support drilldown functionality
+  // Remaps children name and value to same tier as parent category and uncertainty.
     var flattened = _.chain(data)
           .map(function(parent, index){
           return _.map(parent.children, function(children){
