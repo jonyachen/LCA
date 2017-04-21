@@ -55,10 +55,10 @@ Activity.create!(:name=>"powder coating, steel", :units=>"m^2", :parent_type=>"C
 
 
 # Transport activities
-Activity.create!(:name=>"market for transport, freight train", :units=>"metric ton*km", :parent_type=>"Category", :parent_id=>3)
-Activity.create!(:name=>"market for transport, freight, aircraft", :units=>"metric ton*km", :parent_type=>"Category", :parent_id=>3)
-Activity.create!(:name=>"market for transport, freight, light commercial vehicle", :units=>"metric ton*km", :parent_type=>"Category", :parent_id=>3)
-Activity.create!(:name=>"market for transport, freight, sea, transoceanic ship", :units=>"metric ton*km", :parent_type=>"Category", :parent_id=>3)
+Activity.create!(:name=>"market for transport, freight train", :units=>"ton*km", :parent_type=>"Category", :parent_id=>3)
+Activity.create!(:name=>"market for transport, freight, aircraft", :units=>"ton*km", :parent_type=>"Category", :parent_id=>3)
+Activity.create!(:name=>"market for transport, freight, light commercial vehicle", :units=>"ton*km", :parent_type=>"Category", :parent_id=>3)
+Activity.create!(:name=>"market for transport, freight, sea, transoceanic ship", :units=>"ton*km", :parent_type=>"Category", :parent_id=>3)
 
 
 # Use activities
@@ -135,7 +135,7 @@ Unit.delete_all
 Unit.create!(:unit=> "kg", :conversion_to_si=>1.0, :category=> "mass")
 Unit.create!(:unit=> "oz", :conversion_to_si=>0.0283, :category=> "mass")
 Unit.create!(:unit=> "lb", :conversion_to_si=>0.4536, :category=> "mass")
-Unit.create!(:unit=> "metric ton", :conversion_to_si=>1000.0, :category=> "mass")
+Unit.create!(:unit=> "ton", :conversion_to_si=>1000.0, :category=> "mass")
 Unit.create!(:unit=> "m^2", :conversion_to_si=>1.0, :category=> "SA")
 Unit.create!(:unit=> "in^2", :conversion_to_si=>6.452E-04, :category=> "SA")
 Unit.create!(:unit=> "ft^2", :conversion_to_si=>0.0929, :category=> "SA")
