@@ -12,47 +12,38 @@
 	</head>
 
 	<body>
-			<%= link_to 'Return to model building', root_path, method: 'GET', class: 'link' %>
+			<p><%= link_to 'Return to model building', root_path, method: 'GET', class: 'link' %></p>
 			 
 			<div id="content">
 				<div id="uncertainty">
 					<h1>Uncertainty Assessment</h1>
 					<div class="graph" id="chart_project_candle"></div>
-					<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #e1bea8 "></span>	< 10% of total uncertainty
-					<span style="display:inline-block; width: 15px;"></span>
-					<span class ="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #ff8080 "></span> 10% - 20% of total uncertainty   
-			  		<span style="display:inline-block; width: 15px;"></span>
-			  		<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #ff3d3d "></span> > 20% of total uncertainty</p>
+					<span class="legend" id="less-uncertainty"></span><p> < 10% of total uncertainty </p>
+					<span class="spacing"></span>
+					<span class ="legend" id="medium-uncertainty"></span><p> 10% - 20% of total uncertainty </p> 
+					<span class="spacing"></span>
+			  		<span class="legend" id="most-uncertainty"></span><p> > 20% of total uncertainty </p>
+			  		<br><br>
 					<button class="butt js--triggerAnimation" id="rewind-candle">Rewind a tier</button>
 					<button class="butt js--triggerAnimation" id="reset-candle">Reset tiers</button>
 				</div>
+				<br><br>
 				<div id="impact">
 					<h1>Environmental Impact Assessment</h1>
-					<div class="graph" id="chart_project_bar"></div><p style="display: inline"> 
-					<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #7099C5 "></span>
-					<span style="display:inline-block; width: 10px;"></span>Material
-					<span style="display:inline-block; width: 15px;"></span>
-					<span class ="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #BBD9D9 "></span>
-		  			<span style="display:inline-block; width: 10px;"></span>Process
-		  			<span style="display:inline-block; width: 15px;"></span>
-		  			<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #FAC6B0 "></span>
-					<span style="display:inline-block; width: 10px;"></span>Transportation
-					<span style="display:inline-block; width: 15px;"></span>
-					<span class="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #EEE52B "></span>
-					<span style="display:inline-block; width: 10px;"></span>Energy Use
-					<span style="display:inline-block; width: 15px;"></span>
-					<span class ="legend" style="width: 15px; height: 15px; margin:auto; display: inline-block; vertical-align: middle; border: 1px solid #D3D3D3; border-radius: 2px; background: #784022 "></span>
-					<span style="display:inline-block; width: 10px;"></span>End of Life   
-		  			<span style="display:inline-block; width: 15px;"></span>
-					<br>
+					<div class="graph" id="chart_project_bar"></div>
+					<span class="legend" id ="material"></span><p>Material</p>
+					<span class="spacing"></span>
+					<span class ="legend" id="process"></span><p>Process</p>
+		  			<span class="spacing"></span>
+		  			<span class="legend" id="transport"></span><p>Transportation</p>
+					<span class="spacing"></span>
+					<span class="legend" id="use"></span><p>Energy Use</p>
+					<span class="spacing"></span>
+					<span class ="legend" id="eol"></span><p>End of Life</p>
+					<br><br>
 					<button class="butt js--triggerAnimation" id = "rewind-bar">Rewind a tier</button>
 					<button class="butt js--triggerAnimation" id="reset-bar">Reset tiers</button>
 				</div>
-			
 			</div>
-			
-			
-		
-		
 	</body>
 </html>

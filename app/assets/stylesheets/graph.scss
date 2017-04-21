@@ -4,6 +4,7 @@
 #content {
     text-align: center;
 }
+
 div.graph {
     margin: 0 auto;
     text-align: center;
@@ -18,15 +19,44 @@ button {
     
 }
 
+.spacing {
+    display:inline-block; 
+    width: 10px;
+}
+
 h1 {
     display: inline-block;
 }
 
 .link {
-// add link button styling here
     text-align: center;
     position: relative;
     z-index: 10;
-    padding-left: 50;
+    float: right;
 }
 
+.legend {
+    width: 15px; 
+    height: 15px; 
+    margin:auto; 
+    display: inline-block; 
+    vertical-align: middle; 
+    border: 1px solid #D3D3D3; 
+    border-radius: 2px;
+}
+
+p {
+    display: inline;
+    padding: 0.6rem;
+}
+
+// Legend colors
+#less-uncertainty { background: #e1bea8; }
+#medium-uncertainty { background: #ff8080; }
+#most-uncertainty { background: #ff3d3d; }
+
+#material { background: #7099C5; }
+#process { background: #BBD9D9; }
+#transport { background: #FAC6B0; }
+#use { background: #EEE52B; }
+#eol { background: #784022; }
