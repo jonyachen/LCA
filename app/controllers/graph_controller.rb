@@ -22,48 +22,35 @@ class GraphController < ApplicationController
                     temp_id = temp_a.parent_id
                     parent_type = temp_a.parent_type
                 end
-                puts a.name
-                puts a_id
-                puts "TEMP ACTIVITY"
-               
-               puts temp_id
-               puts temp_a
-               puts temp_a.name
-               puts Category.find(temp_a.parent_id).name
                 a_hash["category"] = Category.find(temp_a.parent_id).name
             else
-                # For subassembly objects
-                puts "its a category?"
                 a_hash["activity_id"] = nil
                 a_hash["name"] = activity["name"]
             end
-        
-            #value, uncertainty_lower, uncertainty_upper = Impact.get_value(type, a_hash)
-            total_impact = Impact.calc_impact(type, a_hash)
-            total_uncertainty_l, total_uncertainty_u = Impact.calc_uncertainties(type, a_hash)
-            a_hash["value"] = total_impact
-            a_hash["uncertain_lower"] = total_uncertainty_l
-            a_hash["uncertain_upper"] = total_uncertainty_u
-            
            
             unless children.nil?
                 a_hash["children"] = children
+                a_hash["value"] = 0
+                a_hash["uncertain_lower"] = 0
+                a_hash["uncertain_upper"] = 0
+                children.each { |child|
+                    a_hash["value"] += child["value"]
+                    a_hash["uncertain_lower"] += child["uncertain_lower"]
+                    a_hash["uncertain_upper"] = child["uncertain_upper"]
+                }
+            else
+                total_impact = Impact.calc_impact(type, a_hash)
+                total_uncertainty_l, total_uncertainty_u = Impact.calc_uncertainties(type, a_hash)
+                a_hash["value"] = total_impact
+                a_hash["uncertain_lower"] = total_uncertainty_l
+                a_hash["uncertain_upper"] = total_uncertainty_u
             end
-            puts "A HASH"
-            puts a_hash
             return a_hash
         end
         
-        
-        
-        
         data = []
-        puts "MODEL"
         model = Assembly.find(session[:assembly_id]).components_json
         model = JSON.parse(model.gsub(/"(\d+)"/, '\1'))
-        
-        puts model
-        
         model.each_with_index { |category, index|
             if category["children"].nil?
                 activities = category
@@ -72,19 +59,21 @@ class GraphController < ApplicationController
             end
             category_children = []
             activities.each { |top_lvl_activity|
-                #puts top_lvl_activity
                 if top_lvl_activity.key?("children")
                     activity_children = []
                     top_lvl_activity["children"].each { |inner_lvl_activity|
                         inner_hash = create_obj_hash("activity", inner_lvl_activity, nil)
                         activity_children << inner_hash
-                        puts "INNER HASH"
-                        puts inner_hash
                     }
+                    # Include top level activity in children drilldown for graphing
+                    top_no_children = Hash.new()
+                    top_no_children["activity_id"] = top_lvl_activity["activity_id"]
+                    top_no_children["quantity"] = top_lvl_activity["quantity"]
+                    top_no_children["units"] = top_lvl_activity["units"]
+                    activity_children << create_obj_hash("activity", top_no_children, nil)
                 end
+                
                 top_level_hash = create_obj_hash("activity", top_lvl_activity, activity_children)
-                puts "TOP LEVEL HASH"
-                puts top_level_hash
                 category_children << top_level_hash
             }
             category_hash = create_obj_hash("category", category, category_children)
