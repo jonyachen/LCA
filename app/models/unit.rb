@@ -21,8 +21,6 @@ class Unit < ApplicationRecord
     end
     
     def self.conversion_factor_SI(units)
-        puts "UNITS ARE:"
-        puts units
         return Unit.where("unit = ?", units).first.conversion_to_si
     end
     

@@ -1,0 +1,299 @@
+/* The alert message box */
+/* line 3, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.alert2 {
+  border-radius: 7px;
+  padding: 20px;
+  background-color: #f44336;
+  /* Red */
+  color: white;
+  margin-bottom: 15px;
+  opacity: 1;
+  transition: opacity 0.6s;
+  /* 600ms to fade out */
+}
+
+/* The close button */
+/* line 14, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the close button */
+/* line 25, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.closebtn:hover {
+  color: black;
+}
+
+/* line 29, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+select {
+  border: 1px solid #111;
+  background: 'white';
+  width: 100px;
+  margin: 5px 0px 15px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  height: 1.7rem;
+  text-align-last: center;
+}
+
+/* line 42, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #materials {
+  font-size: 13px;
+}
+/* line 45, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #materials li {
+  text-align: left;
+  line-height: 1.0rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* line 53, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #materials .collapsible-header, .projects-page #materials .material-icons {
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+}
+/* line 59, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #workspace {
+  height: 60vh;
+  width: 100%;
+}
+/* line 63, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #workspace tr:first-child {
+  height: 40px;
+}
+/* line 66, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #workspace tr > :first-child {
+  width: 350px;
+}
+/* line 70, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #workspace td {
+  padding: 0px;
+  text-align: center;
+  border: none;
+}
+/* line 77, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #workspace .section-title {
+  border: none;
+}
+/* line 83, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #library, .projects-page #assembly {
+  vertical-align: top;
+}
+/* line 87, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu {
+  width: 350px;
+  max-height: inherit;
+  margin: 0;
+}
+/* line 93, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu li:not(.active) > .collapsible-header i {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(-90deg);
+  max-height: 150px;
+  transition: 0.2s;
+}
+/* line 101, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body {
+  max-height: 45vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* line 106, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar, .projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-button, .projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-track, .projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-track-piece, .projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-thumb, .projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-corner, .projects-page #menu > li.active > .collapsible-body::-webkit-resizer {
+  background: transparent;
+}
+/* line 116, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+}
+/* line 122, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-track-piece {
+  border-radius: 5px;
+}
+/* line 126, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-thumb {
+  background: #4f4f4f;
+  border-radius: 5px;
+}
+/* line 131, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu > li.active > .collapsible-body::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+/* line 137, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu li .collapsible {
+  margin: 0px;
+}
+/* line 139, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu li .collapsible .collection {
+  margin-left: 10px;
+}
+/* line 141, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #menu li .collapsible .collection .draggable:hover {
+  cursor: move;
+  background-color: #ddd;
+}
+/* line 151, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #material-search {
+  background-color: white;
+}
+/* line 155, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #manufacturing-search {
+  background-color: white;
+}
+/* line 159, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #transport-search {
+  background-color: white;
+}
+/* line 163, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page .dropdown-content {
+  position: absolute;
+  width: 50%;
+}
+/* line 168, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page .drag-thing {
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  background-color: #99f;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* line 188, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build {
+  margin: 0px;
+  font-family: verdana;
+}
+/* line 192, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .material-section {
+  margin-bottom: 15px;
+}
+/* line 196, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build [class*='input-'] {
+  width: 7%;
+  font-weight: normal;
+}
+/* line 201, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build [class*='label'] {
+  padding-left: 20px;
+}
+/* line 205, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .material {
+  font-weight: bold;
+  font-size: 100%;
+  border-radius: 5px;
+  padding: 15px 0px 3px 0px;
+  margin: 0px auto;
+  background-color: #99d6ff;
+  width: 900px;
+}
+/* line 217, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .material:hover {
+  background: #e6f5ff;
+}
+/* line 221, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .subassembly {
+  font-weight: bold;
+  font-size: 100%;
+  border-radius: 5px;
+  padding: 15px 0px 5px 0px;
+  margin: 0px;
+  background-color: #66ffcc;
+  height: 60px;
+  padding-left: 30px;
+}
+/* line 233, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .subassembly:hover {
+  background: #e6fff7;
+}
+/* line 237, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .processes {
+  margin: 0px;
+  position: relative;
+  font-size: 90%;
+}
+/* line 242, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .processes .collection-item {
+  position: relative;
+  background: #ccebff;
+  margin: 0px auto;
+  padding: 10px 0px 10px 0px;
+  width: 800px;
+  height: 50px;
+  border-radius: 5px;
+}
+/* line 253, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .processes .collection-item:hover {
+  background: #e6f5ff;
+}
+/* line 256, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .processes .subassembly-item {
+  position: relative;
+  background: #b3ffe6;
+  margin: 0px auto;
+  padding: 10px 0px 10px 0px;
+  height: 80px;
+  border-radius: 5px;
+}
+/* line 267, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .processes .subassembly-item:hover {
+  background: #e6fff7;
+}
+/* line 272, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build [class*='close-'] {
+  font-size: 80%;
+  border-radius: 7px;
+  float: right;
+}
+/* line 281, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build [class*='close-']:hover {
+  background-color: #f44336;
+  color: white;
+}
+/* line 286, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .close-material {
+  padding: 12px 8px 12px 11px;
+  margin: 2px;
+}
+/* line 291, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .close-process {
+  border-radius: 100px;
+  padding: 3px 2px 3px 3px;
+}
+/* line 297, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #build .close-folder {
+  font-size: 110%;
+  padding: 5px 100px 50px 10px;
+  margin: 2px;
+}
+/* line 305, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page .butt {
+  border: 0px;
+  background-color: #595959;
+  float: right;
+  margin-right: 15px;
+}
+/* line 312, /home/ubuntu/workspace/app/assets/stylesheets/model.scss */
+.projects-page #assembly-title {
+  height: 25px;
+  font-size: 25px;
+  text-align: center;
+  max-width: 250px;
+  padding: .5em 0px 0px 0px;
+}

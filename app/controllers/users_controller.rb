@@ -10,6 +10,14 @@ class UsersController < ApplicationController
          @current_user = User.find(session[:user_id])
       end
    end
+   
+   def account
+      if !session[:user_id]
+         redirect_to welcome_path
+      else
+         @current_user = User.find(session[:user_id])
+      end
+   end
 
    def logout
       flash[:notice]  = "Successfully Logged Out!"

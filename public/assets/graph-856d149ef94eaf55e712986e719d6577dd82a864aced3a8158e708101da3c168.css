@@ -1,0 +1,93 @@
+/* line 4, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#content {
+  text-align: center;
+}
+
+/* line 8, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+div.graph {
+  margin: 0 auto;
+  text-align: center;
+  width: 800px;
+}
+
+/* line 16, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+button {
+  border: 0px;
+  background-color: #FFFFFF;
+}
+
+/* line 22, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+.spacing {
+  display: inline-block;
+  width: 10px;
+}
+
+/* line 27, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+h1 {
+  display: inline-block;
+}
+
+/* line 31, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+.link {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  float: right;
+}
+
+/* line 38, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+.legend {
+  width: 15px;
+  height: 15px;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #D3D3D3;
+  border-radius: 2px;
+}
+
+/* line 48, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+p {
+  display: inline;
+  padding: 0.6rem;
+}
+
+/* line 54, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#less-uncertainty {
+  background: #e1bea8;
+}
+
+/* line 55, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#medium-uncertainty {
+  background: #ff8080;
+}
+
+/* line 56, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#most-uncertainty {
+  background: #ff3d3d;
+}
+
+/* line 58, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#material {
+  background: #7099C5;
+}
+
+/* line 59, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#process {
+  background: #BBD9D9;
+}
+
+/* line 60, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#transport {
+  background: #FAC6B0;
+}
+
+/* line 61, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#use {
+  background: #EEE52B;
+}
+
+/* line 62, /home/ubuntu/workspace/app/assets/stylesheets/graph.scss */
+#eol {
+  background: #784022;
+}

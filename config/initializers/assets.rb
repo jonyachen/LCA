@@ -2,7 +2,6 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-
 Rails.application.config.assets.precompile += %w( model.css )
 Rails.application.config.assets.precompile += %w( model.js )
 Rails.application.config.assets.precompile += %w( materialize.min.js )
@@ -10,6 +9,7 @@ Rails.application.config.assets.precompile += %w( materialize.min.css )
 #Rails.application.config.assets.precompile += %w( graph.js )
 Rails.application.config.assets.precompile += %w( graph.css )
 Rails.application.config.assets.precompile += %w( googleGraphs.js )
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
 
 
 

@@ -1,13 +1,13 @@
 class GraphController < ApplicationController
     def index
-        #Graphing this data (params from create method)
+        # Graphing this data (params from create method)
         data_json = params[:data]
         gon.data = data_json
     end    
     
     def create
         require 'json'
-
+        # Helper that creates graphing data hashes from model building hashes
         def create_obj_hash(type, activity, children)
             a_hash = activity
             if (type == "activity")

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   match '/logout' => 'users#logout', via: [:get, :post]
   match '/signup' => 'users#signup', via: [:get, :post]
   match '/profile' => 'users#profile', via: [:get, :post]
+  match '/account' => 'users#account', via: [:get, :post]
   #match '/lca' => 'graph#fetch_data', via: :get
 
 end

@@ -1,6 +1,7 @@
 /* global _, $, materials, SAVE_URL */
 
 
+
 function make_new_material_section(name, id, quantity, measurement) {
 	quantity = typeof quantity !=='undefined'? quantity : 1;
 	measurement = typeof measurement !=='undefined'? measurement : "kg";
@@ -163,6 +164,7 @@ function add_inputs($obj, obj_type, css_type) {
 		var unit_re = /measurement="(.*?)"/i;
 		var default_unit = $obj[0].outerHTML.match(unit_re)[1]
 		if (unit_re.test($obj[0].outerHTML) && !default_unit) { default_unit = "kg" }
+		console.log(default_unit)
 		var unit_type = _.findKey(unit_types, function(list) { return _.contains(list, default_unit); });
 		
 		var $quant = $('<label for="quantity" class="label">Quantity</label> <input id="quantity" type="number" class="input-{#obj_type}" style="height:20px; width:30px; font-size:10pt;" >');
@@ -448,7 +450,6 @@ $(function(){
 		// $(materials + ':Contains('+ input +')').trigger('expand'); Why does this do nothing?
 		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
 		$(materials + ':Contains('+ input +')').closest('.collapsible').closest('.collapsible').show();
-		console.log($(materials + ':Contains('+ input +')').closest('.collapsible'));
 	});
 
 

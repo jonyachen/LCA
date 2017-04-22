@@ -1,0 +1,15 @@
+<header>
+   <%= render 'users/navigation' %>
+</header>
+
+<br>
+
+<body>
+   <h1>Account</h1><br>
+   <p><b>Name: </b><%= @current_user.name %></p><br>
+   <p><b>Email: </b><%= @current_user.email %></p><br>
+   <p><b>Username: </b><%= @current_user.username %></p><br>
+   <p><b>Number of Assemblies: </b><%= @current_user.assemblys.size %></p>
+</body>
+
+<br>
