@@ -441,23 +441,81 @@ $(function(){
 	$('#materials-search').keyup(function() {
 		var input = $('#materials-search').val();
 		var categories = '#materials-dropdown .collapsible';
-		var materials = '#materials-dropdown .collapsible'; //what makes material draggable - Todo: attach to materials
-		$(categories).hide();
-		$(materials).hide();
-		$(materials + ':Contains('+ input +')').show();
+		//var materials = '#materials-dropdown .collapsible'; //what makes material draggable - Todo: attach to materials
+		var materials = '#materials-dropdown .collection-item'
+		var collections = 'collection'
+		console.log('input is:')
+		console.log(input)
+		//$(categories).hide();
+		//$(materials).hide();
+		//$(materials + ':Contains('+ input +')').show();
 		// $(materials + ':Contains('+ input +')').trigger('expand'); Why does this do nothing?
-		$(materials + ':Contains('+ input +')').closest('.collapsible').show();
-		$(materials + ':Contains('+ input +')').closest('.collapsible').closest('.collapsible').show();
-		console.log($(materials + ':Contains('+ input +')').closest('.collapsible'));
+		//$(materials + ':Contains('+ input +')').closest('.collapsible').show();
+		//$(materials + ':Contains('+ input +')').closest('.collapsible').closest('.collapsible').show();
+		$(materials).each(function() {
+			var $material = $(this)
+			var $category = $(this).closest('div');
+			if ($(this).text().search(new RegExp(input, "i")) < 0) {
+				if ($category.hasClass('collapsible-header')) {
+					// Hides header container (not just the <li>)
+	        		$category.hide();
+	        		var $contents = $category.next('.collapsible-body');
+	        		$contents.find('*').hide();
+	        	} else if ($category.hasClass('collapsible-body')) {
+	        		// Non-match was a leaf so hides just the <li> element
+	        		$material.hide();
+	        	}
+	        } else {
+	        	// Show element that matches
+	        	if ($category.hasClass('collapsible-header')) {
+	        		var $contents = $category.next('.collapsible-body')
+	        		$category.show();
+	        		if (!$category.hasClass('active')) {
+	        			$category.click();
+	        		} else if (input.length == 0) {
+		        		$category.click();
+	        			console.log($category);
+
+	        		}
+	        		$contents.find('*').show();
+	        		
+	        	} else if ($category.hasClass('collapsible-body')) {
+	        		$material.show();
+	        	}
+	        	// Show matching element's parents
+	        	var $material_copy = $material
+	        	var parent_list = []
+	        	while (!$material_copy.parent().hasClass('library')) {
+	        		$material_copy = $material_copy.parent()
+	        		parent_list.push($material_copy.get(0))
+	        		if ($material_copy.is('li')) {
+	        			var header = $material_copy.children('.collapsible-header')
+	    				parent_list.push(header)
+	        			$(header).find('*').each( function() {
+	        				parent_list.push($(this).get(0));
+	        			})
+	        		}
+	        	}
+	        	for (var i=0; i < parent_list.length; i++){
+	        		if ($(parent_list[i]).hasClass('collapsible-header') && !$(parent_list[i]).hasClass('active')) {
+	        			$(parent_list[i]).click();
+	        		}
+	        		$(parent_list[i]).show();
+	        	}
+	        	
+	        	
+	        
+	        	//console.log($material);
+	        	//console.log($category);
+	        }
+		})
+		
+		//console.log($(materials + ':Contains('+ input +')'));
+		
+ 
 	});
 
 
-	$('#manufacturing-search').keyup(function() {
-		var input = $('#manufacturing-search').val();
-		var categories = '#new-dropdown .collapsible .draggable';
-		var materials = '#new-dropdown .collapsible .draggable';
-	});
-	
 	$('#processes-search').keyup(function() {
 		var input = $('#processes-search').val();
 		var categories = '#processes-dropdown .draggable';
