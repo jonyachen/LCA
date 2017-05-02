@@ -32,8 +32,8 @@ function make_new_material_section(name, id, quantity, measurement) {
 	$head.appendTo($li);
 	$body.appendTo($li);
 	add_inputs($head, 'material');
-	console.log("material");
-	console.log($li[0]);
+	//console.log("material");
+	//console.log($li[0]);
 	
 	$head.find("#quantity").val(quantity);
 	$head.find("#measurement").val(measurement);
@@ -71,12 +71,12 @@ function make_new_subassembly(){
 	//quantity = typeof quantity !== 'undefined' ? quantity : 0;
 	//measurement = typeof measurement !== 'undefined' ? measurement : "kg";
 	var $li = $('<li></li>', {
-		"class": 'material-section'
+		"class": 'subassembly-section'
 	});
 
 	var $head = $('<div></div>', {
 		"class": 'subassembly',
-		"text":"\uD83D\uDCC2  " + "Subassembly A",
+		"text":"\uD83D\uDCC2  " + "Subassembly",
 		//"data-id": id,
 		//"data-name": name,
 		//"quantity": quantity,
@@ -100,47 +100,63 @@ function make_new_subassembly(){
 	$body.appendTo($li);
 	//add_inputs($head, 'material');
 
-
 	$li.droppable({
 		greedy: true,
 
 		drop: function(event, ui) {
-			/*
-				var from = ui.draggable[0];
+			var from = ui.draggable[0].outerHTML; // ui.draggable[0] is HTML obj. outerHTML grabs the string version
+			//console.log(from);
+			$from = $('<div/>').html(from).contents(); // trick to convert string to jquery object
+			if(!$from.hasClass("material-section")){
+				console.log("THIS IS A MATERIAL FROM LIBRARY"); //If so, will need to create new li object
+				var item = ui.draggable[0];
 				var id = $(from).data("id");
 				var name = $(from).data("name");
-				var name = $(from).data-name;
-				add_subassembly_to($li, name, id, 0, 0);
-			*/
-			var from = ui.draggable[0].outerHTML; // ui.draggable[0] is HTML obj. outerHTML grabs the string version
-			$from = $('<div/>').html(from).contents(); // trick to convert string to jquery object
-			// this needs reworking to select for the right object to insert it before. 
-			// see what's printed from dragging a process to a regular material as an example of what needs to be selected (it's already printing to console)
-			//console.log("before");
-			//console.log($body[0]);
-			$from.appendTo($body);
+				var units = $(from).data("units")
+				if (units == ""){ units = undefined }
+				var type = $(item).data('type')
+				var quantity = typeof quantity !=='undefined'? quantity : 1;
+				var measurement = typeof measurement !=='undefined'? measurement : "kg";
+				var $new_li = $('<li></li>', {
+					"class": 'material-section'
+				});
+				var $new_head = $('<div></div>', {
+					"class": 'material',
+					"text": name,
+					"data-id": id,
+					"data-name": name,
+					"quantity": quantity,
+					"measurement": measurement
+				});
+				var $new_body = $('<ul></ul>', {
+					"class": 'collection processes'
+				});
+				var $new_procdrop = $('<li></li>', {
+					"class": 'collection-item',
+					"text": "Drop your " + name + " processes here."
+				});
+				$new_procdrop.appendTo($new_body);
+				$new_head.appendTo($new_li);
+				$new_body.appendTo($new_li);
+				console.log($new_li);
+				add_inputs($new_head, 'material');
+				$new_head.find("#quantity").val(quantity);
+				$new_head.find("#measurement").val(measurement);
+				var $delButton = make_delete_button($new_li, 'material');
+				$delButton.appendTo($new_head);
+				$from = $new_li;
+			}
+			$from.css('position', 'relative');
+			$from.css('top', '0px');
+			$from.css('left', '0px');
+			$from.css('margin-bottom', '0px');
+			$from.css('z-index', 'auto');
+			$body.find('.processes :last').prevObject.before($from);
+			//$from.appendTo($body);
+			ui.draggable[0].remove();
 			//console.log("after");
 			//console.log($body[0]);
-			//$body.find('.processes :last').prevObject.before($from);
-			console.log("after");
-			console.log($body[0]);
-			
-
 		}
-		
-		/*
-		drop: function (event, ui) {
-			var item = ui.draggable[0]
-			var name = item.innerText;
-			var id = $(item).data("id")
-
-			var type = $(item).data('type')
-			if (type == 'material') {
-
-				var $li = make_new_material_section(name, id);
-			}
-		}
-		*/
 	});
 
 
@@ -203,9 +219,10 @@ function add_proc_to($mat, name, id, quantity, measurement) {
 
 	// $mat.find('.processes :last-child').before($proc);
 	$mat.find('.processes :last').before($proc);
-	console.log("$proc:");
-	console.log($proc);
-	console.log($mat.find('.processes :last'));
+	console.log("after proc drop:");
+	//console.log($proc);
+	//console.log($mat.find('.processes :last'));
+	console.log($mat);
 }
 
 function add_subassembly_to($mat, name, id, quantity, measurement) {

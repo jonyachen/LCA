@@ -43,7 +43,7 @@ Activity.create!(:name=>"steel production, chromium steel 18/8", :units=>"kg", :
 
 Activity.create!(:name=>"wood", :parent_type=>"Activity", :parent_id=>3)
 Activity.create!(:name=>"door production, inner, glass-wood", :units=>"m^2", :parent_type=>"Activity", :parent_id=>29)
-Activity.create!(:name=>"fibreboard production, hard, from virgin wood", :units=>"m3", :parent_type=>"Activity", :parent_id=>29)
+Activity.create!(:name=>"fibreboard production, hard, from virgin wood", :units=>"m^3", :parent_type=>"Activity", :parent_id=>29)
 
 
 # Process activities

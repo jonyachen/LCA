@@ -14,6 +14,10 @@ class Unit < ApplicationRecord
         end
         
         if (units != activity_units)
+            puts "units don't match"
+            puts units
+            puts activity_units
+            puts id
             return Unit.conversion_factor_SI(units) * Unit.conversion_factor_from_SI(activity_units)
         else
             return 1.0
@@ -21,6 +25,8 @@ class Unit < ApplicationRecord
     end
     
     def self.conversion_factor_SI(units)
+        puts "units"
+        puts units
         return Unit.where("unit = ?", units).first.conversion_to_si
     end
     

@@ -191,6 +191,11 @@ select {
        .material-section {
            margin-bottom: 15px;
        }
+       .subassembly-section {
+           margin-bottom: 15px;
+           background: #b3ffe6;
+           
+       }
 
        [class*='input-'] {
            width: 7%;
@@ -210,7 +215,7 @@ select {
          background-color: #99d6ff;
          //line-height: 40px;
          //height: 60px;
-         width: 900px;
+         width: 960px;
        }
 
        .material:hover {
